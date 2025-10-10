@@ -1,40 +1,42 @@
 syntax = "proto3";
 
-package web.authentication;
+package  santiago.web.authentication;
 
-service Authentication {
-    rpc viaAuthCode (AuthRequest) returns (AuthResponse) {}
+service WebAuthentication {
+    rpc viaAuthCode (AuthCodeAuthentication) returns (AuthenticationResponse) {}
     rpc logout (Empty) returns (Empty) {}
 }
 
-message PlayerInfo {
-    int64 nucleusId = 1;
-    int64 personaId = 2;
-    int32 platformId = 3;
+message Player {
+  int64 nucleusId = 1;
+  int64 personaId = 2;
+  Platform platform = 3;
 }
 
 enum Platform {
-    UNKNOWN = 0;
-    PC = 1;
-    PS4 = 2;
-    XBOXONE = 3;
-    PS5 = 4;
-    XBSX = 5;
-    COMMON = 6;
+  UNKNOWN = 0;
+   /** PC - EA App */
+  PC = 1;
+  PS4 = 2;
+  XBOXONE = 3;
+  PS5 = 4;
+  XBSX = 5;
+  /** COMMON - Used for requests that includes a cross-platform payload */
+  COMMON = 6;
+  STEAM = 7;
 }
 
 enum Reason {
     NONE = 0;
-    PLAYER = 1;
-    SYNC = 2;
+    SYNC = 1;
 }
 
-message AuthRequest {
+message AuthCodeAuthentication {
     string authCode = 1;
-    string redirectUri = 2;
-    string product = 3;
-    string firstPartyId = 4;
-    Platform platform = 5;
+    Platform platform = 2;
+    optional string redirectUri = 3;
+    optional string patchVersion  = 4; 
+    optional string protocolVersion = 5;
 }
 
 message Duration {
@@ -52,23 +54,14 @@ message ProtocolVersionOverride {
     Reason reason = 3;
 }
 
-enum UserBits {
-    USER_BIT_UNSPECIFIED = 0;
-    USER_BIT_ACCEPTED_TOS = 1;
-    USER_BIT_ENABLE_USERSHARING = 2;
-    USER_BIT_ENABLE_CRASHREPORTS = 3;
-    USER_BIT_COMPLETED_TUTORIAL = 4;
-    USER_BIT_CLIENT_ENABLE_USAGESHARING = 5;
-}
-
 message Empty {
 }
 
-message AuthResponse {
+message AuthenticationResponse {
     string sessionId = 1;
-    PlayerInfo player = 3;
-    repeated UserBits userBits = 4;
-    TimeTravel timeTravel = 5;
-    ProtocolVersionOverride protocolVersionOverride = 6;
+    optional Player player = 2;
+    optional TimeTravel timeTravel = 3;
+    optional ProtocolVersionOverride protocolVersionOverride = 4;
+    string patchVersion  = 5; 
 }
 

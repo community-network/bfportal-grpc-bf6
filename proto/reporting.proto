@@ -1,44 +1,58 @@
 syntax = "proto3";
 
-package web.reporting;
+package santiago.web.reporting;
 
 service WebReporting {
-    rpc reportPlayground (ReportPlaygroundRequest) returns (ReportPlaygroundResponse) {}
+    rpc ReportPlayer (ReportPlayerRequest) returns (ReportingResponse) {}
+    rpc ReportExperience (ReportExperienceRequest) returns (ReportingResponse) {}
 }
 
-enum Category {
-    UNKNOWN_CATEGORY = 0;
-    CHEATING = 1;
-    HARASSMENT = 2;
-    SPAM = 3;
-    PLAGIARISM = 4;
-    HATE_SPEECH = 5;
-    SEXUALLY_EXPLICIT = 6;
-    CHILD_SOLICITATION = 7;
-    TERRORIST_THREAT = 8;
-    CLIENT_HACK = 9;
-    SUICIDE_THREAT = 10;
-    DOXING = 11;
-    ADVERTISING = 12;
-    INAPPROPRIATE = 13;
-    VIOLENT = 14;
-    OFFENSIVE = 15;
-    OFFENSIVE_CHAT = 16;
-    OFFENSIVE_NAME = 17;
+message Player {
+  int64 nucleusId = 1;
+  int64 personaId = 2;
+  Platform platform = 3;
 }
 
-message StringValue {
-    string value = 1;
+enum Platform {
+  UNKNOWN = 0;
+   /** PC - EA App */
+  PC = 1;
+  PS4 = 2;
+  XBOXONE = 3;
+  PS5 = 4;
+  XBSX = 5;
+  /** COMMON - Used for requests that includes a cross-platform payload */
+  COMMON = 6;
+  STEAM = 7;
 }
 
-message ReportPlaygroundRequest {
-    string protocolVersion = 1;
-    string playgroundId = 2;
-    Category category = 3;
-    StringValue requesterEmail = 4;
-    StringValue subject = 5;
+message ReportPlayerRequest {
+    optional Player offendingPlayer = 1;
+    optional string subject = 2;
 }
 
-message ReportPlaygroundResponse {
+message ReportExperienceRequest {
+    string experienceId = 1;
+    optional string subject = 2;
+}
+
+message ReportingResponse {
+    optional CreatePetitionSuccess success = 1;
+    optional CreatePetitionError error = 2;
+}
+
+message CreatePetitionSuccess {
     string petitionId = 1;
+}
+
+enum ReportingErrorType {
+    ERROR_TYPES_GENERIC_SERVICE_FAILURE = 0;
+    ERROR_TYPES_GENERIC_BUSINESS_FAILURE = 1;
+    ERROR_TYPES_INVALID_ARGUMENT = 2;
+    ERROR_TYPES_RATE_LIMITED = 3;
+}
+
+message CreatePetitionError {
+    ReportingErrorType errorType = 1;
+    string errorMessage = 2;
 }

@@ -19,12 +19,12 @@ repository = "https://github.com/community-network/bfportal-grpc"
 packages = [{ include = "bfportal_grpc" }]
 
 [tool.poetry.dependencies]
-aiohttp = "^3.8.5"
-protobuf = "^4.24.3"
-grpcio = "^1.58"
+aiohttp = "^3.13.0"
+protobuf = "^6.32.1"
+grpcio = "^1.75.1"
 python = "^3.10"
 proto-compile = "^0.1.7"
-python-dotenv = "^1.0.0"
+python-dotenv = "^1.1.1"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/community-network/bfportal-grpc/issues"
@@ -34,13 +34,12 @@ compile-proto = "bfportal_grpc.helpers.compile:compile_proto"
 
 
 [tool.poetry.group.dev.dependencies]
-pytest = "*"
-sonora = "*"
-black = "*"
-isort = "*"
-grpcio-tools = "^1.59.0"
-pytest-xdist = {extras = ["psutil"], version = "^3.3.1"}
-pytest-asyncio = "^0.21.1"
+pytest = "8.4.2"
+black = "25.9.0"
+isort = "6.1.0"
+grpcio-tools = "^1.75.1"
+pytest-xdist = {extras = ["psutil"], version = "^3.8.0"}
+pytest-asyncio = "^1.2.0"
 
 [tool.poetry.build]
 generate-setup-file = false

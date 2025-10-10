@@ -13,8 +13,8 @@ try:
     from .proto import (
         authentication_pb2_grpc,
         authentication_pb2,
-        communitygames_pb2_grpc,
-        communitygames_pb2,
+        play_pb2_grpc,
+        play_pb2,
         localization_pb2_grpc,
         localization_pb2,
         reporting_pb2_grpc,

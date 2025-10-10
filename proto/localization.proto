@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package web.localization;
+package santiago.web.localization;
 
 service ClientLocalization {
     rpc getTranslations (GetTranslationsRequest) returns (GetTranslationsResponse) {}
@@ -19,9 +19,9 @@ message SubCategoryIdList {
 }
 
 message TranslationsQuery {
-    SidList sidList = 1;
-    CategoryIdList categoryIdList = 2;
-    SubCategoryIdList subCategoryIdList = 3;
+    optional SidList sidList = 1;
+    optional CategoryIdList categoryIdList = 2;
+    optional SubCategoryIdList subCategoryIdList = 3;
 }
 
 message LocalizedText {
@@ -38,10 +38,10 @@ message Timestamp {
 message GetTranslationsRequest {
     TranslationsQuery translationsQuery = 1;
     string locale = 4;
-    Timestamp fetchFrom = 5;
+    optional Timestamp fetchFrom = 5;
 }
 
 message GetTranslationsResponse {
     repeated LocalizedText localizedTexts = 3;
-    Timestamp fetchedUntil = 4;
+    optional Timestamp fetchedUntil = 4;
 }

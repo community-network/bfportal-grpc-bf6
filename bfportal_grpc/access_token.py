@@ -1,6 +1,6 @@
 import asyncio
 import aiohttp
-import urllib.parse
+from urllib.parse import urlsplit, parse_qs
 
 
 class Cookie:
@@ -12,15 +12,17 @@ class Cookie:
         self.remid = remid
 
 
-async def getBf2042GatewaySession(cookie: Cookie) -> str:
+async def getBf6GatewaySession(cookie: Cookie) -> str | None:
     async with aiohttp.ClientSession() as session:
-        url = "https://accounts.ea.com/connect/auth?client_id=KINGSTON_COMP_APP&locale=en_US&redirect_uri=https%3A%2F%2Fportal.battlefield.com%2F&response_type=code"
+        url = "https://accounts.ea.com/connect/auth?client_id=GLACIER_COMP_APP&locale=en_US&redirect_uri=https%3A%2F%2Fportal.battlefield.com%2Fbf6&response_type=code&state=https%3A%2F%2Fportal.battlefield.com%2Fbf6"
         headers = {"Cookie": f"sid={cookie.sid}; remid={cookie.remid};"}
         async with session.get(url=url, headers=headers, allow_redirects=False) as r:
             redirect = r.headers["Location"]
-            access_code = urllib.parse.urlparse(redirect).query.split("=")[1]
-            return access_code
+            query = urlsplit(redirect).query
+            params = parse_qs(query)
+            access_code = params.get("code", [])
+            return next(iter(access_code), None)
 
 
-if __name__ == "__main__":
-    asyncio.run(getBf2042GatewaySession())
+# if __name__ == "__main__":
+#     asyncio.run(getBf6GatewaySession(Cookie()))

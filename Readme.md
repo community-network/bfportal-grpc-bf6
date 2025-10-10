@@ -170,7 +170,7 @@ pip3 install grpcio-tools
 
 and build with:
 ```shell
-poetry run compile_proto
+poetry run compile-proto
 ```
 
 python package used: https://github.com/romnn/proto-compile

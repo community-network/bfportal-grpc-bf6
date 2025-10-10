@@ -1,0 +1,473 @@
+syntax = "proto3";
+
+package santiago.web.play;
+
+service WebPlay {
+    // rpc createPlayElement (CreatePlayElementRequest) returns (PlayElementResponse) {}
+    rpc getPlayElement (GetPlayElementRequest) returns (PlayElementResponse) {}
+    // rpc updatePlayElement (UpdatePlayElementRequest) returns (PlayElementResponse) {}
+    // rpc deletePlayElement (DeletePlayElementRequest) returns (DeletePlayElementResponse) {}
+    rpc getOwnedPlayElements (GetOwnedPlayElementsRequest) returns (GetOwnedPlayElementsResponse) {}
+    rpc getOwnedPlayElementsV2 (GetOwnedPlayElementsRequest) returns (GetOwnedPlayElementsResponseV2) {}
+    // rpc getBlueprintsById (GetBlueprintsByIdRequest) returns (GetBlueprintsByIdResponse) {}
+    // rpc getScheduledBlueprints (GetScheduledBlueprintsRequest) returns (GetScheduledBlueprintsResponse) {}
+    // rpc createModDataVersion (CreateModDataVersionRequest) returns (CreateModDataVersionResponse) {}
+    // rpc listModDataVersions (ListModDataVersionsRequest) returns (ListModDataVersionsResponse) {}
+    // rpc UploadExperienceThumbnail (UploadExperienceThumbnailRequest) returns (UploadExperienceThumbnailResponse) {}
+    // rpc GetProgressionTypes (GetProgressionTypesRequest) returns (GetProgressionTypesResponse) {}
+    // rpc GetLicenseRequirements (GetLicenseRequirementsRequest) returns (GetLicenseRequirementsResponse) {}
+    // rpc GetAvailableTags (GetAvailableTagsRequest) returns (GetAvailableTagsResponse) {}
+    // rpc ListExperiences (ListExperiencesRequest) returns (ListExperiencesResponse) {}
+    // rpc DeleteAttachments (DeleteAttachmentsRequest) returns (DeleteAttachmentsResponse) {}
+}
+
+enum InternalCapacityType {
+  AI_BACKFILL = 0;
+  AI_STATIC = 1;
+}
+
+enum TeamBalancingMethod {
+  UNSPECIFIED = 0;
+  /** EVEN_NUMBERS - Same number of players in every team */
+  EVEN_NUMBERS = 1;
+  /** EVEN_PERCENTAGE - Same percentage of capacity in every team */
+  EVEN_PERCENTAGE = 2;
+  /** FILL_IN_TEAM_ORDER - Fill lowest teamId first, then move on to second lowest, and so on... */
+  FILL_IN_TEAM_ORDER = 3;
+}
+
+enum RotationBehavior {
+  /** ROTATION_BEHAVIOR_LOOP - Start the rotation over from the beginning (default) */
+  ROTATION_BEHAVIOR_LOOP = 0;
+  /** ROTATION_BEHAVIOR_EORMM - Rotate through the maps by using end of round matchmaking */
+  ROTATION_BEHAVIOR_EORMM = 1;
+  /** ROTATION_BEHAVIOR_ONE_MAP - Play only one map from the rotation and leave */
+  ROTATION_BEHAVIOR_ONE_MAP = 2;
+}
+
+enum GameServerJoinabilitySettingValue {
+  GAME_SERVER_JOINABILITY_SETTING_VALUE_UNSPECIFIED = 0;
+  GAME_SERVER_JOINABILITY_SETTING_VALUE_ALLOWED = 1;
+  GAME_SERVER_JOINABILITY_SETTING_VALUE_DISALLOWED = 2;
+}
+
+enum BlazeGameSettingValue {
+  BLAZE_GAME_SETTING_VALUE_UNSPECIFIED = 0;
+  BLAZE_GAME_SETTING_VALUE_ALLOWED = 1;
+  BLAZE_GAME_SETTING_VALUE_DISALLOWED = 2;
+}
+
+enum ModerationStateType {
+  MODERATION_STATE_TYPE_UNDEFINED = 0;
+  MODERATION_STATE_TYPE_IN_REVIEW = 1;
+  MODERATION_STATE_TYPE_APPROVED = 2;
+  MODERATION_STATE_TYPE_DENIED = 3;
+}
+
+enum PublishStateType {
+  PUBLISH_STATE_TYPE_INVALID = 0;
+  PUBLISH_STATE_TYPE_DRAFT = 1;
+  PUBLISH_STATE_TYPE_PUBLISHED = 2;
+  PUBLISH_STATE_TYPE_ARCHIVED = 3;
+  /** PUBLISH_STATE_TYPE_ERROR - Users cannot use this state to update their play element, it can be used by the backend to indicate an error state */
+  PUBLISH_STATE_TYPE_ERROR = 4;
+}
+
+enum ProcessingStatus {
+  PROCESSING_STATUS_UNSPECIFIED = 0;
+  /** PROCESSING_STATUS_PENDING - Processing is in-progress */
+  PROCESSING_STATUS_PENDING = 1;
+  /** PROCESSING_STATUS_PROCESSED - Attachment is processed and ready to use */
+  PROCESSING_STATUS_PROCESSED = 2;
+  /** PROCESSING_STATUS_NEEDS_RECOMPILE - Previously processed, but no longer valid/usable (e.g. due to version mismatch) */
+  PROCESSING_STATUS_NEEDS_RECOMPILE = 3;
+  /** PROCESSING_STATUS_ERROR - An error has occurred resulting in failure to process */
+  PROCESSING_STATUS_ERROR = 4;
+}
+
+enum AttachmentCompileStatus {
+  ATTACHMENT_COMPILE_STATUS_UNSPECIFIED = 0;
+  ATTACHMENT_COMPILE_STATUS_OK = 1;
+  ATTACHMENT_COMPILE_STATUS_ERROR = 2;
+  ATTACHMENT_COMPILE_STATUS_INCOMPATIBLE_VERSION = 3;
+}
+
+enum AttachmentType {
+  ATTACHMENT_TYPE_UNSPECIFIED = 0;
+  ATTACHMENT_TYPE_SPATIAL = 1;
+  ATTACHMENT_TYPE_SCRIPT = 2;
+  ATTACHMENT_TYPE_SCRIPT_DATA = 3;
+  ATTACHMENT_TYPE_STRINGS = 4;
+  ATTACHMENT_TYPE_MP_DATA = 5;
+}
+
+message PlayElementResponse {
+  optional PlayElement playElement = 1;
+  optional PlayElementDesign playElementDesign = 2;
+  optional string progressionMode = 3;
+}
+
+message PlayElement {
+  string id = 1;
+  string designId = 2;
+  optional Creator creator = 3;
+  string name = 4;
+  optional string description = 5;
+  optional uint32 created = 6;
+  optional uint32 updated = 7;
+  optional PlayElementSettings playElementSettings = 8;
+  PublishStateType publishStateType = 9;
+  optional int32 likes = 10;
+  /** if not public yet */
+  optional uint32 publishAt = 11;
+  optional string thumbnailUrl = 12;
+  /** Fan Care status */
+  ModerationStateType moderationState = 13;
+  optional string shortCode = 14;
+}
+
+message PlayElementDesign {
+  string designId = 1;
+  string designName = 2;
+  /** missing 3 */
+  optional uint32 updated = 4;
+  optional DesignMetadata designMetadata = 5;
+  optional MapRotation mapRotation = 6;
+  repeated Mutator mutators = 7;
+  repeated AssetCategory assetCategories = 8;
+  repeated string licenseRequirements = 9;
+  optional ModRules modRules = 10;
+  repeated Tag tags = 11;
+  optional BlazePlayElementDesignSettings blazeSettings = 12;
+  optional string modLevelDataId = 13;
+  repeated Attachment attachments = 14;
+  repeated string groupLicenses = 15;
+  AttachmentCompileStatus attachmentCompileStatus = 16;
+  /** required licenses to host experience, in addition to `license_requirements` */
+  repeated string serverHostLicenseRequirements = 17;
+}
+
+message Creator {
+  optional InternalCreator internalCreator = 1;
+  optional PlayerCreator playerCreator = 2;
+  optional ExternalCreator externalCreator = 3;
+  optional PlayerCreator trustedCreator = 4;
+}
+
+message InternalCreator {
+}
+
+message PlayerCreator {
+  optional Player player = 1;
+}
+
+message ExternalCreator {
+}
+
+message Player {
+  int64 nucleusId = 1;
+  int64 personaId = 2;
+  Platform platform = 3;
+}
+
+enum Platform {
+  UNKNOWN = 0;
+   /** PC - EA App */
+  PC = 1;
+  PS4 = 2;
+  XBOXONE = 3;
+  PS5 = 4;
+  XBSX = 5;
+  /** COMMON - Used for requests that includes a cross-platform payload */
+  COMMON = 6;
+  STEAM = 7;
+}
+
+message  Tag {
+  string tagId = 1;
+  int32 priority = 2;
+  optional Metadata metadata = 3;
+}
+
+message Metadata {
+  repeated TranslationMetadata translations = 1;
+  repeated Resource resources = 2;
+}
+
+message TranslationMetadata {
+  string kind = 1;
+  string translationId = 2;
+}
+
+message Resource {
+  optional ResourceLocation location = 1;
+  string kind = 2;
+}
+
+message ResourceLocation {
+  optional string ref = 1;
+  optional string url = 2;
+}
+
+message  Attachment {
+  /** guid */
+  string id = 1;
+  /** n.b. version string may have a different meaning or format depending on type of attachment. */
+  string version = 2;
+  optional string filename = 3;
+  /** Means "this must go through some compilation/transformation to be usable". If false, the "original" variant can be used directly */
+  bool isProcessable = 4;
+  ProcessingStatus processingStatus = 5;
+  optional AttachmentData attachmentData = 6;
+  AttachmentType attachmentType = 7;
+  /** place to put stuff like map rotation index -- misc future-proofing.  Format TBD, maybe CSV or queryParam format like MapEntry metadata */
+  optional string metadata = 8;
+  repeated string errors = 9;
+}
+
+message PlayElementSettings {
+  optional string secret = 1;
+  repeated GameServerMessage messages = 2;
+  /** creator has allowed copying experience underlying data */
+  bool allowCopies = 3;
+}
+
+message GameServerMessage {
+  string kind = 1;
+  string text = 2;
+}
+
+message DesignMetadata {
+  optional string progressionMode = 1;
+  repeated FirstPartyMetadata firstPartyMetadata = 2;
+}
+
+message FirstPartyMetadata {
+  optional PSNMetadata psnMetadata = 1;
+}
+
+message PSNMetadata {
+  string activityId = 1;
+}
+
+message MapRotation {
+  repeated MapEntry maps = 1;
+  optional MapRotationAttributes attributes = 2;
+}
+
+message  MapEntry {
+  string levelName = 1;
+  string levelLocation = 2;
+  int32 rounds = 3;
+  int32 allowedSpectators = 4;
+  optional TeamComposition teamComposition = 5;
+  optional BlazeGameSettings blazeGameSettings = 6;
+  repeated Mutator mutators = 7;
+  optional GameServerJoinabilitySettings gameServerJoinabilitySettings = 8;
+}
+
+message BlazeGameSettings {
+  /** can/will be extended with more options */
+  BlazeGameSettingValue joinInProgress = 1;
+  /** whether the game can be joined by joining on a player id (join on a friend) */
+  BlazeGameSettingValue openToJoinByPlayer = 2;
+  /** whether the game can be joined by accepting a friend invite */
+  BlazeGameSettingValue openToInvites = 3;
+}
+
+message GameServerJoinabilitySettings {
+  /** whether the game can be joined via matchmaking after it leaves PRE_GAME */
+  GameServerJoinabilitySettingValue matchmakingInProgress = 1;
+}
+
+message MapRotationAttributes {
+  RotationBehavior rotationBehavior = 1;
+}
+
+message ModRules {
+  optional CompatibleModRules compatibleRules = 1;
+  optional IncompatibleModRules incompatibleRules = 2;
+  optional ErrorModRules errorRules = 3;
+}
+
+message BlazePlayElementDesignSettings {
+  BlazeGameSettingValue openGroupReservations = 1;
+}
+
+message AttachmentData {
+  bytes original = 1;
+  /** If "compiled" is present, we can use it as-is (don't re-compile).  Webapp should omit/clear the "compiled" if the user replaces/edits an attachment. */
+  optional bytes compiled = 2;
+}
+
+message TeamComposition {
+  repeated TeamStructure teams = 1;
+  repeated InternalTeamStructure internalTeams = 2;
+  TeamBalancingMethod balancingMethod = 3;
+}
+
+message TeamStructure {
+  /** Team number */
+  int32 teamId = 1;
+  /** Number of slots */
+  int32 capacity = 2;
+}
+
+message InternalTeamStructure {
+  /** Team number */
+  int32 teamId = 1;
+  /** Number of slots */
+  int32 capacity = 2;
+  InternalCapacityType capacityType = 3;
+}
+
+message CompatibleModRules {
+  bytes original = 1;
+  int32 rulesVersion = 2;
+  optional CompiledRules compiled = 3;
+}
+
+message CompiledRules {
+  optional Uncompressed uncompressed = 1;
+  optional Compressed compressed = 2;
+}
+
+message  Uncompressed {
+  bytes compiledModRules = 1;
+  int32 rulesVersion = 2;
+}
+
+message Compressed {
+  bytes compiledModRules = 1;
+  int32 rulesVersion = 2;
+  int32 inflatedSize = 3;
+}
+
+message IncompatibleModRules {
+  bytes original = 1;
+  int32 rulesVersion = 2;
+  int32 blueprintRulesVersion = 3;
+}
+
+message ErrorModRules {
+  bytes original = 1;
+  optional string errorMessage = 2;
+}
+
+message  AssetCategory {
+  string tagId = 1;
+  optional AssetCategoryBoolean boolean = 2;
+}
+
+message AssetCategoryBoolean {
+  /** All mutators belonging the the category will have this value, unless overriden */
+  bool defaultValue = 1;
+  optional AssetCategoryTagBooleanOverride overrides = 2;
+  /** One entry per team */
+  repeated AssetCategoryTagBooleanTeamOverride teamOverrides = 3;
+}
+
+message AssetCategoryTagBooleanOverride {
+  repeated string assetCategoryTags = 1;
+  bool value = 2;
+}
+
+message AssetCategoryTagBooleanTeamOverride {
+  repeated string assetCategoryTags = 1;
+  bool value = 2;
+  int32 teamId = 3;
+}
+
+message Mutator {
+  string name = 1;
+  string category = 2;
+  optional MutatorKind kind = 3;
+  string id = 4;
+}
+
+message MutatorKind {
+    optional MutatorBoolean mutatorBoolean = 1;
+    optional MutatorString mutatorString = 4;
+    optional MutatorFloat mutatorFloat = 5;
+    optional MutatorInt mutatorInt = 6;
+    optional MutatorSparseBoolean mutatorSparseBoolean = 7;
+    optional MutatorSparseInt mutatorSparseInt = 8;
+    optional MutatorSparseFloat mutatorSparseFloat = 9;
+}
+
+message MutatorBoolean {
+    bool boolValue = 1;
+}
+
+message MutatorString {
+    string stringValue = 1;
+}
+
+message MutatorFloat {
+    float value = 1;
+}
+
+message MutatorInt {
+    int32 value = 1;
+}
+message MutatorSparseBooleanEntry {
+    uint32 index = 1;
+    bool value = 2;
+}
+
+message MutatorSparseBoolean {
+    bool defaultValue = 1;
+    uint32 size = 2;
+    repeated MutatorSparseBooleanEntry sparseValues = 3;
+}
+
+message SparseIntEntity {
+    repeated int32 values = 1;
+}
+
+message MutatorSparseIntEntry {
+    uint32 index = 1;
+    int32 value = 2;
+}
+
+message MutatorSparseInt {
+    int32 defaultValue = 1;
+    uint32 size = 2;
+    MutatorSparseIntEntry sparseValues = 3;
+}
+
+message MutatorSparseFloatEntry {
+    uint32 index = 1;
+    float value = 2;
+}
+
+message MutatorSparseFloat {
+    float defaultValue = 1;
+    uint32 size = 2;
+    repeated MutatorSparseFloatEntry sparseValues = 3;
+}
+
+message GetPlayElementRequest {
+  string id = 1;
+  /** Include experiences hidden by Fan Care */
+  bool includeDenied = 2;
+}
+
+message GetOwnedPlayElementsResponse {
+  repeated PlayElement playElements = 1;
+}
+
+message GetOwnedPlayElementsResponseV2 {
+  repeated EnrichedPlayElement playElements = 1;
+}
+
+message EnrichedPlayElement {
+  optional PlayElement playElement = 1;
+  optional MapRotation mapRotation = 2;
+}
+
+message GetOwnedPlayElementsRequest {
+  repeated PublishStateType publishStates = 1;
+  /** Include experiences hidden by Fan Care */
+  bool includeDenied = 2;
+}

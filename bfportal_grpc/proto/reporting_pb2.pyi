@@ -1,71 +1,85 @@
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from typing import ClassVar as _ClassVar, Mapping as _Mapping, Optional as _Optional, Union as _Union
+from collections.abc import Mapping as _Mapping
+from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
-class Category(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
-    __slots__ = []
-    UNKNOWN_CATEGORY: _ClassVar[Category]
-    CHEATING: _ClassVar[Category]
-    HARASSMENT: _ClassVar[Category]
-    SPAM: _ClassVar[Category]
-    PLAGIARISM: _ClassVar[Category]
-    HATE_SPEECH: _ClassVar[Category]
-    SEXUALLY_EXPLICIT: _ClassVar[Category]
-    CHILD_SOLICITATION: _ClassVar[Category]
-    TERRORIST_THREAT: _ClassVar[Category]
-    CLIENT_HACK: _ClassVar[Category]
-    SUICIDE_THREAT: _ClassVar[Category]
-    DOXING: _ClassVar[Category]
-    ADVERTISING: _ClassVar[Category]
-    INAPPROPRIATE: _ClassVar[Category]
-    VIOLENT: _ClassVar[Category]
-    OFFENSIVE: _ClassVar[Category]
-    OFFENSIVE_CHAT: _ClassVar[Category]
-    OFFENSIVE_NAME: _ClassVar[Category]
-UNKNOWN_CATEGORY: Category
-CHEATING: Category
-HARASSMENT: Category
-SPAM: Category
-PLAGIARISM: Category
-HATE_SPEECH: Category
-SEXUALLY_EXPLICIT: Category
-CHILD_SOLICITATION: Category
-TERRORIST_THREAT: Category
-CLIENT_HACK: Category
-SUICIDE_THREAT: Category
-DOXING: Category
-ADVERTISING: Category
-INAPPROPRIATE: Category
-VIOLENT: Category
-OFFENSIVE: Category
-OFFENSIVE_CHAT: Category
-OFFENSIVE_NAME: Category
+class Platform(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    UNKNOWN: _ClassVar[Platform]
+    PC: _ClassVar[Platform]
+    PS4: _ClassVar[Platform]
+    XBOXONE: _ClassVar[Platform]
+    PS5: _ClassVar[Platform]
+    XBSX: _ClassVar[Platform]
+    COMMON: _ClassVar[Platform]
+    STEAM: _ClassVar[Platform]
 
-class StringValue(_message.Message):
-    __slots__ = ["value"]
-    VALUE_FIELD_NUMBER: _ClassVar[int]
-    value: str
-    def __init__(self, value: _Optional[str] = ...) -> None: ...
+class ReportingErrorType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    ERROR_TYPES_GENERIC_SERVICE_FAILURE: _ClassVar[ReportingErrorType]
+    ERROR_TYPES_GENERIC_BUSINESS_FAILURE: _ClassVar[ReportingErrorType]
+    ERROR_TYPES_INVALID_ARGUMENT: _ClassVar[ReportingErrorType]
+    ERROR_TYPES_RATE_LIMITED: _ClassVar[ReportingErrorType]
+UNKNOWN: Platform
+PC: Platform
+PS4: Platform
+XBOXONE: Platform
+PS5: Platform
+XBSX: Platform
+COMMON: Platform
+STEAM: Platform
+ERROR_TYPES_GENERIC_SERVICE_FAILURE: ReportingErrorType
+ERROR_TYPES_GENERIC_BUSINESS_FAILURE: ReportingErrorType
+ERROR_TYPES_INVALID_ARGUMENT: ReportingErrorType
+ERROR_TYPES_RATE_LIMITED: ReportingErrorType
 
-class ReportPlaygroundRequest(_message.Message):
-    __slots__ = ["protocolVersion", "playgroundId", "category", "requesterEmail", "subject"]
-    PROTOCOLVERSION_FIELD_NUMBER: _ClassVar[int]
-    PLAYGROUNDID_FIELD_NUMBER: _ClassVar[int]
-    CATEGORY_FIELD_NUMBER: _ClassVar[int]
-    REQUESTEREMAIL_FIELD_NUMBER: _ClassVar[int]
+class Player(_message.Message):
+    __slots__ = ("nucleusId", "personaId", "platform")
+    NUCLEUSID_FIELD_NUMBER: _ClassVar[int]
+    PERSONAID_FIELD_NUMBER: _ClassVar[int]
+    PLATFORM_FIELD_NUMBER: _ClassVar[int]
+    nucleusId: int
+    personaId: int
+    platform: Platform
+    def __init__(self, nucleusId: _Optional[int] = ..., personaId: _Optional[int] = ..., platform: _Optional[_Union[Platform, str]] = ...) -> None: ...
+
+class ReportPlayerRequest(_message.Message):
+    __slots__ = ("offendingPlayer", "subject")
+    OFFENDINGPLAYER_FIELD_NUMBER: _ClassVar[int]
     SUBJECT_FIELD_NUMBER: _ClassVar[int]
-    protocolVersion: str
-    playgroundId: str
-    category: Category
-    requesterEmail: StringValue
-    subject: StringValue
-    def __init__(self, protocolVersion: _Optional[str] = ..., playgroundId: _Optional[str] = ..., category: _Optional[_Union[Category, str]] = ..., requesterEmail: _Optional[_Union[StringValue, _Mapping]] = ..., subject: _Optional[_Union[StringValue, _Mapping]] = ...) -> None: ...
+    offendingPlayer: Player
+    subject: str
+    def __init__(self, offendingPlayer: _Optional[_Union[Player, _Mapping]] = ..., subject: _Optional[str] = ...) -> None: ...
 
-class ReportPlaygroundResponse(_message.Message):
-    __slots__ = ["petitionId"]
+class ReportExperienceRequest(_message.Message):
+    __slots__ = ("experienceId", "subject")
+    EXPERIENCEID_FIELD_NUMBER: _ClassVar[int]
+    SUBJECT_FIELD_NUMBER: _ClassVar[int]
+    experienceId: str
+    subject: str
+    def __init__(self, experienceId: _Optional[str] = ..., subject: _Optional[str] = ...) -> None: ...
+
+class ReportingResponse(_message.Message):
+    __slots__ = ("success", "error")
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    ERROR_FIELD_NUMBER: _ClassVar[int]
+    success: CreatePetitionSuccess
+    error: CreatePetitionError
+    def __init__(self, success: _Optional[_Union[CreatePetitionSuccess, _Mapping]] = ..., error: _Optional[_Union[CreatePetitionError, _Mapping]] = ...) -> None: ...
+
+class CreatePetitionSuccess(_message.Message):
+    __slots__ = ("petitionId",)
     PETITIONID_FIELD_NUMBER: _ClassVar[int]
     petitionId: str
     def __init__(self, petitionId: _Optional[str] = ...) -> None: ...
+
+class CreatePetitionError(_message.Message):
+    __slots__ = ("errorType", "errorMessage")
+    ERRORTYPE_FIELD_NUMBER: _ClassVar[int]
+    ERRORMESSAGE_FIELD_NUMBER: _ClassVar[int]
+    errorType: ReportingErrorType
+    errorMessage: str
+    def __init__(self, errorType: _Optional[_Union[ReportingErrorType, str]] = ..., errorMessage: _Optional[str] = ...) -> None: ...
