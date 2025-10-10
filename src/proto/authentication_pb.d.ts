@@ -2,63 +2,84 @@ import * as jspb from 'google-protobuf'
 
 
 
-export class PlayerInfo extends jspb.Message {
+export class Player extends jspb.Message {
   getNucleusid(): number;
-  setNucleusid(value: number): PlayerInfo;
+  setNucleusid(value: number): Player;
 
   getPersonaid(): number;
-  setPersonaid(value: number): PlayerInfo;
+  setPersonaid(value: number): Player;
 
-  getPlatformid(): number;
-  setPlatformid(value: number): PlayerInfo;
+  getPlatform(): Platform;
+  setPlatform(value: Platform): Player;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PlayerInfo.AsObject;
-  static toObject(includeInstance: boolean, msg: PlayerInfo): PlayerInfo.AsObject;
-  static serializeBinaryToWriter(message: PlayerInfo, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PlayerInfo;
-  static deserializeBinaryFromReader(message: PlayerInfo, reader: jspb.BinaryReader): PlayerInfo;
+  toObject(includeInstance?: boolean): Player.AsObject;
+  static toObject(includeInstance: boolean, msg: Player): Player.AsObject;
+  static serializeBinaryToWriter(message: Player, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Player;
+  static deserializeBinaryFromReader(message: Player, reader: jspb.BinaryReader): Player;
 }
 
-export namespace PlayerInfo {
+export namespace Player {
   export type AsObject = {
     nucleusid: number,
     personaid: number,
-    platformid: number,
+    platform: Platform,
   }
 }
 
-export class AuthRequest extends jspb.Message {
+export class AuthCodeAuthentication extends jspb.Message {
   getAuthcode(): string;
-  setAuthcode(value: string): AuthRequest;
-
-  getRedirecturi(): string;
-  setRedirecturi(value: string): AuthRequest;
-
-  getProduct(): string;
-  setProduct(value: string): AuthRequest;
-
-  getFirstpartyid(): string;
-  setFirstpartyid(value: string): AuthRequest;
+  setAuthcode(value: string): AuthCodeAuthentication;
 
   getPlatform(): Platform;
-  setPlatform(value: Platform): AuthRequest;
+  setPlatform(value: Platform): AuthCodeAuthentication;
+
+  getRedirecturi(): string;
+  setRedirecturi(value: string): AuthCodeAuthentication;
+  hasRedirecturi(): boolean;
+  clearRedirecturi(): AuthCodeAuthentication;
+
+  getPatchversion(): string;
+  setPatchversion(value: string): AuthCodeAuthentication;
+  hasPatchversion(): boolean;
+  clearPatchversion(): AuthCodeAuthentication;
+
+  getProtocolversion(): string;
+  setProtocolversion(value: string): AuthCodeAuthentication;
+  hasProtocolversion(): boolean;
+  clearProtocolversion(): AuthCodeAuthentication;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AuthRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AuthRequest): AuthRequest.AsObject;
-  static serializeBinaryToWriter(message: AuthRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AuthRequest;
-  static deserializeBinaryFromReader(message: AuthRequest, reader: jspb.BinaryReader): AuthRequest;
+  toObject(includeInstance?: boolean): AuthCodeAuthentication.AsObject;
+  static toObject(includeInstance: boolean, msg: AuthCodeAuthentication): AuthCodeAuthentication.AsObject;
+  static serializeBinaryToWriter(message: AuthCodeAuthentication, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AuthCodeAuthentication;
+  static deserializeBinaryFromReader(message: AuthCodeAuthentication, reader: jspb.BinaryReader): AuthCodeAuthentication;
 }
 
-export namespace AuthRequest {
+export namespace AuthCodeAuthentication {
   export type AsObject = {
     authcode: string,
-    redirecturi: string,
-    product: string,
-    firstpartyid: string,
     platform: Platform,
+    redirecturi?: string,
+    patchversion?: string,
+    protocolversion?: string,
+  }
+
+  export enum RedirecturiCase { 
+    _REDIRECTURI_NOT_SET = 0,
+    REDIRECTURI = 3,
+  }
+
+  export enum PatchversionCase { 
+    _PATCHVERSION_NOT_SET = 0,
+    PATCHVERSION = 4,
+  }
+
+  export enum ProtocolversionCase { 
+    _PROTOCOLVERSION_NOT_SET = 0,
+    PROTOCOLVERSION = 5,
   }
 }
 
@@ -144,45 +165,58 @@ export namespace Empty {
   }
 }
 
-export class AuthResponse extends jspb.Message {
+export class AuthenticationResponse extends jspb.Message {
   getSessionid(): string;
-  setSessionid(value: string): AuthResponse;
+  setSessionid(value: string): AuthenticationResponse;
 
-  getPlayer(): PlayerInfo | undefined;
-  setPlayer(value?: PlayerInfo): AuthResponse;
+  getPlayer(): Player | undefined;
+  setPlayer(value?: Player): AuthenticationResponse;
   hasPlayer(): boolean;
-  clearPlayer(): AuthResponse;
-
-  getUserbitsList(): Array<UserBits>;
-  setUserbitsList(value: Array<UserBits>): AuthResponse;
-  clearUserbitsList(): AuthResponse;
-  addUserbits(value: UserBits, index?: number): AuthResponse;
+  clearPlayer(): AuthenticationResponse;
 
   getTimetravel(): TimeTravel | undefined;
-  setTimetravel(value?: TimeTravel): AuthResponse;
+  setTimetravel(value?: TimeTravel): AuthenticationResponse;
   hasTimetravel(): boolean;
-  clearTimetravel(): AuthResponse;
+  clearTimetravel(): AuthenticationResponse;
 
   getProtocolversionoverride(): ProtocolVersionOverride | undefined;
-  setProtocolversionoverride(value?: ProtocolVersionOverride): AuthResponse;
+  setProtocolversionoverride(value?: ProtocolVersionOverride): AuthenticationResponse;
   hasProtocolversionoverride(): boolean;
-  clearProtocolversionoverride(): AuthResponse;
+  clearProtocolversionoverride(): AuthenticationResponse;
+
+  getPatchversion(): string;
+  setPatchversion(value: string): AuthenticationResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AuthResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AuthResponse): AuthResponse.AsObject;
-  static serializeBinaryToWriter(message: AuthResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AuthResponse;
-  static deserializeBinaryFromReader(message: AuthResponse, reader: jspb.BinaryReader): AuthResponse;
+  toObject(includeInstance?: boolean): AuthenticationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AuthenticationResponse): AuthenticationResponse.AsObject;
+  static serializeBinaryToWriter(message: AuthenticationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AuthenticationResponse;
+  static deserializeBinaryFromReader(message: AuthenticationResponse, reader: jspb.BinaryReader): AuthenticationResponse;
 }
 
-export namespace AuthResponse {
+export namespace AuthenticationResponse {
   export type AsObject = {
     sessionid: string,
-    player?: PlayerInfo.AsObject,
-    userbitsList: Array<UserBits>,
+    player?: Player.AsObject,
     timetravel?: TimeTravel.AsObject,
     protocolversionoverride?: ProtocolVersionOverride.AsObject,
+    patchversion: string,
+  }
+
+  export enum PlayerCase { 
+    _PLAYER_NOT_SET = 0,
+    PLAYER = 2,
+  }
+
+  export enum TimetravelCase { 
+    _TIMETRAVEL_NOT_SET = 0,
+    TIMETRAVEL = 3,
+  }
+
+  export enum ProtocolversionoverrideCase { 
+    _PROTOCOLVERSIONOVERRIDE_NOT_SET = 0,
+    PROTOCOLVERSIONOVERRIDE = 4,
   }
 }
 
@@ -194,17 +228,9 @@ export enum Platform {
   PS5 = 4,
   XBSX = 5,
   COMMON = 6,
+  STEAM = 7,
 }
 export enum Reason { 
   NONE = 0,
-  PLAYER = 1,
-  SYNC = 2,
-}
-export enum UserBits { 
-  USER_BIT_UNSPECIFIED = 0,
-  USER_BIT_ACCEPTED_TOS = 1,
-  USER_BIT_ENABLE_USERSHARING = 2,
-  USER_BIT_ENABLE_CRASHREPORTS = 3,
-  USER_BIT_COMPLETED_TUTORIAL = 4,
-  USER_BIT_CLIENT_ENABLE_USAGESHARING = 5,
+  SYNC = 1,
 }

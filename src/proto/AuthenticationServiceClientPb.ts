@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for web.authentication
+ * @fileoverview gRPC-Web generated client stub for santiago.web.authentication
  * @enhanceable
  * @public
  */
@@ -16,7 +16,7 @@ import * as grpcWeb from 'grpc-web';
 import * as authentication_pb from './authentication_pb';
 
 
-export class AuthenticationClient {
+export class WebAuthenticationClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
@@ -36,35 +36,35 @@ export class AuthenticationClient {
   }
 
   methodDescriptorviaAuthCode = new grpcWeb.MethodDescriptor(
-    '/web.authentication.Authentication/viaAuthCode',
+    '/santiago.web.authentication.WebAuthentication/viaAuthCode',
     grpcWeb.MethodType.UNARY,
-    authentication_pb.AuthRequest,
-    authentication_pb.AuthResponse,
-    (request: authentication_pb.AuthRequest) => {
+    authentication_pb.AuthCodeAuthentication,
+    authentication_pb.AuthenticationResponse,
+    (request: authentication_pb.AuthCodeAuthentication) => {
       return request.serializeBinary();
     },
-    authentication_pb.AuthResponse.deserializeBinary
+    authentication_pb.AuthenticationResponse.deserializeBinary
   );
 
   viaAuthCode(
-    request: authentication_pb.AuthRequest,
-    metadata: grpcWeb.Metadata | null): Promise<authentication_pb.AuthResponse>;
+    request: authentication_pb.AuthCodeAuthentication,
+    metadata: grpcWeb.Metadata | null): Promise<authentication_pb.AuthenticationResponse>;
 
   viaAuthCode(
-    request: authentication_pb.AuthRequest,
+    request: authentication_pb.AuthCodeAuthentication,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: authentication_pb.AuthResponse) => void): grpcWeb.ClientReadableStream<authentication_pb.AuthResponse>;
+               response: authentication_pb.AuthenticationResponse) => void): grpcWeb.ClientReadableStream<authentication_pb.AuthenticationResponse>;
 
   viaAuthCode(
-    request: authentication_pb.AuthRequest,
+    request: authentication_pb.AuthCodeAuthentication,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: authentication_pb.AuthResponse) => void) {
+               response: authentication_pb.AuthenticationResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/web.authentication.Authentication/viaAuthCode',
+          '/santiago.web.authentication.WebAuthentication/viaAuthCode',
         request,
         metadata || {},
         this.methodDescriptorviaAuthCode,
@@ -72,14 +72,14 @@ export class AuthenticationClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/web.authentication.Authentication/viaAuthCode',
+      '/santiago.web.authentication.WebAuthentication/viaAuthCode',
     request,
     metadata || {},
     this.methodDescriptorviaAuthCode);
   }
 
   methodDescriptorlogout = new grpcWeb.MethodDescriptor(
-    '/web.authentication.Authentication/logout',
+    '/santiago.web.authentication.WebAuthentication/logout',
     grpcWeb.MethodType.UNARY,
     authentication_pb.Empty,
     authentication_pb.Empty,
@@ -107,7 +107,7 @@ export class AuthenticationClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/web.authentication.Authentication/logout',
+          '/santiago.web.authentication.WebAuthentication/logout',
         request,
         metadata || {},
         this.methodDescriptorlogout,
@@ -115,7 +115,7 @@ export class AuthenticationClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/web.authentication.Authentication/logout',
+      '/santiago.web.authentication.WebAuthentication/logout',
     request,
     metadata || {},
     this.methodDescriptorlogout);

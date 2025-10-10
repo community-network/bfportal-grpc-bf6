@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for web.localization
+ * @fileoverview gRPC-Web generated client stub for santiago.web.localization
  * @enhanceable
  * @public
  */
@@ -36,7 +36,7 @@ export class ClientLocalizationClient {
   }
 
   methodDescriptorgetTranslations = new grpcWeb.MethodDescriptor(
-    '/web.localization.ClientLocalization/getTranslations',
+    '/santiago.web.localization.ClientLocalization/getTranslations',
     grpcWeb.MethodType.UNARY,
     localization_pb.GetTranslationsRequest,
     localization_pb.GetTranslationsResponse,
@@ -64,7 +64,7 @@ export class ClientLocalizationClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/web.localization.ClientLocalization/getTranslations',
+          '/santiago.web.localization.ClientLocalization/getTranslations',
         request,
         metadata || {},
         this.methodDescriptorgetTranslations,
@@ -72,7 +72,7 @@ export class ClientLocalizationClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/web.localization.ClientLocalization/getTranslations',
+      '/santiago.web.localization.ClientLocalization/getTranslations',
     request,
     metadata || {},
     this.methodDescriptorgetTranslations);

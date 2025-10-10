@@ -92,6 +92,21 @@ export namespace TranslationsQuery {
     categoryidlist?: CategoryIdList.AsObject,
     subcategoryidlist?: SubCategoryIdList.AsObject,
   }
+
+  export enum SidlistCase { 
+    _SIDLIST_NOT_SET = 0,
+    SIDLIST = 1,
+  }
+
+  export enum CategoryidlistCase { 
+    _CATEGORYIDLIST_NOT_SET = 0,
+    CATEGORYIDLIST = 2,
+  }
+
+  export enum SubcategoryidlistCase { 
+    _SUBCATEGORYIDLIST_NOT_SET = 0,
+    SUBCATEGORYIDLIST = 3,
+  }
 }
 
 export class LocalizedText extends jspb.Message {
@@ -170,6 +185,11 @@ export namespace GetTranslationsRequest {
     locale: string,
     fetchfrom?: Timestamp.AsObject,
   }
+
+  export enum FetchfromCase { 
+    _FETCHFROM_NOT_SET = 0,
+    FETCHFROM = 5,
+  }
 }
 
 export class GetTranslationsResponse extends jspb.Message {
@@ -195,6 +215,11 @@ export namespace GetTranslationsResponse {
   export type AsObject = {
     localizedtextsList: Array<LocalizedText.AsObject>,
     fetcheduntil?: Timestamp.AsObject,
+  }
+
+  export enum FetcheduntilCase { 
+    _FETCHEDUNTIL_NOT_SET = 0,
+    FETCHEDUNTIL = 4,
   }
 }
 

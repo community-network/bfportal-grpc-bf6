@@ -2,97 +2,186 @@ import * as jspb from 'google-protobuf'
 
 
 
-export class StringValue extends jspb.Message {
-  getValue(): string;
-  setValue(value: string): StringValue;
+export class Player extends jspb.Message {
+  getNucleusid(): number;
+  setNucleusid(value: number): Player;
+
+  getPersonaid(): number;
+  setPersonaid(value: number): Player;
+
+  getPlatform(): Platform;
+  setPlatform(value: Platform): Player;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StringValue.AsObject;
-  static toObject(includeInstance: boolean, msg: StringValue): StringValue.AsObject;
-  static serializeBinaryToWriter(message: StringValue, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StringValue;
-  static deserializeBinaryFromReader(message: StringValue, reader: jspb.BinaryReader): StringValue;
+  toObject(includeInstance?: boolean): Player.AsObject;
+  static toObject(includeInstance: boolean, msg: Player): Player.AsObject;
+  static serializeBinaryToWriter(message: Player, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Player;
+  static deserializeBinaryFromReader(message: Player, reader: jspb.BinaryReader): Player;
 }
 
-export namespace StringValue {
+export namespace Player {
   export type AsObject = {
-    value: string,
+    nucleusid: number,
+    personaid: number,
+    platform: Platform,
   }
 }
 
-export class ReportPlaygroundRequest extends jspb.Message {
-  getProtocolversion(): string;
-  setProtocolversion(value: string): ReportPlaygroundRequest;
+export class ReportPlayerRequest extends jspb.Message {
+  getOffendingplayer(): Player | undefined;
+  setOffendingplayer(value?: Player): ReportPlayerRequest;
+  hasOffendingplayer(): boolean;
+  clearOffendingplayer(): ReportPlayerRequest;
 
-  getPlaygroundid(): string;
-  setPlaygroundid(value: string): ReportPlaygroundRequest;
-
-  getCategory(): Category;
-  setCategory(value: Category): ReportPlaygroundRequest;
-
-  getRequesteremail(): StringValue | undefined;
-  setRequesteremail(value?: StringValue): ReportPlaygroundRequest;
-  hasRequesteremail(): boolean;
-  clearRequesteremail(): ReportPlaygroundRequest;
-
-  getSubject(): StringValue | undefined;
-  setSubject(value?: StringValue): ReportPlaygroundRequest;
+  getSubject(): string;
+  setSubject(value: string): ReportPlayerRequest;
   hasSubject(): boolean;
-  clearSubject(): ReportPlaygroundRequest;
+  clearSubject(): ReportPlayerRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ReportPlaygroundRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ReportPlaygroundRequest): ReportPlaygroundRequest.AsObject;
-  static serializeBinaryToWriter(message: ReportPlaygroundRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ReportPlaygroundRequest;
-  static deserializeBinaryFromReader(message: ReportPlaygroundRequest, reader: jspb.BinaryReader): ReportPlaygroundRequest;
+  toObject(includeInstance?: boolean): ReportPlayerRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ReportPlayerRequest): ReportPlayerRequest.AsObject;
+  static serializeBinaryToWriter(message: ReportPlayerRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReportPlayerRequest;
+  static deserializeBinaryFromReader(message: ReportPlayerRequest, reader: jspb.BinaryReader): ReportPlayerRequest;
 }
 
-export namespace ReportPlaygroundRequest {
+export namespace ReportPlayerRequest {
   export type AsObject = {
-    protocolversion: string,
-    playgroundid: string,
-    category: Category,
-    requesteremail?: StringValue.AsObject,
-    subject?: StringValue.AsObject,
+    offendingplayer?: Player.AsObject,
+    subject?: string,
+  }
+
+  export enum OffendingplayerCase { 
+    _OFFENDINGPLAYER_NOT_SET = 0,
+    OFFENDINGPLAYER = 1,
+  }
+
+  export enum SubjectCase { 
+    _SUBJECT_NOT_SET = 0,
+    SUBJECT = 2,
   }
 }
 
-export class ReportPlaygroundResponse extends jspb.Message {
-  getPetitionid(): string;
-  setPetitionid(value: string): ReportPlaygroundResponse;
+export class ReportExperienceRequest extends jspb.Message {
+  getExperienceid(): string;
+  setExperienceid(value: string): ReportExperienceRequest;
+
+  getSubject(): string;
+  setSubject(value: string): ReportExperienceRequest;
+  hasSubject(): boolean;
+  clearSubject(): ReportExperienceRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ReportPlaygroundResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ReportPlaygroundResponse): ReportPlaygroundResponse.AsObject;
-  static serializeBinaryToWriter(message: ReportPlaygroundResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ReportPlaygroundResponse;
-  static deserializeBinaryFromReader(message: ReportPlaygroundResponse, reader: jspb.BinaryReader): ReportPlaygroundResponse;
+  toObject(includeInstance?: boolean): ReportExperienceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ReportExperienceRequest): ReportExperienceRequest.AsObject;
+  static serializeBinaryToWriter(message: ReportExperienceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReportExperienceRequest;
+  static deserializeBinaryFromReader(message: ReportExperienceRequest, reader: jspb.BinaryReader): ReportExperienceRequest;
 }
 
-export namespace ReportPlaygroundResponse {
+export namespace ReportExperienceRequest {
+  export type AsObject = {
+    experienceid: string,
+    subject?: string,
+  }
+
+  export enum SubjectCase { 
+    _SUBJECT_NOT_SET = 0,
+    SUBJECT = 2,
+  }
+}
+
+export class ReportingResponse extends jspb.Message {
+  getSuccess(): CreatePetitionSuccess | undefined;
+  setSuccess(value?: CreatePetitionSuccess): ReportingResponse;
+  hasSuccess(): boolean;
+  clearSuccess(): ReportingResponse;
+
+  getError(): CreatePetitionError | undefined;
+  setError(value?: CreatePetitionError): ReportingResponse;
+  hasError(): boolean;
+  clearError(): ReportingResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ReportingResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ReportingResponse): ReportingResponse.AsObject;
+  static serializeBinaryToWriter(message: ReportingResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReportingResponse;
+  static deserializeBinaryFromReader(message: ReportingResponse, reader: jspb.BinaryReader): ReportingResponse;
+}
+
+export namespace ReportingResponse {
+  export type AsObject = {
+    success?: CreatePetitionSuccess.AsObject,
+    error?: CreatePetitionError.AsObject,
+  }
+
+  export enum SuccessCase { 
+    _SUCCESS_NOT_SET = 0,
+    SUCCESS = 1,
+  }
+
+  export enum ErrorCase { 
+    _ERROR_NOT_SET = 0,
+    ERROR = 2,
+  }
+}
+
+export class CreatePetitionSuccess extends jspb.Message {
+  getPetitionid(): string;
+  setPetitionid(value: string): CreatePetitionSuccess;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreatePetitionSuccess.AsObject;
+  static toObject(includeInstance: boolean, msg: CreatePetitionSuccess): CreatePetitionSuccess.AsObject;
+  static serializeBinaryToWriter(message: CreatePetitionSuccess, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreatePetitionSuccess;
+  static deserializeBinaryFromReader(message: CreatePetitionSuccess, reader: jspb.BinaryReader): CreatePetitionSuccess;
+}
+
+export namespace CreatePetitionSuccess {
   export type AsObject = {
     petitionid: string,
   }
 }
 
-export enum Category { 
-  UNKNOWN_CATEGORY = 0,
-  CHEATING = 1,
-  HARASSMENT = 2,
-  SPAM = 3,
-  PLAGIARISM = 4,
-  HATE_SPEECH = 5,
-  SEXUALLY_EXPLICIT = 6,
-  CHILD_SOLICITATION = 7,
-  TERRORIST_THREAT = 8,
-  CLIENT_HACK = 9,
-  SUICIDE_THREAT = 10,
-  DOXING = 11,
-  ADVERTISING = 12,
-  INAPPROPRIATE = 13,
-  VIOLENT = 14,
-  OFFENSIVE = 15,
-  OFFENSIVE_CHAT = 16,
-  OFFENSIVE_NAME = 17,
+export class CreatePetitionError extends jspb.Message {
+  getErrortype(): ReportingErrorType;
+  setErrortype(value: ReportingErrorType): CreatePetitionError;
+
+  getErrormessage(): string;
+  setErrormessage(value: string): CreatePetitionError;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreatePetitionError.AsObject;
+  static toObject(includeInstance: boolean, msg: CreatePetitionError): CreatePetitionError.AsObject;
+  static serializeBinaryToWriter(message: CreatePetitionError, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreatePetitionError;
+  static deserializeBinaryFromReader(message: CreatePetitionError, reader: jspb.BinaryReader): CreatePetitionError;
+}
+
+export namespace CreatePetitionError {
+  export type AsObject = {
+    errortype: ReportingErrorType,
+    errormessage: string,
+  }
+}
+
+export enum Platform { 
+  UNKNOWN = 0,
+  PC = 1,
+  PS4 = 2,
+  XBOXONE = 3,
+  PS5 = 4,
+  XBSX = 5,
+  COMMON = 6,
+  STEAM = 7,
+}
+export enum ReportingErrorType { 
+  ERROR_TYPES_GENERIC_SERVICE_FAILURE = 0,
+  ERROR_TYPES_GENERIC_BUSINESS_FAILURE = 1,
+  ERROR_TYPES_INVALID_ARGUMENT = 2,
+  ERROR_TYPES_RATE_LIMITED = 3,
 }

@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for web.reporting
+ * @fileoverview gRPC-Web generated client stub for santiago.web.reporting
  * @enhanceable
  * @public
  */
@@ -35,47 +35,90 @@ export class WebReportingClient {
     this.options_ = options;
   }
 
-  methodDescriptorreportPlayground = new grpcWeb.MethodDescriptor(
-    '/web.reporting.WebReporting/reportPlayground',
+  methodDescriptorReportPlayer = new grpcWeb.MethodDescriptor(
+    '/santiago.web.reporting.WebReporting/ReportPlayer',
     grpcWeb.MethodType.UNARY,
-    reporting_pb.ReportPlaygroundRequest,
-    reporting_pb.ReportPlaygroundResponse,
-    (request: reporting_pb.ReportPlaygroundRequest) => {
+    reporting_pb.ReportPlayerRequest,
+    reporting_pb.ReportingResponse,
+    (request: reporting_pb.ReportPlayerRequest) => {
       return request.serializeBinary();
     },
-    reporting_pb.ReportPlaygroundResponse.deserializeBinary
+    reporting_pb.ReportingResponse.deserializeBinary
   );
 
-  reportPlayground(
-    request: reporting_pb.ReportPlaygroundRequest,
-    metadata: grpcWeb.Metadata | null): Promise<reporting_pb.ReportPlaygroundResponse>;
+  reportPlayer(
+    request: reporting_pb.ReportPlayerRequest,
+    metadata: grpcWeb.Metadata | null): Promise<reporting_pb.ReportingResponse>;
 
-  reportPlayground(
-    request: reporting_pb.ReportPlaygroundRequest,
+  reportPlayer(
+    request: reporting_pb.ReportPlayerRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: reporting_pb.ReportPlaygroundResponse) => void): grpcWeb.ClientReadableStream<reporting_pb.ReportPlaygroundResponse>;
+               response: reporting_pb.ReportingResponse) => void): grpcWeb.ClientReadableStream<reporting_pb.ReportingResponse>;
 
-  reportPlayground(
-    request: reporting_pb.ReportPlaygroundRequest,
+  reportPlayer(
+    request: reporting_pb.ReportPlayerRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: reporting_pb.ReportPlaygroundResponse) => void) {
+               response: reporting_pb.ReportingResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/web.reporting.WebReporting/reportPlayground',
+          '/santiago.web.reporting.WebReporting/ReportPlayer',
         request,
         metadata || {},
-        this.methodDescriptorreportPlayground,
+        this.methodDescriptorReportPlayer,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/web.reporting.WebReporting/reportPlayground',
+      '/santiago.web.reporting.WebReporting/ReportPlayer',
     request,
     metadata || {},
-    this.methodDescriptorreportPlayground);
+    this.methodDescriptorReportPlayer);
+  }
+
+  methodDescriptorReportExperience = new grpcWeb.MethodDescriptor(
+    '/santiago.web.reporting.WebReporting/ReportExperience',
+    grpcWeb.MethodType.UNARY,
+    reporting_pb.ReportExperienceRequest,
+    reporting_pb.ReportingResponse,
+    (request: reporting_pb.ReportExperienceRequest) => {
+      return request.serializeBinary();
+    },
+    reporting_pb.ReportingResponse.deserializeBinary
+  );
+
+  reportExperience(
+    request: reporting_pb.ReportExperienceRequest,
+    metadata: grpcWeb.Metadata | null): Promise<reporting_pb.ReportingResponse>;
+
+  reportExperience(
+    request: reporting_pb.ReportExperienceRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: reporting_pb.ReportingResponse) => void): grpcWeb.ClientReadableStream<reporting_pb.ReportingResponse>;
+
+  reportExperience(
+    request: reporting_pb.ReportExperienceRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: reporting_pb.ReportingResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/santiago.web.reporting.WebReporting/ReportExperience',
+        request,
+        metadata || {},
+        this.methodDescriptorReportExperience,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/santiago.web.reporting.WebReporting/ReportExperience',
+    request,
+    metadata || {},
+    this.methodDescriptorReportExperience);
   }
 
 }
