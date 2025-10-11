@@ -2,6 +2,1931 @@ import * as jspb from 'google-protobuf'
 
 
 
+export class DeleteAttachmentsRequest extends jspb.Message {
+  getPlayelementdesignid(): string;
+  setPlayelementdesignid(value: string): DeleteAttachmentsRequest;
+
+  getAttachmentidsList(): Array<string>;
+  setAttachmentidsList(value: Array<string>): DeleteAttachmentsRequest;
+  clearAttachmentidsList(): DeleteAttachmentsRequest;
+  addAttachmentids(value: string, index?: number): DeleteAttachmentsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteAttachmentsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteAttachmentsRequest): DeleteAttachmentsRequest.AsObject;
+  static serializeBinaryToWriter(message: DeleteAttachmentsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteAttachmentsRequest;
+  static deserializeBinaryFromReader(message: DeleteAttachmentsRequest, reader: jspb.BinaryReader): DeleteAttachmentsRequest;
+}
+
+export namespace DeleteAttachmentsRequest {
+  export type AsObject = {
+    playelementdesignid: string,
+    attachmentidsList: Array<string>,
+  }
+}
+
+export class DeleteAttachmentsResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteAttachmentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteAttachmentsResponse): DeleteAttachmentsResponse.AsObject;
+  static serializeBinaryToWriter(message: DeleteAttachmentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteAttachmentsResponse;
+  static deserializeBinaryFromReader(message: DeleteAttachmentsResponse, reader: jspb.BinaryReader): DeleteAttachmentsResponse;
+}
+
+export namespace DeleteAttachmentsResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetLicenseRequirementsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLicenseRequirementsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLicenseRequirementsRequest): GetLicenseRequirementsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetLicenseRequirementsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLicenseRequirementsRequest;
+  static deserializeBinaryFromReader(message: GetLicenseRequirementsRequest, reader: jspb.BinaryReader): GetLicenseRequirementsRequest;
+}
+
+export namespace GetLicenseRequirementsRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetLicenseRequirementsResponse extends jspb.Message {
+  getOwnedlicensesList(): Array<string>;
+  setOwnedlicensesList(value: Array<string>): GetLicenseRequirementsResponse;
+  clearOwnedlicensesList(): GetLicenseRequirementsResponse;
+  addOwnedlicenses(value: string, index?: number): GetLicenseRequirementsResponse;
+
+  getMapentryrequirementsList(): Array<MapEntryRequirement>;
+  setMapentryrequirementsList(value: Array<MapEntryRequirement>): GetLicenseRequirementsResponse;
+  clearMapentryrequirementsList(): GetLicenseRequirementsResponse;
+  addMapentryrequirements(value?: MapEntryRequirement, index?: number): MapEntryRequirement;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLicenseRequirementsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLicenseRequirementsResponse): GetLicenseRequirementsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetLicenseRequirementsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLicenseRequirementsResponse;
+  static deserializeBinaryFromReader(message: GetLicenseRequirementsResponse, reader: jspb.BinaryReader): GetLicenseRequirementsResponse;
+}
+
+export namespace GetLicenseRequirementsResponse {
+  export type AsObject = {
+    ownedlicensesList: Array<string>,
+    mapentryrequirementsList: Array<MapEntryRequirement.AsObject>,
+  }
+}
+
+export class MapEntryRequirement extends jspb.Message {
+  getLevelname(): string;
+  setLevelname(value: string): MapEntryRequirement;
+
+  getLevellocation(): string;
+  setLevellocation(value: string): MapEntryRequirement;
+
+  getLicenserequirementsList(): Array<string>;
+  setLicenserequirementsList(value: Array<string>): MapEntryRequirement;
+  clearLicenserequirementsList(): MapEntryRequirement;
+  addLicenserequirements(value: string, index?: number): MapEntryRequirement;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MapEntryRequirement.AsObject;
+  static toObject(includeInstance: boolean, msg: MapEntryRequirement): MapEntryRequirement.AsObject;
+  static serializeBinaryToWriter(message: MapEntryRequirement, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MapEntryRequirement;
+  static deserializeBinaryFromReader(message: MapEntryRequirement, reader: jspb.BinaryReader): MapEntryRequirement;
+}
+
+export namespace MapEntryRequirement {
+  export type AsObject = {
+    levelname: string,
+    levellocation: string,
+    licenserequirementsList: Array<string>,
+  }
+}
+
+export class GetProgressionTypesRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetProgressionTypesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetProgressionTypesRequest): GetProgressionTypesRequest.AsObject;
+  static serializeBinaryToWriter(message: GetProgressionTypesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetProgressionTypesRequest;
+  static deserializeBinaryFromReader(message: GetProgressionTypesRequest, reader: jspb.BinaryReader): GetProgressionTypesRequest;
+}
+
+export namespace GetProgressionTypesRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetProgressionTypesResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetProgressionTypesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetProgressionTypesResponse): GetProgressionTypesResponse.AsObject;
+  static serializeBinaryToWriter(message: GetProgressionTypesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetProgressionTypesResponse;
+  static deserializeBinaryFromReader(message: GetProgressionTypesResponse, reader: jspb.BinaryReader): GetProgressionTypesResponse;
+}
+
+export namespace GetProgressionTypesResponse {
+  export type AsObject = {
+  }
+}
+
+export class UploadExperienceThumbnailRequest extends jspb.Message {
+  getImage(): Uint8Array | string;
+  getImage_asU8(): Uint8Array;
+  getImage_asB64(): string;
+  setImage(value: Uint8Array | string): UploadExperienceThumbnailRequest;
+
+  getMimetype(): string;
+  setMimetype(value: string): UploadExperienceThumbnailRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadExperienceThumbnailRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadExperienceThumbnailRequest): UploadExperienceThumbnailRequest.AsObject;
+  static serializeBinaryToWriter(message: UploadExperienceThumbnailRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadExperienceThumbnailRequest;
+  static deserializeBinaryFromReader(message: UploadExperienceThumbnailRequest, reader: jspb.BinaryReader): UploadExperienceThumbnailRequest;
+}
+
+export namespace UploadExperienceThumbnailRequest {
+  export type AsObject = {
+    image: Uint8Array | string,
+    mimetype: string,
+  }
+}
+
+export class UploadExperienceThumbnailResponse extends jspb.Message {
+  getAssetid(): string;
+  setAssetid(value: string): UploadExperienceThumbnailResponse;
+
+  getUrl(): string;
+  setUrl(value: string): UploadExperienceThumbnailResponse;
+
+  getVerificationurl(): string;
+  setVerificationurl(value: string): UploadExperienceThumbnailResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadExperienceThumbnailResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadExperienceThumbnailResponse): UploadExperienceThumbnailResponse.AsObject;
+  static serializeBinaryToWriter(message: UploadExperienceThumbnailResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadExperienceThumbnailResponse;
+  static deserializeBinaryFromReader(message: UploadExperienceThumbnailResponse, reader: jspb.BinaryReader): UploadExperienceThumbnailResponse;
+}
+
+export namespace UploadExperienceThumbnailResponse {
+  export type AsObject = {
+    assetid: string,
+    url: string,
+    verificationurl: string,
+  }
+}
+
+export class CreateModDataVersionResponse extends jspb.Message {
+  getSignedurl(): string;
+  setSignedurl(value: string): CreateModDataVersionResponse;
+
+  getValiduntil(): number;
+  setValiduntil(value: number): CreateModDataVersionResponse;
+  hasValiduntil(): boolean;
+  clearValiduntil(): CreateModDataVersionResponse;
+
+  getModleveldataid(): string;
+  setModleveldataid(value: string): CreateModDataVersionResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateModDataVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateModDataVersionResponse): CreateModDataVersionResponse.AsObject;
+  static serializeBinaryToWriter(message: CreateModDataVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateModDataVersionResponse;
+  static deserializeBinaryFromReader(message: CreateModDataVersionResponse, reader: jspb.BinaryReader): CreateModDataVersionResponse;
+}
+
+export namespace CreateModDataVersionResponse {
+  export type AsObject = {
+    signedurl: string,
+    validuntil?: number,
+    modleveldataid: string,
+  }
+
+  export enum ValiduntilCase { 
+    _VALIDUNTIL_NOT_SET = 0,
+    VALIDUNTIL = 2,
+  }
+}
+
+export class CreateModDataVersionRequest extends jspb.Message {
+  getPlayelementid(): string;
+  setPlayelementid(value: string): CreateModDataVersionRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateModDataVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateModDataVersionRequest): CreateModDataVersionRequest.AsObject;
+  static serializeBinaryToWriter(message: CreateModDataVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateModDataVersionRequest;
+  static deserializeBinaryFromReader(message: CreateModDataVersionRequest, reader: jspb.BinaryReader): CreateModDataVersionRequest;
+}
+
+export namespace CreateModDataVersionRequest {
+  export type AsObject = {
+    playelementid: string,
+  }
+}
+
+export class ListModDataVersionsRequest extends jspb.Message {
+  getPlayelementid(): string;
+  setPlayelementid(value: string): ListModDataVersionsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListModDataVersionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListModDataVersionsRequest): ListModDataVersionsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListModDataVersionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListModDataVersionsRequest;
+  static deserializeBinaryFromReader(message: ListModDataVersionsRequest, reader: jspb.BinaryReader): ListModDataVersionsRequest;
+}
+
+export namespace ListModDataVersionsRequest {
+  export type AsObject = {
+    playelementid: string,
+  }
+}
+
+export class ListModDataVersionsResponse extends jspb.Message {
+  getModdataversionsList(): Array<ModDataVersion>;
+  setModdataversionsList(value: Array<ModDataVersion>): ListModDataVersionsResponse;
+  clearModdataversionsList(): ListModDataVersionsResponse;
+  addModdataversions(value?: ModDataVersion, index?: number): ModDataVersion;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListModDataVersionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListModDataVersionsResponse): ListModDataVersionsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListModDataVersionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListModDataVersionsResponse;
+  static deserializeBinaryFromReader(message: ListModDataVersionsResponse, reader: jspb.BinaryReader): ListModDataVersionsResponse;
+}
+
+export namespace ListModDataVersionsResponse {
+  export type AsObject = {
+    moddataversionsList: Array<ModDataVersion.AsObject>,
+  }
+}
+
+export class ModDataVersion extends jspb.Message {
+  getId(): string;
+  setId(value: string): ModDataVersion;
+
+  getPlayelementid(): string;
+  setPlayelementid(value: string): ModDataVersion;
+
+  getCreated(): number;
+  setCreated(value: number): ModDataVersion;
+  hasCreated(): boolean;
+  clearCreated(): ModDataVersion;
+
+  getBuildinfo(): ModDataVersionBuildInfo | undefined;
+  setBuildinfo(value?: ModDataVersionBuildInfo): ModDataVersion;
+  hasBuildinfo(): boolean;
+  clearBuildinfo(): ModDataVersion;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModDataVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: ModDataVersion): ModDataVersion.AsObject;
+  static serializeBinaryToWriter(message: ModDataVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModDataVersion;
+  static deserializeBinaryFromReader(message: ModDataVersion, reader: jspb.BinaryReader): ModDataVersion;
+}
+
+export namespace ModDataVersion {
+  export type AsObject = {
+    id: string,
+    playelementid: string,
+    created?: number,
+    buildinfo?: ModDataVersionBuildInfo.AsObject,
+  }
+
+  export enum CreatedCase { 
+    _CREATED_NOT_SET = 0,
+    CREATED = 3,
+  }
+
+  export enum BuildinfoCase { 
+    _BUILDINFO_NOT_SET = 0,
+    BUILDINFO = 4,
+  }
+}
+
+export class ModDataVersionBuildInfo extends jspb.Message {
+  getPipelineversion(): string;
+  setPipelineversion(value: string): ModDataVersionBuildInfo;
+
+  getPending(): Empty | undefined;
+  setPending(value?: Empty): ModDataVersionBuildInfo;
+  hasPending(): boolean;
+  clearPending(): ModDataVersionBuildInfo;
+
+  getNobuildavailable(): Empty | undefined;
+  setNobuildavailable(value?: Empty): ModDataVersionBuildInfo;
+  hasNobuildavailable(): boolean;
+  clearNobuildavailable(): ModDataVersionBuildInfo;
+
+  getError(): BuildStatusError | undefined;
+  setError(value?: BuildStatusError): ModDataVersionBuildInfo;
+  hasError(): boolean;
+  clearError(): ModDataVersionBuildInfo;
+
+  getSuccess(): BuildStatusSuccess | undefined;
+  setSuccess(value?: BuildStatusSuccess): ModDataVersionBuildInfo;
+  hasSuccess(): boolean;
+  clearSuccess(): ModDataVersionBuildInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModDataVersionBuildInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ModDataVersionBuildInfo): ModDataVersionBuildInfo.AsObject;
+  static serializeBinaryToWriter(message: ModDataVersionBuildInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModDataVersionBuildInfo;
+  static deserializeBinaryFromReader(message: ModDataVersionBuildInfo, reader: jspb.BinaryReader): ModDataVersionBuildInfo;
+}
+
+export namespace ModDataVersionBuildInfo {
+  export type AsObject = {
+    pipelineversion: string,
+    pending?: Empty.AsObject,
+    nobuildavailable?: Empty.AsObject,
+    error?: BuildStatusError.AsObject,
+    success?: BuildStatusSuccess.AsObject,
+  }
+
+  export enum PendingCase { 
+    _PENDING_NOT_SET = 0,
+    PENDING = 2,
+  }
+
+  export enum NobuildavailableCase { 
+    _NOBUILDAVAILABLE_NOT_SET = 0,
+    NOBUILDAVAILABLE = 3,
+  }
+
+  export enum ErrorCase { 
+    _ERROR_NOT_SET = 0,
+    ERROR = 4,
+  }
+
+  export enum SuccessCase { 
+    _SUCCESS_NOT_SET = 0,
+    SUCCESS = 5,
+  }
+}
+
+export class BuildStatusError extends jspb.Message {
+  getErrormessage(): string;
+  setErrormessage(value: string): BuildStatusError;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BuildStatusError.AsObject;
+  static toObject(includeInstance: boolean, msg: BuildStatusError): BuildStatusError.AsObject;
+  static serializeBinaryToWriter(message: BuildStatusError, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BuildStatusError;
+  static deserializeBinaryFromReader(message: BuildStatusError, reader: jspb.BinaryReader): BuildStatusError;
+}
+
+export namespace BuildStatusError {
+  export type AsObject = {
+    errormessage: string,
+  }
+}
+
+export class BuildStatusSuccess extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BuildStatusSuccess.AsObject;
+  static toObject(includeInstance: boolean, msg: BuildStatusSuccess): BuildStatusSuccess.AsObject;
+  static serializeBinaryToWriter(message: BuildStatusSuccess, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BuildStatusSuccess;
+  static deserializeBinaryFromReader(message: BuildStatusSuccess, reader: jspb.BinaryReader): BuildStatusSuccess;
+}
+
+export namespace BuildStatusSuccess {
+  export type AsObject = {
+  }
+}
+
+export class Empty extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Empty.AsObject;
+  static toObject(includeInstance: boolean, msg: Empty): Empty.AsObject;
+  static serializeBinaryToWriter(message: Empty, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Empty;
+  static deserializeBinaryFromReader(message: Empty, reader: jspb.BinaryReader): Empty;
+}
+
+export namespace Empty {
+  export type AsObject = {
+  }
+}
+
+export class GetAvailableTagsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAvailableTagsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAvailableTagsRequest): GetAvailableTagsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetAvailableTagsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAvailableTagsRequest;
+  static deserializeBinaryFromReader(message: GetAvailableTagsRequest, reader: jspb.BinaryReader): GetAvailableTagsRequest;
+}
+
+export namespace GetAvailableTagsRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetAvailableTagsResponse extends jspb.Message {
+  getAvailabletags(): AvailableTags | undefined;
+  setAvailabletags(value?: AvailableTags): GetAvailableTagsResponse;
+  hasAvailabletags(): boolean;
+  clearAvailabletags(): GetAvailableTagsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAvailableTagsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAvailableTagsResponse): GetAvailableTagsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetAvailableTagsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAvailableTagsResponse;
+  static deserializeBinaryFromReader(message: GetAvailableTagsResponse, reader: jspb.BinaryReader): GetAvailableTagsResponse;
+}
+
+export namespace GetAvailableTagsResponse {
+  export type AsObject = {
+    availabletags?: AvailableTags.AsObject,
+  }
+
+  export enum AvailabletagsCase { 
+    _AVAILABLETAGS_NOT_SET = 0,
+    AVAILABLETAGS = 1,
+  }
+}
+
+export class PlayExperience extends jspb.Message {
+  getId(): string;
+  setId(value: string): PlayExperience;
+
+  getCreator(): Creator | undefined;
+  setCreator(value?: Creator): PlayExperience;
+  hasCreator(): boolean;
+  clearCreator(): PlayExperience;
+
+  getName(): string;
+  setName(value: string): PlayExperience;
+
+  getDescription(): string;
+  setDescription(value: string): PlayExperience;
+  hasDescription(): boolean;
+  clearDescription(): PlayExperience;
+
+  getPlayelementdesign(): PlayElementDesign | undefined;
+  setPlayelementdesign(value?: PlayElementDesign): PlayExperience;
+  hasPlayelementdesign(): boolean;
+  clearPlayelementdesign(): PlayExperience;
+
+  getPlayercount(): number;
+  setPlayercount(value: number): PlayExperience;
+  hasPlayercount(): boolean;
+  clearPlayercount(): PlayExperience;
+
+  getLikes(): number;
+  setLikes(value: number): PlayExperience;
+  hasLikes(): boolean;
+  clearLikes(): PlayExperience;
+
+  getPublishat(): number;
+  setPublishat(value: number): PlayExperience;
+  hasPublishat(): boolean;
+  clearPublishat(): PlayExperience;
+
+  getThumbnailurl(): string;
+  setThumbnailurl(value: string): PlayExperience;
+  hasThumbnailurl(): boolean;
+  clearThumbnailurl(): PlayExperience;
+
+  getIsugc(): boolean;
+  setIsugc(value: boolean): PlayExperience;
+
+  getShortcode(): string;
+  setShortcode(value: string): PlayExperience;
+  hasShortcode(): boolean;
+  clearShortcode(): PlayExperience;
+
+  getPublishstate(): PublishStateType;
+  setPublishstate(value: PublishStateType): PlayExperience;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PlayExperience.AsObject;
+  static toObject(includeInstance: boolean, msg: PlayExperience): PlayExperience.AsObject;
+  static serializeBinaryToWriter(message: PlayExperience, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PlayExperience;
+  static deserializeBinaryFromReader(message: PlayExperience, reader: jspb.BinaryReader): PlayExperience;
+}
+
+export namespace PlayExperience {
+  export type AsObject = {
+    id: string,
+    creator?: Creator.AsObject,
+    name: string,
+    description?: string,
+    playelementdesign?: PlayElementDesign.AsObject,
+    playercount?: number,
+    likes?: number,
+    publishat?: number,
+    thumbnailurl?: string,
+    isugc: boolean,
+    shortcode?: string,
+    publishstate: PublishStateType,
+  }
+
+  export enum CreatorCase { 
+    _CREATOR_NOT_SET = 0,
+    CREATOR = 2,
+  }
+
+  export enum DescriptionCase { 
+    _DESCRIPTION_NOT_SET = 0,
+    DESCRIPTION = 4,
+  }
+
+  export enum PlayelementdesignCase { 
+    _PLAYELEMENTDESIGN_NOT_SET = 0,
+    PLAYELEMENTDESIGN = 5,
+  }
+
+  export enum PlayercountCase { 
+    _PLAYERCOUNT_NOT_SET = 0,
+    PLAYERCOUNT = 6,
+  }
+
+  export enum LikesCase { 
+    _LIKES_NOT_SET = 0,
+    LIKES = 7,
+  }
+
+  export enum PublishatCase { 
+    _PUBLISHAT_NOT_SET = 0,
+    PUBLISHAT = 8,
+  }
+
+  export enum ThumbnailurlCase { 
+    _THUMBNAILURL_NOT_SET = 0,
+    THUMBNAILURL = 9,
+  }
+
+  export enum ShortcodeCase { 
+    _SHORTCODE_NOT_SET = 0,
+    SHORTCODE = 11,
+  }
+}
+
+export class ListExperiencesResponse extends jspb.Message {
+  getExperiencesList(): Array<PlayExperience>;
+  setExperiencesList(value: Array<PlayExperience>): ListExperiencesResponse;
+  clearExperiencesList(): ListExperiencesResponse;
+  addExperiences(value?: PlayExperience, index?: number): PlayExperience;
+
+  getNextpage(): Pagination | undefined;
+  setNextpage(value?: Pagination): ListExperiencesResponse;
+  hasNextpage(): boolean;
+  clearNextpage(): ListExperiencesResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListExperiencesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListExperiencesResponse): ListExperiencesResponse.AsObject;
+  static serializeBinaryToWriter(message: ListExperiencesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListExperiencesResponse;
+  static deserializeBinaryFromReader(message: ListExperiencesResponse, reader: jspb.BinaryReader): ListExperiencesResponse;
+}
+
+export namespace ListExperiencesResponse {
+  export type AsObject = {
+    experiencesList: Array<PlayExperience.AsObject>,
+    nextpage?: Pagination.AsObject,
+  }
+
+  export enum NextpageCase { 
+    _NEXTPAGE_NOT_SET = 0,
+    NEXTPAGE = 2,
+  }
+}
+
+export class PlayExperienceQuery extends jspb.Message {
+  getMapseqList(): Array<string>;
+  setMapseqList(value: Array<string>): PlayExperienceQuery;
+  clearMapseqList(): PlayExperienceQuery;
+  addMapseq(value: string, index?: number): PlayExperienceQuery;
+
+  getLevellocationseqList(): Array<string>;
+  setLevellocationseqList(value: Array<string>): PlayExperienceQuery;
+  clearLevellocationseqList(): PlayExperienceQuery;
+  addLevellocationseq(value: string, index?: number): PlayExperienceQuery;
+
+  getMaxplayercounteqList(): Array<number>;
+  setMaxplayercounteqList(value: Array<number>): PlayExperienceQuery;
+  clearMaxplayercounteqList(): PlayExperienceQuery;
+  addMaxplayercounteq(value: number, index?: number): PlayExperienceQuery;
+
+  getTagseqList(): Array<string>;
+  setTagseqList(value: Array<string>): PlayExperienceQuery;
+  clearTagseqList(): PlayExperienceQuery;
+  addTagseq(value: string, index?: number): PlayExperienceQuery;
+
+  getPlayercreatoreq(): PlayerCreator | undefined;
+  setPlayercreatoreq(value?: PlayerCreator): PlayExperienceQuery;
+  hasPlayercreatoreq(): boolean;
+  clearPlayercreatoreq(): PlayExperienceQuery;
+
+  getOrdering(): ExperienceOrderBy;
+  setOrdering(value: ExperienceOrderBy): PlayExperienceQuery;
+
+  getPagesize(): number;
+  setPagesize(value: number): PlayExperienceQuery;
+
+  getNameprefix(): string;
+  setNameprefix(value: string): PlayExperienceQuery;
+  hasNameprefix(): boolean;
+  clearNameprefix(): PlayExperienceQuery;
+
+  getShortcode(): string;
+  setShortcode(value: string): PlayExperienceQuery;
+  hasShortcode(): boolean;
+  clearShortcode(): PlayExperienceQuery;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PlayExperienceQuery.AsObject;
+  static toObject(includeInstance: boolean, msg: PlayExperienceQuery): PlayExperienceQuery.AsObject;
+  static serializeBinaryToWriter(message: PlayExperienceQuery, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PlayExperienceQuery;
+  static deserializeBinaryFromReader(message: PlayExperienceQuery, reader: jspb.BinaryReader): PlayExperienceQuery;
+}
+
+export namespace PlayExperienceQuery {
+  export type AsObject = {
+    mapseqList: Array<string>,
+    levellocationseqList: Array<string>,
+    maxplayercounteqList: Array<number>,
+    tagseqList: Array<string>,
+    playercreatoreq?: PlayerCreator.AsObject,
+    ordering: ExperienceOrderBy,
+    pagesize: number,
+    nameprefix?: string,
+    shortcode?: string,
+  }
+
+  export enum PlayercreatoreqCase { 
+    _PLAYERCREATOREQ_NOT_SET = 0,
+    PLAYERCREATOREQ = 5,
+  }
+
+  export enum NameprefixCase { 
+    _NAMEPREFIX_NOT_SET = 0,
+    NAMEPREFIX = 8,
+  }
+
+  export enum ShortcodeCase { 
+    _SHORTCODE_NOT_SET = 0,
+    SHORTCODE = 9,
+  }
+}
+
+export class ListExperiencesRequest extends jspb.Message {
+  getFilter(): PlayExperienceQuery | undefined;
+  setFilter(value?: PlayExperienceQuery): ListExperiencesRequest;
+  hasFilter(): boolean;
+  clearFilter(): ListExperiencesRequest;
+
+  getPage(): Pagination | undefined;
+  setPage(value?: Pagination): ListExperiencesRequest;
+  hasPage(): boolean;
+  clearPage(): ListExperiencesRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListExperiencesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListExperiencesRequest): ListExperiencesRequest.AsObject;
+  static serializeBinaryToWriter(message: ListExperiencesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListExperiencesRequest;
+  static deserializeBinaryFromReader(message: ListExperiencesRequest, reader: jspb.BinaryReader): ListExperiencesRequest;
+}
+
+export namespace ListExperiencesRequest {
+  export type AsObject = {
+    filter?: PlayExperienceQuery.AsObject,
+    page?: Pagination.AsObject,
+  }
+
+  export enum FilterCase { 
+    _FILTER_NOT_SET = 0,
+    FILTER = 1,
+  }
+
+  export enum PageCase { 
+    _PAGE_NOT_SET = 0,
+    PAGE = 2,
+  }
+}
+
+export class Pagination extends jspb.Message {
+  getPagenumber(): number;
+  setPagenumber(value: number): Pagination;
+  hasPagenumber(): boolean;
+  clearPagenumber(): Pagination;
+
+  getToken(): string;
+  setToken(value: string): Pagination;
+  hasToken(): boolean;
+  clearToken(): Pagination;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Pagination.AsObject;
+  static toObject(includeInstance: boolean, msg: Pagination): Pagination.AsObject;
+  static serializeBinaryToWriter(message: Pagination, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Pagination;
+  static deserializeBinaryFromReader(message: Pagination, reader: jspb.BinaryReader): Pagination;
+}
+
+export namespace Pagination {
+  export type AsObject = {
+    pagenumber?: number,
+    token?: string,
+  }
+
+  export enum PagenumberCase { 
+    _PAGENUMBER_NOT_SET = 0,
+    PAGENUMBER = 1,
+  }
+
+  export enum TokenCase { 
+    _TOKEN_NOT_SET = 0,
+    TOKEN = 2,
+  }
+}
+
+export class DeletePlayElementRequest extends jspb.Message {
+  getPlayelementid(): string;
+  setPlayelementid(value: string): DeletePlayElementRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeletePlayElementRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletePlayElementRequest): DeletePlayElementRequest.AsObject;
+  static serializeBinaryToWriter(message: DeletePlayElementRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletePlayElementRequest;
+  static deserializeBinaryFromReader(message: DeletePlayElementRequest, reader: jspb.BinaryReader): DeletePlayElementRequest;
+}
+
+export namespace DeletePlayElementRequest {
+  export type AsObject = {
+    playelementid: string,
+  }
+}
+
+export class GetScheduledBlueprintsResponse extends jspb.Message {
+  getBlueprintidsList(): Array<BlueprintId>;
+  setBlueprintidsList(value: Array<BlueprintId>): GetScheduledBlueprintsResponse;
+  clearBlueprintidsList(): GetScheduledBlueprintsResponse;
+  addBlueprintids(value?: BlueprintId, index?: number): BlueprintId;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetScheduledBlueprintsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetScheduledBlueprintsResponse): GetScheduledBlueprintsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetScheduledBlueprintsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetScheduledBlueprintsResponse;
+  static deserializeBinaryFromReader(message: GetScheduledBlueprintsResponse, reader: jspb.BinaryReader): GetScheduledBlueprintsResponse;
+}
+
+export namespace GetScheduledBlueprintsResponse {
+  export type AsObject = {
+    blueprintidsList: Array<BlueprintId.AsObject>,
+  }
+}
+
+export class DeletePlayElementResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeletePlayElementResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletePlayElementResponse): DeletePlayElementResponse.AsObject;
+  static serializeBinaryToWriter(message: DeletePlayElementResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletePlayElementResponse;
+  static deserializeBinaryFromReader(message: DeletePlayElementResponse, reader: jspb.BinaryReader): DeletePlayElementResponse;
+}
+
+export namespace DeletePlayElementResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetBlueprintsByIdRequest extends jspb.Message {
+  getBlueprintidsList(): Array<BlueprintId>;
+  setBlueprintidsList(value: Array<BlueprintId>): GetBlueprintsByIdRequest;
+  clearBlueprintidsList(): GetBlueprintsByIdRequest;
+  addBlueprintids(value?: BlueprintId, index?: number): BlueprintId;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlueprintsByIdRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlueprintsByIdRequest): GetBlueprintsByIdRequest.AsObject;
+  static serializeBinaryToWriter(message: GetBlueprintsByIdRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlueprintsByIdRequest;
+  static deserializeBinaryFromReader(message: GetBlueprintsByIdRequest, reader: jspb.BinaryReader): GetBlueprintsByIdRequest;
+}
+
+export namespace GetBlueprintsByIdRequest {
+  export type AsObject = {
+    blueprintidsList: Array<BlueprintId.AsObject>,
+  }
+}
+
+export class BlueprintId extends jspb.Message {
+  getId(): string;
+  setId(value: string): BlueprintId;
+
+  getVersion(): string;
+  setVersion(value: string): BlueprintId;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BlueprintId.AsObject;
+  static toObject(includeInstance: boolean, msg: BlueprintId): BlueprintId.AsObject;
+  static serializeBinaryToWriter(message: BlueprintId, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BlueprintId;
+  static deserializeBinaryFromReader(message: BlueprintId, reader: jspb.BinaryReader): BlueprintId;
+}
+
+export namespace BlueprintId {
+  export type AsObject = {
+    id: string,
+    version: string,
+  }
+}
+
+export class GetBlueprintsByIdResponse extends jspb.Message {
+  getBlueprintsList(): Array<Blueprint>;
+  setBlueprintsList(value: Array<Blueprint>): GetBlueprintsByIdResponse;
+  clearBlueprintsList(): GetBlueprintsByIdResponse;
+  addBlueprints(value?: Blueprint, index?: number): Blueprint;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBlueprintsByIdResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBlueprintsByIdResponse): GetBlueprintsByIdResponse.AsObject;
+  static serializeBinaryToWriter(message: GetBlueprintsByIdResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBlueprintsByIdResponse;
+  static deserializeBinaryFromReader(message: GetBlueprintsByIdResponse, reader: jspb.BinaryReader): GetBlueprintsByIdResponse;
+}
+
+export namespace GetBlueprintsByIdResponse {
+  export type AsObject = {
+    blueprintsList: Array<Blueprint.AsObject>,
+  }
+}
+
+export class GetScheduledBlueprintsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetScheduledBlueprintsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetScheduledBlueprintsRequest): GetScheduledBlueprintsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetScheduledBlueprintsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetScheduledBlueprintsRequest;
+  static deserializeBinaryFromReader(message: GetScheduledBlueprintsRequest, reader: jspb.BinaryReader): GetScheduledBlueprintsRequest;
+}
+
+export namespace GetScheduledBlueprintsRequest {
+  export type AsObject = {
+  }
+}
+
+export class Blueprint extends jspb.Message {
+  getBlueprintid(): BlueprintId | undefined;
+  setBlueprintid(value?: BlueprintId): Blueprint;
+  hasBlueprintid(): boolean;
+  clearBlueprintid(): Blueprint;
+
+  getName(): string;
+  setName(value: string): Blueprint;
+
+  getAvailablegamedata(): AvailableGameData | undefined;
+  setAvailablegamedata(value?: AvailableGameData): Blueprint;
+  hasAvailablegamedata(): boolean;
+  clearAvailablegamedata(): Blueprint;
+
+  getAvailabletags(): AvailableTags | undefined;
+  setAvailabletags(value?: AvailableTags): Blueprint;
+  hasAvailabletags(): boolean;
+  clearAvailabletags(): Blueprint;
+
+  getAvailablethumbnailurlsList(): Array<string>;
+  setAvailablethumbnailurlsList(value: Array<string>): Blueprint;
+  clearAvailablethumbnailurlsList(): Blueprint;
+  addAvailablethumbnailurls(value: string, index?: number): Blueprint;
+
+  getAvailableprogressionmodetags(): AvailableTags | undefined;
+  setAvailableprogressionmodetags(value?: AvailableTags): Blueprint;
+  hasAvailableprogressionmodetags(): boolean;
+  clearAvailableprogressionmodetags(): Blueprint;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Blueprint.AsObject;
+  static toObject(includeInstance: boolean, msg: Blueprint): Blueprint.AsObject;
+  static serializeBinaryToWriter(message: Blueprint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Blueprint;
+  static deserializeBinaryFromReader(message: Blueprint, reader: jspb.BinaryReader): Blueprint;
+}
+
+export namespace Blueprint {
+  export type AsObject = {
+    blueprintid?: BlueprintId.AsObject,
+    name: string,
+    availablegamedata?: AvailableGameData.AsObject,
+    availabletags?: AvailableTags.AsObject,
+    availablethumbnailurlsList: Array<string>,
+    availableprogressionmodetags?: AvailableTags.AsObject,
+  }
+
+  export enum BlueprintidCase { 
+    _BLUEPRINTID_NOT_SET = 0,
+    BLUEPRINTID = 1,
+  }
+
+  export enum AvailablegamedataCase { 
+    _AVAILABLEGAMEDATA_NOT_SET = 0,
+    AVAILABLEGAMEDATA = 3,
+  }
+
+  export enum AvailabletagsCase { 
+    _AVAILABLETAGS_NOT_SET = 0,
+    AVAILABLETAGS = 4,
+  }
+
+  export enum AvailableprogressionmodetagsCase { 
+    _AVAILABLEPROGRESSIONMODETAGS_NOT_SET = 0,
+    AVAILABLEPROGRESSIONMODETAGS = 6,
+  }
+}
+
+export class AvailableGameData extends jspb.Message {
+  getMutatorsList(): Array<AvailableMutator>;
+  setMutatorsList(value: Array<AvailableMutator>): AvailableGameData;
+  clearMutatorsList(): AvailableGameData;
+  addMutators(value?: AvailableMutator, index?: number): AvailableMutator;
+
+  getMapsList(): Array<AvailableMapEntry>;
+  setMapsList(value: Array<AvailableMapEntry>): AvailableGameData;
+  clearMapsList(): AvailableGameData;
+  addMaps(value?: AvailableMapEntry, index?: number): AvailableMapEntry;
+
+  getModrules(): ModRulesDefinition | undefined;
+  setModrules(value?: ModRulesDefinition): AvailableGameData;
+  hasModrules(): boolean;
+  clearModrules(): AvailableGameData;
+
+  getAssetcategories(): AvailableAssetCategories | undefined;
+  setAssetcategories(value?: AvailableAssetCategories): AvailableGameData;
+  hasAssetcategories(): boolean;
+  clearAssetcategories(): AvailableGameData;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableGameData.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableGameData): AvailableGameData.AsObject;
+  static serializeBinaryToWriter(message: AvailableGameData, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableGameData;
+  static deserializeBinaryFromReader(message: AvailableGameData, reader: jspb.BinaryReader): AvailableGameData;
+}
+
+export namespace AvailableGameData {
+  export type AsObject = {
+    mutatorsList: Array<AvailableMutator.AsObject>,
+    mapsList: Array<AvailableMapEntry.AsObject>,
+    modrules?: ModRulesDefinition.AsObject,
+    assetcategories?: AvailableAssetCategories.AsObject,
+  }
+
+  export enum ModrulesCase { 
+    _MODRULES_NOT_SET = 0,
+    MODRULES = 3,
+  }
+
+  export enum AssetcategoriesCase { 
+    _ASSETCATEGORIES_NOT_SET = 0,
+    ASSETCATEGORIES = 4,
+  }
+}
+
+export class AvailableAssetCategories extends jspb.Message {
+  getRoottagsList(): Array<AvailableAssetCategoryTag>;
+  setRoottagsList(value: Array<AvailableAssetCategoryTag>): AvailableAssetCategories;
+  clearRoottagsList(): AvailableAssetCategories;
+  addRoottags(value?: AvailableAssetCategoryTag, index?: number): AvailableAssetCategoryTag;
+
+  getTagsList(): Array<AvailableAssetCategoryTag>;
+  setTagsList(value: Array<AvailableAssetCategoryTag>): AvailableAssetCategories;
+  clearTagsList(): AvailableAssetCategories;
+  addTags(value?: AvailableAssetCategoryTag, index?: number): AvailableAssetCategoryTag;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableAssetCategories.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableAssetCategories): AvailableAssetCategories.AsObject;
+  static serializeBinaryToWriter(message: AvailableAssetCategories, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableAssetCategories;
+  static deserializeBinaryFromReader(message: AvailableAssetCategories, reader: jspb.BinaryReader): AvailableAssetCategories;
+}
+
+export namespace AvailableAssetCategories {
+  export type AsObject = {
+    roottagsList: Array<AvailableAssetCategoryTag.AsObject>,
+    tagsList: Array<AvailableAssetCategoryTag.AsObject>,
+  }
+}
+
+export class AvailableAssetCategoryTag extends jspb.Message {
+  getTagid(): string;
+  setTagid(value: string): AvailableAssetCategoryTag;
+
+  getName(): string;
+  setName(value: string): AvailableAssetCategoryTag;
+
+  getChildrentagsList(): Array<string>;
+  setChildrentagsList(value: Array<string>): AvailableAssetCategoryTag;
+  clearChildrentagsList(): AvailableAssetCategoryTag;
+  addChildrentags(value: string, index?: number): AvailableAssetCategoryTag;
+
+  getMetadata(): Metadata | undefined;
+  setMetadata(value?: Metadata): AvailableAssetCategoryTag;
+  hasMetadata(): boolean;
+  clearMetadata(): AvailableAssetCategoryTag;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableAssetCategoryTag.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableAssetCategoryTag): AvailableAssetCategoryTag.AsObject;
+  static serializeBinaryToWriter(message: AvailableAssetCategoryTag, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableAssetCategoryTag;
+  static deserializeBinaryFromReader(message: AvailableAssetCategoryTag, reader: jspb.BinaryReader): AvailableAssetCategoryTag;
+}
+
+export namespace AvailableAssetCategoryTag {
+  export type AsObject = {
+    tagid: string,
+    name: string,
+    childrentagsList: Array<string>,
+    metadata?: Metadata.AsObject,
+  }
+
+  export enum MetadataCase { 
+    _METADATA_NOT_SET = 0,
+    METADATA = 4,
+  }
+}
+
+export class ModRulesDefinition extends jspb.Message {
+  getRulesversion(): number;
+  setRulesversion(value: number): ModRulesDefinition;
+
+  getModbuilder(): Uint8Array | string;
+  getModbuilder_asU8(): Uint8Array;
+  getModbuilder_asB64(): string;
+  setModbuilder(value: Uint8Array | string): ModRulesDefinition;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModRulesDefinition.AsObject;
+  static toObject(includeInstance: boolean, msg: ModRulesDefinition): ModRulesDefinition.AsObject;
+  static serializeBinaryToWriter(message: ModRulesDefinition, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModRulesDefinition;
+  static deserializeBinaryFromReader(message: ModRulesDefinition, reader: jspb.BinaryReader): ModRulesDefinition;
+}
+
+export namespace ModRulesDefinition {
+  export type AsObject = {
+    rulesversion: number,
+    modbuilder: Uint8Array | string,
+  }
+}
+
+export class AvailableTag extends jspb.Message {
+  getId(): string;
+  setId(value: string): AvailableTag;
+
+  getMetadata(): Metadata | undefined;
+  setMetadata(value?: Metadata): AvailableTag;
+  hasMetadata(): boolean;
+  clearMetadata(): AvailableTag;
+
+  getCategory(): string;
+  setCategory(value: string): AvailableTag;
+  hasCategory(): boolean;
+  clearCategory(): AvailableTag;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableTag.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableTag): AvailableTag.AsObject;
+  static serializeBinaryToWriter(message: AvailableTag, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableTag;
+  static deserializeBinaryFromReader(message: AvailableTag, reader: jspb.BinaryReader): AvailableTag;
+}
+
+export namespace AvailableTag {
+  export type AsObject = {
+    id: string,
+    metadata?: Metadata.AsObject,
+    category?: string,
+  }
+
+  export enum MetadataCase { 
+    _METADATA_NOT_SET = 0,
+    METADATA = 2,
+  }
+
+  export enum CategoryCase { 
+    _CATEGORY_NOT_SET = 0,
+    CATEGORY = 3,
+  }
+}
+
+export class AvailableMapEntry extends jspb.Message {
+  getLevelname(): string;
+  setLevelname(value: string): AvailableMapEntry;
+
+  getLevellocation(): string;
+  setLevellocation(value: string): AvailableMapEntry;
+
+  getGamesize(): AvailableIntValue | undefined;
+  setGamesize(value?: AvailableIntValue): AvailableMapEntry;
+  hasGamesize(): boolean;
+  clearGamesize(): AvailableMapEntry;
+
+  getRounds(): AvailableIntValue | undefined;
+  setRounds(value?: AvailableIntValue): AvailableMapEntry;
+  hasRounds(): boolean;
+  clearRounds(): AvailableMapEntry;
+
+  getAllowedspectators(): AvailableIntValue | undefined;
+  setAllowedspectators(value?: AvailableIntValue): AvailableMapEntry;
+  hasAllowedspectators(): boolean;
+  clearAllowedspectators(): AvailableMapEntry;
+
+  getMetadata(): Metadata | undefined;
+  setMetadata(value?: Metadata): AvailableMapEntry;
+  hasMetadata(): boolean;
+  clearMetadata(): AvailableMapEntry;
+
+  getAllowedteamsrange(): AvailableIntValue | undefined;
+  setAllowedteamsrange(value?: AvailableIntValue): AvailableMapEntry;
+  hasAllowedteamsrange(): boolean;
+  clearAllowedteamsrange(): AvailableMapEntry;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableMapEntry.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableMapEntry): AvailableMapEntry.AsObject;
+  static serializeBinaryToWriter(message: AvailableMapEntry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableMapEntry;
+  static deserializeBinaryFromReader(message: AvailableMapEntry, reader: jspb.BinaryReader): AvailableMapEntry;
+}
+
+export namespace AvailableMapEntry {
+  export type AsObject = {
+    levelname: string,
+    levellocation: string,
+    gamesize?: AvailableIntValue.AsObject,
+    rounds?: AvailableIntValue.AsObject,
+    allowedspectators?: AvailableIntValue.AsObject,
+    metadata?: Metadata.AsObject,
+    allowedteamsrange?: AvailableIntValue.AsObject,
+  }
+
+  export enum GamesizeCase { 
+    _GAMESIZE_NOT_SET = 0,
+    GAMESIZE = 3,
+  }
+
+  export enum RoundsCase { 
+    _ROUNDS_NOT_SET = 0,
+    ROUNDS = 4,
+  }
+
+  export enum AllowedspectatorsCase { 
+    _ALLOWEDSPECTATORS_NOT_SET = 0,
+    ALLOWEDSPECTATORS = 5,
+  }
+
+  export enum MetadataCase { 
+    _METADATA_NOT_SET = 0,
+    METADATA = 6,
+  }
+
+  export enum AllowedteamsrangeCase { 
+    _ALLOWEDTEAMSRANGE_NOT_SET = 0,
+    ALLOWEDTEAMSRANGE = 7,
+  }
+}
+
+export class AvailableIntValue extends jspb.Message {
+  getDefaultvalue(): number;
+  setDefaultvalue(value: number): AvailableIntValue;
+
+  getAvailablevalues(): AvailableIntValues | undefined;
+  setAvailablevalues(value?: AvailableIntValues): AvailableIntValue;
+  hasAvailablevalues(): boolean;
+  clearAvailablevalues(): AvailableIntValue;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableIntValue.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableIntValue): AvailableIntValue.AsObject;
+  static serializeBinaryToWriter(message: AvailableIntValue, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableIntValue;
+  static deserializeBinaryFromReader(message: AvailableIntValue, reader: jspb.BinaryReader): AvailableIntValue;
+}
+
+export namespace AvailableIntValue {
+  export type AsObject = {
+    defaultvalue: number,
+    availablevalues?: AvailableIntValues.AsObject,
+  }
+
+  export enum AvailablevaluesCase { 
+    _AVAILABLEVALUES_NOT_SET = 0,
+    AVAILABLEVALUES = 2,
+  }
+}
+
+export class AvailableIntValues extends jspb.Message {
+  getRange(): IntRange | undefined;
+  setRange(value?: IntRange): AvailableIntValues;
+  hasRange(): boolean;
+  clearRange(): AvailableIntValues;
+
+  getSparsevalues(): SparseIntValues | undefined;
+  setSparsevalues(value?: SparseIntValues): AvailableIntValues;
+  hasSparsevalues(): boolean;
+  clearSparsevalues(): AvailableIntValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableIntValues.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableIntValues): AvailableIntValues.AsObject;
+  static serializeBinaryToWriter(message: AvailableIntValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableIntValues;
+  static deserializeBinaryFromReader(message: AvailableIntValues, reader: jspb.BinaryReader): AvailableIntValues;
+}
+
+export namespace AvailableIntValues {
+  export type AsObject = {
+    range?: IntRange.AsObject,
+    sparsevalues?: SparseIntValues.AsObject,
+  }
+
+  export enum RangeCase { 
+    _RANGE_NOT_SET = 0,
+    RANGE = 1,
+  }
+
+  export enum SparsevaluesCase { 
+    _SPARSEVALUES_NOT_SET = 0,
+    SPARSEVALUES = 2,
+  }
+}
+
+export class SparseIntValues extends jspb.Message {
+  getValuesList(): Array<number>;
+  setValuesList(value: Array<number>): SparseIntValues;
+  clearValuesList(): SparseIntValues;
+  addValues(value: number, index?: number): SparseIntValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SparseIntValues.AsObject;
+  static toObject(includeInstance: boolean, msg: SparseIntValues): SparseIntValues.AsObject;
+  static serializeBinaryToWriter(message: SparseIntValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SparseIntValues;
+  static deserializeBinaryFromReader(message: SparseIntValues, reader: jspb.BinaryReader): SparseIntValues;
+}
+
+export namespace SparseIntValues {
+  export type AsObject = {
+    valuesList: Array<number>,
+  }
+}
+
+export class IntRange extends jspb.Message {
+  getMinvalue(): number;
+  setMinvalue(value: number): IntRange;
+
+  getMaxvalue(): number;
+  setMaxvalue(value: number): IntRange;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IntRange.AsObject;
+  static toObject(includeInstance: boolean, msg: IntRange): IntRange.AsObject;
+  static serializeBinaryToWriter(message: IntRange, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IntRange;
+  static deserializeBinaryFromReader(message: IntRange, reader: jspb.BinaryReader): IntRange;
+}
+
+export namespace IntRange {
+  export type AsObject = {
+    minvalue: number,
+    maxvalue: number,
+  }
+}
+
+export class AvailableTags extends jspb.Message {
+  getTagsList(): Array<AvailableTag>;
+  setTagsList(value: Array<AvailableTag>): AvailableTags;
+  clearTagsList(): AvailableTags;
+  addTags(value?: AvailableTag, index?: number): AvailableTag;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableTags.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableTags): AvailableTags.AsObject;
+  static serializeBinaryToWriter(message: AvailableTags, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableTags;
+  static deserializeBinaryFromReader(message: AvailableTags, reader: jspb.BinaryReader): AvailableTags;
+}
+
+export namespace AvailableTags {
+  export type AsObject = {
+    tagsList: Array<AvailableTag.AsObject>,
+  }
+}
+
+export class AvailableMutator extends jspb.Message {
+  getName(): string;
+  setName(value: string): AvailableMutator;
+
+  getCategory(): string;
+  setCategory(value: string): AvailableMutator;
+
+  getKind(): AvailableMutatorKind | undefined;
+  setKind(value?: AvailableMutatorKind): AvailableMutator;
+  hasKind(): boolean;
+  clearKind(): AvailableMutator;
+
+  getMetadata(): Metadata | undefined;
+  setMetadata(value?: Metadata): AvailableMutator;
+  hasMetadata(): boolean;
+  clearMetadata(): AvailableMutator;
+
+  getId(): string;
+  setId(value: string): AvailableMutator;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableMutator.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableMutator): AvailableMutator.AsObject;
+  static serializeBinaryToWriter(message: AvailableMutator, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableMutator;
+  static deserializeBinaryFromReader(message: AvailableMutator, reader: jspb.BinaryReader): AvailableMutator;
+}
+
+export namespace AvailableMutator {
+  export type AsObject = {
+    name: string,
+    category: string,
+    kind?: AvailableMutatorKind.AsObject,
+    metadata?: Metadata.AsObject,
+    id: string,
+  }
+
+  export enum KindCase { 
+    _KIND_NOT_SET = 0,
+    KIND = 3,
+  }
+
+  export enum MetadataCase { 
+    _METADATA_NOT_SET = 0,
+    METADATA = 4,
+  }
+}
+
+export class AvailableMutatorKind extends jspb.Message {
+  getMutatorboolean(): MutatorBoolean | undefined;
+  setMutatorboolean(value?: MutatorBoolean): AvailableMutatorKind;
+  hasMutatorboolean(): boolean;
+  clearMutatorboolean(): AvailableMutatorKind;
+
+  getMutatorstring(): MutatorString | undefined;
+  setMutatorstring(value?: MutatorString): AvailableMutatorKind;
+  hasMutatorstring(): boolean;
+  clearMutatorstring(): AvailableMutatorKind;
+
+  getMutatorfloatvalues(): AvailableMutatorFloatValues | undefined;
+  setMutatorfloatvalues(value?: AvailableMutatorFloatValues): AvailableMutatorKind;
+  hasMutatorfloatvalues(): boolean;
+  clearMutatorfloatvalues(): AvailableMutatorKind;
+
+  getMutatorintvalues(): AvailableMutatorIntValues | undefined;
+  setMutatorintvalues(value?: AvailableMutatorIntValues): AvailableMutatorKind;
+  hasMutatorintvalues(): boolean;
+  clearMutatorintvalues(): AvailableMutatorKind;
+
+  getMutatorsparseboolean(): MutatorSparseBoolean | undefined;
+  setMutatorsparseboolean(value?: MutatorSparseBoolean): AvailableMutatorKind;
+  hasMutatorsparseboolean(): boolean;
+  clearMutatorsparseboolean(): AvailableMutatorKind;
+
+  getMutatorsparseintvalues(): AvailableMutatorSparseIntValues | undefined;
+  setMutatorsparseintvalues(value?: AvailableMutatorSparseIntValues): AvailableMutatorKind;
+  hasMutatorsparseintvalues(): boolean;
+  clearMutatorsparseintvalues(): AvailableMutatorKind;
+
+  getMutatorsparsefloatvalues(): AvailableMutatorSparseFloatValues | undefined;
+  setMutatorsparsefloatvalues(value?: AvailableMutatorSparseFloatValues): AvailableMutatorKind;
+  hasMutatorsparsefloatvalues(): boolean;
+  clearMutatorsparsefloatvalues(): AvailableMutatorKind;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableMutatorKind.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableMutatorKind): AvailableMutatorKind.AsObject;
+  static serializeBinaryToWriter(message: AvailableMutatorKind, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableMutatorKind;
+  static deserializeBinaryFromReader(message: AvailableMutatorKind, reader: jspb.BinaryReader): AvailableMutatorKind;
+}
+
+export namespace AvailableMutatorKind {
+  export type AsObject = {
+    mutatorboolean?: MutatorBoolean.AsObject,
+    mutatorstring?: MutatorString.AsObject,
+    mutatorfloatvalues?: AvailableMutatorFloatValues.AsObject,
+    mutatorintvalues?: AvailableMutatorIntValues.AsObject,
+    mutatorsparseboolean?: MutatorSparseBoolean.AsObject,
+    mutatorsparseintvalues?: AvailableMutatorSparseIntValues.AsObject,
+    mutatorsparsefloatvalues?: AvailableMutatorSparseFloatValues.AsObject,
+  }
+
+  export enum MutatorbooleanCase { 
+    _MUTATORBOOLEAN_NOT_SET = 0,
+    MUTATORBOOLEAN = 1,
+  }
+
+  export enum MutatorstringCase { 
+    _MUTATORSTRING_NOT_SET = 0,
+    MUTATORSTRING = 4,
+  }
+
+  export enum MutatorfloatvaluesCase { 
+    _MUTATORFLOATVALUES_NOT_SET = 0,
+    MUTATORFLOATVALUES = 5,
+  }
+
+  export enum MutatorintvaluesCase { 
+    _MUTATORINTVALUES_NOT_SET = 0,
+    MUTATORINTVALUES = 6,
+  }
+
+  export enum MutatorsparsebooleanCase { 
+    _MUTATORSPARSEBOOLEAN_NOT_SET = 0,
+    MUTATORSPARSEBOOLEAN = 7,
+  }
+
+  export enum MutatorsparseintvaluesCase { 
+    _MUTATORSPARSEINTVALUES_NOT_SET = 0,
+    MUTATORSPARSEINTVALUES = 8,
+  }
+
+  export enum MutatorsparsefloatvaluesCase { 
+    _MUTATORSPARSEFLOATVALUES_NOT_SET = 0,
+    MUTATORSPARSEFLOATVALUES = 9,
+  }
+}
+
+export class AvailableMutatorSparseIntValues extends jspb.Message {
+  getMutator(): MutatorSparseInt | undefined;
+  setMutator(value?: MutatorSparseInt): AvailableMutatorSparseIntValues;
+  hasMutator(): boolean;
+  clearMutator(): AvailableMutatorSparseIntValues;
+
+  getAvailablevalues(): AvailableIntValues | undefined;
+  setAvailablevalues(value?: AvailableIntValues): AvailableMutatorSparseIntValues;
+  hasAvailablevalues(): boolean;
+  clearAvailablevalues(): AvailableMutatorSparseIntValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableMutatorSparseIntValues.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableMutatorSparseIntValues): AvailableMutatorSparseIntValues.AsObject;
+  static serializeBinaryToWriter(message: AvailableMutatorSparseIntValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableMutatorSparseIntValues;
+  static deserializeBinaryFromReader(message: AvailableMutatorSparseIntValues, reader: jspb.BinaryReader): AvailableMutatorSparseIntValues;
+}
+
+export namespace AvailableMutatorSparseIntValues {
+  export type AsObject = {
+    mutator?: MutatorSparseInt.AsObject,
+    availablevalues?: AvailableIntValues.AsObject,
+  }
+
+  export enum MutatorCase { 
+    _MUTATOR_NOT_SET = 0,
+    MUTATOR = 1,
+  }
+
+  export enum AvailablevaluesCase { 
+    _AVAILABLEVALUES_NOT_SET = 0,
+    AVAILABLEVALUES = 2,
+  }
+}
+
+export class AvailableMutatorSparseFloatValues extends jspb.Message {
+  getMutator(): MutatorSparseFloat | undefined;
+  setMutator(value?: MutatorSparseFloat): AvailableMutatorSparseFloatValues;
+  hasMutator(): boolean;
+  clearMutator(): AvailableMutatorSparseFloatValues;
+
+  getAvailablevalues(): AvailableFloatValues | undefined;
+  setAvailablevalues(value?: AvailableFloatValues): AvailableMutatorSparseFloatValues;
+  hasAvailablevalues(): boolean;
+  clearAvailablevalues(): AvailableMutatorSparseFloatValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableMutatorSparseFloatValues.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableMutatorSparseFloatValues): AvailableMutatorSparseFloatValues.AsObject;
+  static serializeBinaryToWriter(message: AvailableMutatorSparseFloatValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableMutatorSparseFloatValues;
+  static deserializeBinaryFromReader(message: AvailableMutatorSparseFloatValues, reader: jspb.BinaryReader): AvailableMutatorSparseFloatValues;
+}
+
+export namespace AvailableMutatorSparseFloatValues {
+  export type AsObject = {
+    mutator?: MutatorSparseFloat.AsObject,
+    availablevalues?: AvailableFloatValues.AsObject,
+  }
+
+  export enum MutatorCase { 
+    _MUTATOR_NOT_SET = 0,
+    MUTATOR = 1,
+  }
+
+  export enum AvailablevaluesCase { 
+    _AVAILABLEVALUES_NOT_SET = 0,
+    AVAILABLEVALUES = 2,
+  }
+}
+
+export class CreatePlayElementRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): CreatePlayElementRequest;
+
+  getDescription(): string;
+  setDescription(value: string): CreatePlayElementRequest;
+  hasDescription(): boolean;
+  clearDescription(): CreatePlayElementRequest;
+
+  getDesignmetadata(): DesignMetadata | undefined;
+  setDesignmetadata(value?: DesignMetadata): CreatePlayElementRequest;
+  hasDesignmetadata(): boolean;
+  clearDesignmetadata(): CreatePlayElementRequest;
+
+  getMaprotation(): MapRotation | undefined;
+  setMaprotation(value?: MapRotation): CreatePlayElementRequest;
+  hasMaprotation(): boolean;
+  clearMaprotation(): CreatePlayElementRequest;
+
+  getMutatorsList(): Array<Mutator>;
+  setMutatorsList(value: Array<Mutator>): CreatePlayElementRequest;
+  clearMutatorsList(): CreatePlayElementRequest;
+  addMutators(value?: Mutator, index?: number): Mutator;
+
+  getAssetcategoriesList(): Array<AssetCategory>;
+  setAssetcategoriesList(value: Array<AssetCategory>): CreatePlayElementRequest;
+  clearAssetcategoriesList(): CreatePlayElementRequest;
+  addAssetcategories(value?: AssetCategory, index?: number): AssetCategory;
+
+  getOriginalmodrules(): Uint8Array | string;
+  getOriginalmodrules_asU8(): Uint8Array;
+  getOriginalmodrules_asB64(): string;
+  setOriginalmodrules(value: Uint8Array | string): CreatePlayElementRequest;
+
+  getPlayelementsettings(): PlayElementSettings | undefined;
+  setPlayelementsettings(value?: PlayElementSettings): CreatePlayElementRequest;
+  hasPlayelementsettings(): boolean;
+  clearPlayelementsettings(): CreatePlayElementRequest;
+
+  getPublishstate(): PublishStateType;
+  setPublishstate(value: PublishStateType): CreatePlayElementRequest;
+
+  getModleveldataid(): string;
+  setModleveldataid(value: string): CreatePlayElementRequest;
+  hasModleveldataid(): boolean;
+  clearModleveldataid(): CreatePlayElementRequest;
+
+  getThumbnailurl(): string;
+  setThumbnailurl(value: string): CreatePlayElementRequest;
+  hasThumbnailurl(): boolean;
+  clearThumbnailurl(): CreatePlayElementRequest;
+
+  getAttachmentsList(): Array<Attachment>;
+  setAttachmentsList(value: Array<Attachment>): CreatePlayElementRequest;
+  clearAttachmentsList(): CreatePlayElementRequest;
+  addAttachments(value?: Attachment, index?: number): Attachment;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreatePlayElementRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreatePlayElementRequest): CreatePlayElementRequest.AsObject;
+  static serializeBinaryToWriter(message: CreatePlayElementRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreatePlayElementRequest;
+  static deserializeBinaryFromReader(message: CreatePlayElementRequest, reader: jspb.BinaryReader): CreatePlayElementRequest;
+}
+
+export namespace CreatePlayElementRequest {
+  export type AsObject = {
+    name: string,
+    description?: string,
+    designmetadata?: DesignMetadata.AsObject,
+    maprotation?: MapRotation.AsObject,
+    mutatorsList: Array<Mutator.AsObject>,
+    assetcategoriesList: Array<AssetCategory.AsObject>,
+    originalmodrules: Uint8Array | string,
+    playelementsettings?: PlayElementSettings.AsObject,
+    publishstate: PublishStateType,
+    modleveldataid?: string,
+    thumbnailurl?: string,
+    attachmentsList: Array<Attachment.AsObject>,
+  }
+
+  export enum DescriptionCase { 
+    _DESCRIPTION_NOT_SET = 0,
+    DESCRIPTION = 2,
+  }
+
+  export enum DesignmetadataCase { 
+    _DESIGNMETADATA_NOT_SET = 0,
+    DESIGNMETADATA = 3,
+  }
+
+  export enum MaprotationCase { 
+    _MAPROTATION_NOT_SET = 0,
+    MAPROTATION = 4,
+  }
+
+  export enum PlayelementsettingsCase { 
+    _PLAYELEMENTSETTINGS_NOT_SET = 0,
+    PLAYELEMENTSETTINGS = 8,
+  }
+
+  export enum ModleveldataidCase { 
+    _MODLEVELDATAID_NOT_SET = 0,
+    MODLEVELDATAID = 10,
+  }
+
+  export enum ThumbnailurlCase { 
+    _THUMBNAILURL_NOT_SET = 0,
+    THUMBNAILURL = 11,
+  }
+}
+
+export class AvailableMutatorFloatValues extends jspb.Message {
+  getMutator(): MutatorFloat | undefined;
+  setMutator(value?: MutatorFloat): AvailableMutatorFloatValues;
+  hasMutator(): boolean;
+  clearMutator(): AvailableMutatorFloatValues;
+
+  getAvailablevalues(): AvailableFloatValues | undefined;
+  setAvailablevalues(value?: AvailableFloatValues): AvailableMutatorFloatValues;
+  hasAvailablevalues(): boolean;
+  clearAvailablevalues(): AvailableMutatorFloatValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableMutatorFloatValues.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableMutatorFloatValues): AvailableMutatorFloatValues.AsObject;
+  static serializeBinaryToWriter(message: AvailableMutatorFloatValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableMutatorFloatValues;
+  static deserializeBinaryFromReader(message: AvailableMutatorFloatValues, reader: jspb.BinaryReader): AvailableMutatorFloatValues;
+}
+
+export namespace AvailableMutatorFloatValues {
+  export type AsObject = {
+    mutator?: MutatorFloat.AsObject,
+    availablevalues?: AvailableFloatValues.AsObject,
+  }
+
+  export enum MutatorCase { 
+    _MUTATOR_NOT_SET = 0,
+    MUTATOR = 1,
+  }
+}
+
+export class AvailableFloatValues extends jspb.Message {
+  getRange(): FloatRange | undefined;
+  setRange(value?: FloatRange): AvailableFloatValues;
+  hasRange(): boolean;
+  clearRange(): AvailableFloatValues;
+
+  getSparsevalues(): SparseFloatValues | undefined;
+  setSparsevalues(value?: SparseFloatValues): AvailableFloatValues;
+  hasSparsevalues(): boolean;
+  clearSparsevalues(): AvailableFloatValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableFloatValues.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableFloatValues): AvailableFloatValues.AsObject;
+  static serializeBinaryToWriter(message: AvailableFloatValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableFloatValues;
+  static deserializeBinaryFromReader(message: AvailableFloatValues, reader: jspb.BinaryReader): AvailableFloatValues;
+}
+
+export namespace AvailableFloatValues {
+  export type AsObject = {
+    range?: FloatRange.AsObject,
+    sparsevalues?: SparseFloatValues.AsObject,
+  }
+
+  export enum RangeCase { 
+    _RANGE_NOT_SET = 0,
+    RANGE = 1,
+  }
+
+  export enum SparsevaluesCase { 
+    _SPARSEVALUES_NOT_SET = 0,
+    SPARSEVALUES = 2,
+  }
+}
+
+export class SparseFloatValues extends jspb.Message {
+  getValuesList(): Array<number>;
+  setValuesList(value: Array<number>): SparseFloatValues;
+  clearValuesList(): SparseFloatValues;
+  addValues(value: number, index?: number): SparseFloatValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SparseFloatValues.AsObject;
+  static toObject(includeInstance: boolean, msg: SparseFloatValues): SparseFloatValues.AsObject;
+  static serializeBinaryToWriter(message: SparseFloatValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SparseFloatValues;
+  static deserializeBinaryFromReader(message: SparseFloatValues, reader: jspb.BinaryReader): SparseFloatValues;
+}
+
+export namespace SparseFloatValues {
+  export type AsObject = {
+    valuesList: Array<number>,
+  }
+}
+
+export class FloatRange extends jspb.Message {
+  getMinvalue(): number;
+  setMinvalue(value: number): FloatRange;
+
+  getMaxvalue(): number;
+  setMaxvalue(value: number): FloatRange;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FloatRange.AsObject;
+  static toObject(includeInstance: boolean, msg: FloatRange): FloatRange.AsObject;
+  static serializeBinaryToWriter(message: FloatRange, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FloatRange;
+  static deserializeBinaryFromReader(message: FloatRange, reader: jspb.BinaryReader): FloatRange;
+}
+
+export namespace FloatRange {
+  export type AsObject = {
+    minvalue: number,
+    maxvalue: number,
+  }
+}
+
+export class AvailableMutatorIntValues extends jspb.Message {
+  getMutator(): MutatorInt | undefined;
+  setMutator(value?: MutatorInt): AvailableMutatorIntValues;
+  hasMutator(): boolean;
+  clearMutator(): AvailableMutatorIntValues;
+
+  getAvailablevalues(): AvailableIntValues | undefined;
+  setAvailablevalues(value?: AvailableIntValues): AvailableMutatorIntValues;
+  hasAvailablevalues(): boolean;
+  clearAvailablevalues(): AvailableMutatorIntValues;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableMutatorIntValues.AsObject;
+  static toObject(includeInstance: boolean, msg: AvailableMutatorIntValues): AvailableMutatorIntValues.AsObject;
+  static serializeBinaryToWriter(message: AvailableMutatorIntValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableMutatorIntValues;
+  static deserializeBinaryFromReader(message: AvailableMutatorIntValues, reader: jspb.BinaryReader): AvailableMutatorIntValues;
+}
+
+export namespace AvailableMutatorIntValues {
+  export type AsObject = {
+    mutator?: MutatorInt.AsObject,
+    availablevalues?: AvailableIntValues.AsObject,
+  }
+
+  export enum MutatorCase { 
+    _MUTATOR_NOT_SET = 0,
+    MUTATOR = 1,
+  }
+
+  export enum AvailablevaluesCase { 
+    _AVAILABLEVALUES_NOT_SET = 0,
+    AVAILABLEVALUES = 2,
+  }
+}
+
+export class UpdatePlayElementRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): UpdatePlayElementRequest;
+
+  getName(): string;
+  setName(value: string): UpdatePlayElementRequest;
+
+  getDescription(): string;
+  setDescription(value: string): UpdatePlayElementRequest;
+  hasDescription(): boolean;
+  clearDescription(): UpdatePlayElementRequest;
+
+  getDesignmetadata(): DesignMetadata | undefined;
+  setDesignmetadata(value?: DesignMetadata): UpdatePlayElementRequest;
+  hasDesignmetadata(): boolean;
+  clearDesignmetadata(): UpdatePlayElementRequest;
+
+  getMaprotation(): MapRotation | undefined;
+  setMaprotation(value?: MapRotation): UpdatePlayElementRequest;
+  hasMaprotation(): boolean;
+  clearMaprotation(): UpdatePlayElementRequest;
+
+  getMutatorsList(): Array<Mutator>;
+  setMutatorsList(value: Array<Mutator>): UpdatePlayElementRequest;
+  clearMutatorsList(): UpdatePlayElementRequest;
+  addMutators(value?: Mutator, index?: number): Mutator;
+
+  getAssetcategoriesList(): Array<AssetCategory>;
+  setAssetcategoriesList(value: Array<AssetCategory>): UpdatePlayElementRequest;
+  clearAssetcategoriesList(): UpdatePlayElementRequest;
+  addAssetcategories(value?: AssetCategory, index?: number): AssetCategory;
+
+  getOriginalmodrules(): Uint8Array | string;
+  getOriginalmodrules_asU8(): Uint8Array;
+  getOriginalmodrules_asB64(): string;
+  setOriginalmodrules(value: Uint8Array | string): UpdatePlayElementRequest;
+
+  getPlayelementsettings(): PlayElementSettings | undefined;
+  setPlayelementsettings(value?: PlayElementSettings): UpdatePlayElementRequest;
+  hasPlayelementsettings(): boolean;
+  clearPlayelementsettings(): UpdatePlayElementRequest;
+
+  getPublishstate(): PublishStateType;
+  setPublishstate(value: PublishStateType): UpdatePlayElementRequest;
+
+  getModleveldataid(): string;
+  setModleveldataid(value: string): UpdatePlayElementRequest;
+  hasModleveldataid(): boolean;
+  clearModleveldataid(): UpdatePlayElementRequest;
+
+  getThumbnailurl(): string;
+  setThumbnailurl(value: string): UpdatePlayElementRequest;
+  hasThumbnailurl(): boolean;
+  clearThumbnailurl(): UpdatePlayElementRequest;
+
+  getAttachmentsList(): Array<Attachment>;
+  setAttachmentsList(value: Array<Attachment>): UpdatePlayElementRequest;
+  clearAttachmentsList(): UpdatePlayElementRequest;
+  addAttachments(value?: Attachment, index?: number): Attachment;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdatePlayElementRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdatePlayElementRequest): UpdatePlayElementRequest.AsObject;
+  static serializeBinaryToWriter(message: UpdatePlayElementRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdatePlayElementRequest;
+  static deserializeBinaryFromReader(message: UpdatePlayElementRequest, reader: jspb.BinaryReader): UpdatePlayElementRequest;
+}
+
+export namespace UpdatePlayElementRequest {
+  export type AsObject = {
+    id: string,
+    name: string,
+    description?: string,
+    designmetadata?: DesignMetadata.AsObject,
+    maprotation?: MapRotation.AsObject,
+    mutatorsList: Array<Mutator.AsObject>,
+    assetcategoriesList: Array<AssetCategory.AsObject>,
+    originalmodrules: Uint8Array | string,
+    playelementsettings?: PlayElementSettings.AsObject,
+    publishstate: PublishStateType,
+    modleveldataid?: string,
+    thumbnailurl?: string,
+    attachmentsList: Array<Attachment.AsObject>,
+  }
+
+  export enum DescriptionCase { 
+    _DESCRIPTION_NOT_SET = 0,
+    DESCRIPTION = 3,
+  }
+
+  export enum DesignmetadataCase { 
+    _DESIGNMETADATA_NOT_SET = 0,
+    DESIGNMETADATA = 4,
+  }
+
+  export enum MaprotationCase { 
+    _MAPROTATION_NOT_SET = 0,
+    MAPROTATION = 5,
+  }
+
+  export enum PlayelementsettingsCase { 
+    _PLAYELEMENTSETTINGS_NOT_SET = 0,
+    PLAYELEMENTSETTINGS = 9,
+  }
+
+  export enum ModleveldataidCase { 
+    _MODLEVELDATAID_NOT_SET = 0,
+    MODLEVELDATAID = 11,
+  }
+
+  export enum ThumbnailurlCase { 
+    _THUMBNAILURL_NOT_SET = 0,
+    THUMBNAILURL = 12,
+  }
+}
+
 export class PlayElementResponse extends jspb.Message {
   getPlayelement(): PlayElement | undefined;
   setPlayelement(value?: PlayElement): PlayElementResponse;
@@ -1931,6 +3856,17 @@ export namespace GetOwnedPlayElementsRequest {
   }
 }
 
+export enum ExperienceOrderBy { 
+  EXPERIENCE_ORDER_BY_UNSPECIFIED = 0,
+  EXPERIENCE_ORDER_BY_UPDATED_ASC = 1,
+  EXPERIENCE_ORDER_BY_UPDATED_DESC = 2,
+  EXPERIENCE_ORDER_BY_CREATED_ASC = 3,
+  EXPERIENCE_ORDER_BY_CREATED_DESC = 4,
+  EXPERIENCE_ORDER_BY_POPULARITY_ASC = 5,
+  EXPERIENCE_ORDER_BY_POPULARITY_DESC = 6,
+  EXPERIENCE_ORDER_BY_LIKES_ASC = 7,
+  EXPERIENCE_ORDER_BY_LIKES_DESC = 8,
+}
 export enum InternalCapacityType { 
   AI_BACKFILL = 0,
   AI_STATIC = 1,
