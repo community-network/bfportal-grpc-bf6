@@ -3,22 +3,178 @@ syntax = "proto3";
 package santiago.web.play;
 
 service WebPlay {
-    // rpc createPlayElement (CreatePlayElementRequest) returns (PlayElementResponse) {}
+    rpc createPlayElement (CreatePlayElementRequest) returns (PlayElementResponse) {}
     rpc getPlayElement (GetPlayElementRequest) returns (PlayElementResponse) {}
-    // rpc updatePlayElement (UpdatePlayElementRequest) returns (PlayElementResponse) {}
-    // rpc deletePlayElement (DeletePlayElementRequest) returns (DeletePlayElementResponse) {}
+    rpc updatePlayElement (UpdatePlayElementRequest) returns (PlayElementResponse) {}
+    rpc deletePlayElement (DeletePlayElementRequest) returns (DeletePlayElementResponse) {}
     rpc getOwnedPlayElements (GetOwnedPlayElementsRequest) returns (GetOwnedPlayElementsResponse) {}
     rpc getOwnedPlayElementsV2 (GetOwnedPlayElementsRequest) returns (GetOwnedPlayElementsResponseV2) {}
-    // rpc getBlueprintsById (GetBlueprintsByIdRequest) returns (GetBlueprintsByIdResponse) {}
-    // rpc getScheduledBlueprints (GetScheduledBlueprintsRequest) returns (GetScheduledBlueprintsResponse) {}
-    // rpc createModDataVersion (CreateModDataVersionRequest) returns (CreateModDataVersionResponse) {}
-    // rpc listModDataVersions (ListModDataVersionsRequest) returns (ListModDataVersionsResponse) {}
-    // rpc UploadExperienceThumbnail (UploadExperienceThumbnailRequest) returns (UploadExperienceThumbnailResponse) {}
-    // rpc GetProgressionTypes (GetProgressionTypesRequest) returns (GetProgressionTypesResponse) {}
-    // rpc GetLicenseRequirements (GetLicenseRequirementsRequest) returns (GetLicenseRequirementsResponse) {}
-    // rpc GetAvailableTags (GetAvailableTagsRequest) returns (GetAvailableTagsResponse) {}
-    // rpc ListExperiences (ListExperiencesRequest) returns (ListExperiencesResponse) {}
-    // rpc DeleteAttachments (DeleteAttachmentsRequest) returns (DeleteAttachmentsResponse) {}
+    rpc getBlueprintsById (GetBlueprintsByIdRequest) returns (GetBlueprintsByIdResponse) {}
+    rpc getScheduledBlueprints (GetScheduledBlueprintsRequest) returns (GetScheduledBlueprintsResponse) {}
+    rpc createModDataVersion (CreateModDataVersionRequest) returns (CreateModDataVersionResponse) {}
+    rpc listModDataVersions (ListModDataVersionsRequest) returns (ListModDataVersionsResponse) {}
+    rpc UploadExperienceThumbnail (UploadExperienceThumbnailRequest) returns (UploadExperienceThumbnailResponse) {}
+    rpc GetProgressionTypes (GetProgressionTypesRequest) returns (GetProgressionTypesResponse) {}
+    rpc GetLicenseRequirements (GetLicenseRequirementsRequest) returns (GetLicenseRequirementsResponse) {}
+    rpc GetAvailableTags (GetAvailableTagsRequest) returns (GetAvailableTagsResponse) {}
+    rpc ListExperiences (ListExperiencesRequest) returns (ListExperiencesResponse) {}
+    rpc DeleteAttachments (DeleteAttachmentsRequest) returns (DeleteAttachmentsResponse) {}
+}
+
+enum ExperienceOrderBy {
+  EXPERIENCE_ORDER_BY_UNSPECIFIED = 0;
+  EXPERIENCE_ORDER_BY_UPDATED_ASC = 1;
+  EXPERIENCE_ORDER_BY_UPDATED_DESC = 2;
+  EXPERIENCE_ORDER_BY_CREATED_ASC = 3;
+  EXPERIENCE_ORDER_BY_CREATED_DESC = 4;
+  EXPERIENCE_ORDER_BY_POPULARITY_ASC = 5;
+  EXPERIENCE_ORDER_BY_POPULARITY_DESC = 6;
+  EXPERIENCE_ORDER_BY_LIKES_ASC = 7;
+  EXPERIENCE_ORDER_BY_LIKES_DESC = 8;
+}
+
+message DeleteAttachmentsRequest {
+  string playElementDesignId = 1;
+  repeated string attachmentIds = 2;
+}
+
+message DeleteAttachmentsResponse {
+}
+
+message GetLicenseRequirementsRequest {
+}
+
+message GetLicenseRequirementsResponse {
+  repeated string ownedLicenses = 1;
+  repeated MapEntryRequirement mapEntryRequirements = 2;
+}
+
+message MapEntryRequirement {
+  string levelName = 1;
+  string levelLocation = 2;
+  repeated string licenseRequirements = 3;
+}
+
+message GetProgressionTypesRequest {
+}
+
+message GetProgressionTypesResponse {
+  // repeated ProgressionEntry entries = 1;
+}
+
+message UploadExperienceThumbnailRequest {
+  bytes image = 1;
+  /** "image/png" */
+  string mimeType = 2;
+}
+
+message UploadExperienceThumbnailResponse {
+  string assetId = 1;
+  /** Url where image is available when verification succeeds */
+  string url = 2;
+  /** Url that needs to be polled to verify upload & scan success or error */
+  string verificationUrl = 3;
+}
+
+message CreateModDataVersionResponse {
+  string signedUrl = 1;
+  optional uint32 validUntil = 2;
+  string modLevelDataId = 3;
+}
+
+message CreateModDataVersionRequest {
+  string playElementId = 1;
+}
+
+message ListModDataVersionsRequest {
+  string playElementId = 1;
+}
+
+message ListModDataVersionsResponse {
+  repeated ModDataVersion modDataVersions = 1;
+}
+
+message ModDataVersion {
+  string id = 1;
+  string playElementId = 2;
+  optional uint32 created = 3;
+  optional ModDataVersionBuildInfo buildInfo = 4;
+}
+
+message ModDataVersionBuildInfo {
+  string pipelineVersion = 1;
+  optional Empty pending = 2;
+  optional Empty noBuildAvailable = 3;
+  optional BuildStatusError error = 4;
+  optional BuildStatusSuccess success = 5;
+}
+
+message  BuildStatusError {
+  string errorMessage = 1;
+}
+
+message BuildStatusSuccess {
+}
+
+message Empty {
+}
+
+message GetAvailableTagsRequest {
+}
+
+message  GetAvailableTagsResponse {
+  optional AvailableTags availableTags = 1;
+}
+
+message  PlayExperience {
+  /** Coupe id */
+  string id = 1;
+  optional Creator creator = 2;
+  /** e.g. Some Crazy nomad Conquest */
+  string name = 3;
+  /** e.g. Join the Battlefield but make sure you're always on the move because anyone standing still for more than 10 seconds gets their computer fork bombed. */
+  optional string description = 4;
+  optional PlayElementDesign playElementDesign = 5;
+  /** Will only be populated when searching experiences (i,e rpc listExperiences) */
+  optional int32 playerCount = 6;
+  optional int32 likes = 7;
+  /** if not public yet */
+  optional uint32 publishAt = 8;
+  /** creator-selected image */
+  optional string thumbnailUrl = 9;
+  /** the creator is a regular player account */
+  bool isUgc = 10;
+  /** short code for ugc experience */
+  optional string shortCode = 11;
+  /** DRAFT, PUBLISHED, ... */
+  PublishStateType publishState = 12;
+}
+
+message ListExperiencesResponse {
+  repeated PlayExperience experiences = 1;
+  optional Pagination nextPage = 2;
+}
+
+message PlayExperienceQuery {
+  repeated string mapsEq = 1;
+  repeated string levelLocationsEq = 2;
+  repeated int32 maxPlayerCountEq = 3;
+  repeated string tagsEq = 4;
+  optional PlayerCreator playerCreatorEq = 5;
+  ExperienceOrderBy ordering = 6;
+  int32 pageSize = 7;
+  optional string namePrefix = 8;
+  optional string shortCode = 9;
+}
+
+message ListExperiencesRequest {
+  optional PlayExperienceQuery filter = 1;
+  optional Pagination page = 2;
+}
+
+message Pagination {
+  optional int32 pageNumber = 1;
+  optional string token = 2;
 }
 
 enum InternalCapacityType {
@@ -99,6 +255,193 @@ enum AttachmentType {
   ATTACHMENT_TYPE_SCRIPT_DATA = 3;
   ATTACHMENT_TYPE_STRINGS = 4;
   ATTACHMENT_TYPE_MP_DATA = 5;
+}
+
+message DeletePlayElementRequest {
+  string playElementId = 1;
+}
+
+message GetScheduledBlueprintsResponse {
+  repeated BlueprintId blueprintIds = 1;
+}
+
+message DeletePlayElementResponse {
+}
+
+message GetBlueprintsByIdRequest {
+  repeated BlueprintId blueprintIds = 1;
+}
+
+message BlueprintId {
+  string id = 1;
+  string version = 2;
+}
+
+message GetBlueprintsByIdResponse {
+  repeated Blueprint blueprints = 1;
+}
+
+message GetScheduledBlueprintsRequest {
+}
+
+message Blueprint {
+  optional BlueprintId blueprintId = 1;
+  string name = 2;
+  optional AvailableGameData availableGameData = 3;
+  optional AvailableTags availableTags = 4;
+  repeated string availableThumbnailUrls = 5;
+  optional AvailableTags availableProgressionModeTags = 6;
+}
+
+message AvailableGameData {
+  repeated AvailableMutator mutators = 1;
+  repeated AvailableMapEntry maps = 2;
+  optional ModRulesDefinition modRules = 3;
+  optional AvailableAssetCategories assetCategories = 4;
+  // optional AssetInfo spatialAssetInfo = 5;
+}
+
+message AvailableAssetCategories {
+  repeated AvailableAssetCategoryTag rootTags = 1;
+  repeated AvailableAssetCategoryTag tags = 2;
+}
+
+message AvailableAssetCategoryTag {
+  string tagId = 1;
+  string name = 2;
+  repeated string childrenTags = 3;
+  optional Metadata metadata = 4;
+}
+
+message ModRulesDefinition {
+  int32 rulesVersion = 1;
+  bytes modBuilder = 2;
+}
+
+message AvailableTag {
+  string id = 1;
+  optional Metadata metadata = 2;
+  optional string category = 3;
+}
+
+message AvailableMapEntry {
+  string levelName = 1;
+  string levelLocation = 2;
+  optional AvailableIntValue gameSize = 3;
+  optional AvailableIntValue rounds = 4;
+  optional AvailableIntValue allowedSpectators = 5;
+  optional Metadata metadata = 6;
+  optional AvailableIntValue allowedTeamsRange = 7;
+}
+
+message AvailableIntValue {
+  int32 defaultValue = 1;
+  optional AvailableIntValues availableValues = 2;
+}
+
+message AvailableIntValues {
+  optional IntRange range = 1;
+  optional SparseIntValues sparseValues = 2;
+}
+
+message SparseIntValues {
+  repeated int32 values = 1;
+}
+
+message IntRange {
+  int32 minValue = 1;
+  int32 maxValue = 2;
+}
+
+message AvailableTags {
+  repeated AvailableTag tags = 1;
+}
+
+message AvailableMutator {
+  string name = 1;
+  string category = 2;
+  optional AvailableMutatorKind kind = 3;
+  optional Metadata metadata = 4;
+  string id = 5;
+}
+
+message AvailableMutatorKind {
+  optional MutatorBoolean mutatorBoolean = 1;
+  /**
+   * missing 2
+   * missing 3
+   */
+  optional MutatorString mutatorString = 4;
+  optional AvailableMutatorFloatValues mutatorFloatValues = 5;
+  optional AvailableMutatorIntValues mutatorIntValues = 6;
+  optional MutatorSparseBoolean mutatorSparseBoolean = 7;
+  optional AvailableMutatorSparseIntValues mutatorSparseIntValues = 8;
+  optional AvailableMutatorSparseFloatValues mutatorSparseFloatValues = 9;
+}
+
+message AvailableMutatorSparseIntValues {
+  optional MutatorSparseInt mutator = 1;
+  optional AvailableIntValues availableValues = 2;
+}
+
+message AvailableMutatorSparseFloatValues {
+  optional MutatorSparseFloat mutator = 1;
+  optional AvailableFloatValues availableValues = 2;
+}
+
+message CreatePlayElementRequest {
+  string name = 1;
+  optional string description = 2;
+  optional DesignMetadata designMetadata = 3;
+  optional MapRotation mapRotation = 4;
+  repeated Mutator mutators = 5;
+  repeated AssetCategory assetCategories = 6;
+  bytes originalModRules = 7;
+  optional PlayElementSettings playElementSettings = 8;
+  PublishStateType publishState = 9;
+  optional string modLevelDataId = 10;
+  optional string thumbnailUrl = 11;
+  repeated Attachment attachments = 12;
+}
+
+message AvailableMutatorFloatValues {
+  optional MutatorFloat mutator = 1;
+  AvailableFloatValues availableValues = 2;
+}
+
+message AvailableFloatValues {
+  optional FloatRange range = 1;
+  optional SparseFloatValues sparseValues = 2;
+}
+
+message SparseFloatValues {
+  repeated float values = 1;
+}
+
+message FloatRange {
+  float minValue = 1;
+  float maxValue = 2;
+}
+
+message AvailableMutatorIntValues {
+  optional MutatorInt mutator = 1;
+  optional AvailableIntValues availableValues = 2;
+}
+
+message UpdatePlayElementRequest {
+  string id = 1;
+  string name = 2;;
+  optional string description = 3;
+  optional DesignMetadata designMetadata = 4;
+  optional MapRotation mapRotation = 5;
+  repeated Mutator mutators = 6;
+  repeated AssetCategory assetCategories = 7;
+  bytes originalModRules = 8;
+  optional PlayElementSettings playElementSettings = 9;
+  PublishStateType publishState = 10;
+  optional string modLevelDataId = 11;
+  optional string thumbnailUrl = 12;
+  repeated Attachment attachments = 13;
 }
 
 message PlayElementResponse {
