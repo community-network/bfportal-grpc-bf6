@@ -59,7 +59,12 @@ message GetProgressionTypesRequest {
 }
 
 message GetProgressionTypesResponse {
-  // repeated ProgressionEntry entries = 1;
+  repeated ProgressionEntry entries = 1;
+}
+
+message ProgressionEntry {
+  string progressionMode = 1;
+  repeated Mutator progressibles = 2;
 }
 
 message UploadExperienceThumbnailRequest {
@@ -298,7 +303,25 @@ message AvailableGameData {
   repeated AvailableMapEntry maps = 2;
   optional ModRulesDefinition modRules = 3;
   optional AvailableAssetCategories assetCategories = 4;
-  // optional AssetInfo spatialAssetInfo = 5;
+  optional AssetInfo spatialAssetInfo = 5;
+}
+
+message AssetInfo {
+  // entities: { [key: string]: EntityList };
+  // prefabs: { [key: string]: Prefab };
+}
+
+message Prefab {
+  string prefabInstance = 1;
+  string prefabPartition = 2;
+  string prefabType = 3;
+  string gemInstance = 4;
+  string gemPartition = 5;
+  string gemType = 6;
+}
+
+message EntityList {
+  repeated string entity = 1;
 }
 
 message AvailableAssetCategories {
@@ -430,7 +453,7 @@ message AvailableMutatorIntValues {
 
 message UpdatePlayElementRequest {
   string id = 1;
-  string name = 2;;
+  string name = 2;
   optional string description = 3;
   optional DesignMetadata designMetadata = 4;
   optional MapRotation mapRotation = 5;
