@@ -37,11 +37,11 @@ message Timestamp {
 
 message GetTranslationsRequest {
     TranslationsQuery translationsQuery = 1;
-    string locale = 4;
-    optional Timestamp fetchFrom = 5;
+    string locale = 2;
+    optional Timestamp fetchFrom = 3;
 }
 
 message GetTranslationsResponse {
-    repeated LocalizedText localizedTexts = 3;
-    optional Timestamp fetchedUntil = 4;
+    repeated LocalizedText localizedTexts = 1;
+    optional Timestamp fetchedUntil = 2;
 }

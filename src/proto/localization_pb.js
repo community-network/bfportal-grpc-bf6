@@ -1299,7 +1299,7 @@ proto.santiago.web.localization.GetTranslationsRequest.prototype.toObject = func
 proto.santiago.web.localization.GetTranslationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     translationsquery: (f = msg.getTranslationsquery()) && proto.santiago.web.localization.TranslationsQuery.toObject(includeInstance, f),
-    locale: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    locale: jspb.Message.getFieldWithDefault(msg, 2, ""),
     fetchfrom: (f = msg.getFetchfrom()) && proto.santiago.web.localization.Timestamp.toObject(includeInstance, f)
   };
 
@@ -1342,11 +1342,11 @@ proto.santiago.web.localization.GetTranslationsRequest.deserializeBinaryFromRead
       reader.readMessage(value,proto.santiago.web.localization.TranslationsQuery.deserializeBinaryFromReader);
       msg.setTranslationsquery(value);
       break;
-    case 4:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setLocale(value);
       break;
-    case 5:
+    case 3:
       var value = new proto.santiago.web.localization.Timestamp;
       reader.readMessage(value,proto.santiago.web.localization.Timestamp.deserializeBinaryFromReader);
       msg.setFetchfrom(value);
@@ -1391,14 +1391,14 @@ proto.santiago.web.localization.GetTranslationsRequest.serializeBinaryToWriter =
   f = message.getLocale();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      2,
       f
     );
   }
   f = message.getFetchfrom();
   if (f != null) {
     writer.writeMessage(
-      5,
+      3,
       f,
       proto.santiago.web.localization.Timestamp.serializeBinaryToWriter
     );
@@ -1444,11 +1444,11 @@ proto.santiago.web.localization.GetTranslationsRequest.prototype.hasTranslations
 
 
 /**
- * optional string locale = 4;
+ * optional string locale = 2;
  * @return {string}
  */
 proto.santiago.web.localization.GetTranslationsRequest.prototype.getLocale = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -1457,17 +1457,17 @@ proto.santiago.web.localization.GetTranslationsRequest.prototype.getLocale = fun
  * @return {!proto.santiago.web.localization.GetTranslationsRequest} returns this
  */
 proto.santiago.web.localization.GetTranslationsRequest.prototype.setLocale = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional Timestamp fetchFrom = 5;
+ * optional Timestamp fetchFrom = 3;
  * @return {?proto.santiago.web.localization.Timestamp}
  */
 proto.santiago.web.localization.GetTranslationsRequest.prototype.getFetchfrom = function() {
   return /** @type{?proto.santiago.web.localization.Timestamp} */ (
-    jspb.Message.getWrapperField(this, proto.santiago.web.localization.Timestamp, 5));
+    jspb.Message.getWrapperField(this, proto.santiago.web.localization.Timestamp, 3));
 };
 
 
@@ -1476,7 +1476,7 @@ proto.santiago.web.localization.GetTranslationsRequest.prototype.getFetchfrom = 
  * @return {!proto.santiago.web.localization.GetTranslationsRequest} returns this
 */
 proto.santiago.web.localization.GetTranslationsRequest.prototype.setFetchfrom = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -1494,7 +1494,7 @@ proto.santiago.web.localization.GetTranslationsRequest.prototype.clearFetchfrom 
  * @return {boolean}
  */
 proto.santiago.web.localization.GetTranslationsRequest.prototype.hasFetchfrom = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -1504,7 +1504,7 @@ proto.santiago.web.localization.GetTranslationsRequest.prototype.hasFetchfrom = 
  * @private {!Array<number>}
  * @const
  */
-proto.santiago.web.localization.GetTranslationsResponse.repeatedFields_ = [3];
+proto.santiago.web.localization.GetTranslationsResponse.repeatedFields_ = [1];
 
 
 
@@ -1576,12 +1576,12 @@ proto.santiago.web.localization.GetTranslationsResponse.deserializeBinaryFromRea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 3:
+    case 1:
       var value = new proto.santiago.web.localization.LocalizedText;
       reader.readMessage(value,proto.santiago.web.localization.LocalizedText.deserializeBinaryFromReader);
       msg.addLocalizedtexts(value);
       break;
-    case 4:
+    case 2:
       var value = new proto.santiago.web.localization.Timestamp;
       reader.readMessage(value,proto.santiago.web.localization.Timestamp.deserializeBinaryFromReader);
       msg.setFetcheduntil(value);
@@ -1618,7 +1618,7 @@ proto.santiago.web.localization.GetTranslationsResponse.serializeBinaryToWriter 
   f = message.getLocalizedtextsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      3,
+      1,
       f,
       proto.santiago.web.localization.LocalizedText.serializeBinaryToWriter
     );
@@ -1626,7 +1626,7 @@ proto.santiago.web.localization.GetTranslationsResponse.serializeBinaryToWriter 
   f = message.getFetcheduntil();
   if (f != null) {
     writer.writeMessage(
-      4,
+      2,
       f,
       proto.santiago.web.localization.Timestamp.serializeBinaryToWriter
     );
@@ -1635,12 +1635,12 @@ proto.santiago.web.localization.GetTranslationsResponse.serializeBinaryToWriter 
 
 
 /**
- * repeated LocalizedText localizedTexts = 3;
+ * repeated LocalizedText localizedTexts = 1;
  * @return {!Array<!proto.santiago.web.localization.LocalizedText>}
  */
 proto.santiago.web.localization.GetTranslationsResponse.prototype.getLocalizedtextsList = function() {
   return /** @type{!Array<!proto.santiago.web.localization.LocalizedText>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.santiago.web.localization.LocalizedText, 3));
+    jspb.Message.getRepeatedWrapperField(this, proto.santiago.web.localization.LocalizedText, 1));
 };
 
 
@@ -1649,7 +1649,7 @@ proto.santiago.web.localization.GetTranslationsResponse.prototype.getLocalizedte
  * @return {!proto.santiago.web.localization.GetTranslationsResponse} returns this
 */
 proto.santiago.web.localization.GetTranslationsResponse.prototype.setLocalizedtextsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
@@ -1659,7 +1659,7 @@ proto.santiago.web.localization.GetTranslationsResponse.prototype.setLocalizedte
  * @return {!proto.santiago.web.localization.LocalizedText}
  */
 proto.santiago.web.localization.GetTranslationsResponse.prototype.addLocalizedtexts = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.santiago.web.localization.LocalizedText, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.santiago.web.localization.LocalizedText, opt_index);
 };
 
 
@@ -1673,12 +1673,12 @@ proto.santiago.web.localization.GetTranslationsResponse.prototype.clearLocalized
 
 
 /**
- * optional Timestamp fetchedUntil = 4;
+ * optional Timestamp fetchedUntil = 2;
  * @return {?proto.santiago.web.localization.Timestamp}
  */
 proto.santiago.web.localization.GetTranslationsResponse.prototype.getFetcheduntil = function() {
   return /** @type{?proto.santiago.web.localization.Timestamp} */ (
-    jspb.Message.getWrapperField(this, proto.santiago.web.localization.Timestamp, 4));
+    jspb.Message.getWrapperField(this, proto.santiago.web.localization.Timestamp, 2));
 };
 
 
@@ -1687,7 +1687,7 @@ proto.santiago.web.localization.GetTranslationsResponse.prototype.getFetchedunti
  * @return {!proto.santiago.web.localization.GetTranslationsResponse} returns this
 */
 proto.santiago.web.localization.GetTranslationsResponse.prototype.setFetcheduntil = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1705,7 +1705,7 @@ proto.santiago.web.localization.GetTranslationsResponse.prototype.clearFetchedun
  * @return {boolean}
  */
 proto.santiago.web.localization.GetTranslationsResponse.prototype.hasFetcheduntil = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

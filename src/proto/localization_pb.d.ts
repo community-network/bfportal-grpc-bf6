@@ -188,7 +188,7 @@ export namespace GetTranslationsRequest {
 
   export enum FetchfromCase { 
     _FETCHFROM_NOT_SET = 0,
-    FETCHFROM = 5,
+    FETCHFROM = 3,
   }
 }
 
@@ -219,7 +219,7 @@ export namespace GetTranslationsResponse {
 
   export enum FetcheduntilCase { 
     _FETCHEDUNTIL_NOT_SET = 0,
-    FETCHEDUNTIL = 4,
+    FETCHEDUNTIL = 2,
   }
 }
 

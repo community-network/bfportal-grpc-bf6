@@ -123,6 +123,11 @@ export namespace GetProgressionTypesRequest {
 }
 
 export class GetProgressionTypesResponse extends jspb.Message {
+  getEntriesList(): Array<ProgressionEntry>;
+  setEntriesList(value: Array<ProgressionEntry>): GetProgressionTypesResponse;
+  clearEntriesList(): GetProgressionTypesResponse;
+  addEntries(value?: ProgressionEntry, index?: number): ProgressionEntry;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetProgressionTypesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetProgressionTypesResponse): GetProgressionTypesResponse.AsObject;
@@ -133,6 +138,31 @@ export class GetProgressionTypesResponse extends jspb.Message {
 
 export namespace GetProgressionTypesResponse {
   export type AsObject = {
+    entriesList: Array<ProgressionEntry.AsObject>,
+  }
+}
+
+export class ProgressionEntry extends jspb.Message {
+  getProgressionmode(): string;
+  setProgressionmode(value: string): ProgressionEntry;
+
+  getProgressiblesList(): Array<Mutator>;
+  setProgressiblesList(value: Array<Mutator>): ProgressionEntry;
+  clearProgressiblesList(): ProgressionEntry;
+  addProgressibles(value?: Mutator, index?: number): Mutator;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProgressionEntry.AsObject;
+  static toObject(includeInstance: boolean, msg: ProgressionEntry): ProgressionEntry.AsObject;
+  static serializeBinaryToWriter(message: ProgressionEntry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProgressionEntry;
+  static deserializeBinaryFromReader(message: ProgressionEntry, reader: jspb.BinaryReader): ProgressionEntry;
+}
+
+export namespace ProgressionEntry {
+  export type AsObject = {
+    progressionmode: string,
+    progressiblesList: Array<Mutator.AsObject>,
   }
 }
 
@@ -983,6 +1013,11 @@ export class AvailableGameData extends jspb.Message {
   hasAssetcategories(): boolean;
   clearAssetcategories(): AvailableGameData;
 
+  getSpatialassetinfo(): AssetInfo | undefined;
+  setSpatialassetinfo(value?: AssetInfo): AvailableGameData;
+  hasSpatialassetinfo(): boolean;
+  clearSpatialassetinfo(): AvailableGameData;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AvailableGameData.AsObject;
   static toObject(includeInstance: boolean, msg: AvailableGameData): AvailableGameData.AsObject;
@@ -997,6 +1032,7 @@ export namespace AvailableGameData {
     mapsList: Array<AvailableMapEntry.AsObject>,
     modrules?: ModRulesDefinition.AsObject,
     assetcategories?: AvailableAssetCategories.AsObject,
+    spatialassetinfo?: AssetInfo.AsObject,
   }
 
   export enum ModrulesCase { 
@@ -1007,6 +1043,83 @@ export namespace AvailableGameData {
   export enum AssetcategoriesCase { 
     _ASSETCATEGORIES_NOT_SET = 0,
     ASSETCATEGORIES = 4,
+  }
+
+  export enum SpatialassetinfoCase { 
+    _SPATIALASSETINFO_NOT_SET = 0,
+    SPATIALASSETINFO = 5,
+  }
+}
+
+export class AssetInfo extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AssetInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: AssetInfo): AssetInfo.AsObject;
+  static serializeBinaryToWriter(message: AssetInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AssetInfo;
+  static deserializeBinaryFromReader(message: AssetInfo, reader: jspb.BinaryReader): AssetInfo;
+}
+
+export namespace AssetInfo {
+  export type AsObject = {
+  }
+}
+
+export class Prefab extends jspb.Message {
+  getPrefabinstance(): string;
+  setPrefabinstance(value: string): Prefab;
+
+  getPrefabpartition(): string;
+  setPrefabpartition(value: string): Prefab;
+
+  getPrefabtype(): string;
+  setPrefabtype(value: string): Prefab;
+
+  getGeminstance(): string;
+  setGeminstance(value: string): Prefab;
+
+  getGempartition(): string;
+  setGempartition(value: string): Prefab;
+
+  getGemtype(): string;
+  setGemtype(value: string): Prefab;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Prefab.AsObject;
+  static toObject(includeInstance: boolean, msg: Prefab): Prefab.AsObject;
+  static serializeBinaryToWriter(message: Prefab, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Prefab;
+  static deserializeBinaryFromReader(message: Prefab, reader: jspb.BinaryReader): Prefab;
+}
+
+export namespace Prefab {
+  export type AsObject = {
+    prefabinstance: string,
+    prefabpartition: string,
+    prefabtype: string,
+    geminstance: string,
+    gempartition: string,
+    gemtype: string,
+  }
+}
+
+export class EntityList extends jspb.Message {
+  getEntityList(): Array<string>;
+  setEntityList(value: Array<string>): EntityList;
+  clearEntityList(): EntityList;
+  addEntity(value: string, index?: number): EntityList;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EntityList.AsObject;
+  static toObject(includeInstance: boolean, msg: EntityList): EntityList.AsObject;
+  static serializeBinaryToWriter(message: EntityList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EntityList;
+  static deserializeBinaryFromReader(message: EntityList, reader: jspb.BinaryReader): EntityList;
+}
+
+export namespace EntityList {
+  export type AsObject = {
+    entityList: Array<string>,
   }
 }
 
