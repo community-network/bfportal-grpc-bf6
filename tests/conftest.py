@@ -1,9 +1,11 @@
 import os
+import struct
 import pytest
-import sonora.aio
 from dotenv import load_dotenv
 
 load_dotenv()
+
+compression_flag = b"\x00"
 
 
 @pytest.fixture()
@@ -14,22 +16,13 @@ def gateway_session_id() -> str:
     return _
 
 
+def to_length_prefixed_msg(serialized_msg: bytes):
+    msg_length = struct.pack(">I", len(serialized_msg))
+    return compression_flag + msg_length + serialized_msg
+
+
 @pytest.fixture()
 def request_metadata(gateway_session_id):
-    return (
-        ("x-dice-tenancy", "prod_default-prod_default-santiago-common"),
-        ("x-gateway-session-id", gateway_session_id),
-        ("x-grpc-web", "1"),
-        ("x-user-agent", "grpc-web-javascript/0.1"),
-    )
-
-
-@pytest.fixture()
-def playground_id() -> str:
-    return "8c7632c0-bd82-11f0-a9cc-6730f9b9f4da"
-
-
-async def web_headers(gateway_session_id: str) -> dict:
     return {
         "content-type": "application/grpc-web+proto",
         "x-dice-tenancy": "prod_default-prod_default-santiago-common",
@@ -39,9 +32,6 @@ async def web_headers(gateway_session_id: str) -> dict:
     }
 
 
-@pytest.fixture
-async def web_channel() -> "sonora.aio.WebChannel":
-    async with sonora.aio.insecure_web_channel(
-        "https://santiago-prod-wgw-envoy.ops.dice.se"
-    ) as channel:
-        yield channel
+@pytest.fixture()
+def playground_id() -> str:
+    return "8c7632c0-bd82-11f0-a9cc-6730f9b9f4da"
