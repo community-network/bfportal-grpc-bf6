@@ -21,6 +21,12 @@ def to_length_prefixed_msg(serialized_msg: bytes):
     return compression_flag + msg_length + serialized_msg
 
 
+def from_length_prefixed_msg(serialized_msg: bytes):
+    compression_flag = serialized_msg[0]
+    message_length = struct.unpack(">I", serialized_msg[1:5])[0]
+    return serialized_msg[5 : 5 + message_length]
+
+
 @pytest.fixture()
 def request_metadata(gateway_session_id):
     return {
@@ -34,4 +40,4 @@ def request_metadata(gateway_session_id):
 
 @pytest.fixture()
 def playground_id() -> str:
-    return "8c7632c0-bd82-11f0-a9cc-6730f9b9f4da"
+    return "4e8b2f70-a742-11f0-a8ef-d7e10093ca02"

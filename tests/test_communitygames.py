@@ -1,6 +1,11 @@
+import base64
+import json
+import struct
 from bfportal_grpc import play_pb2
 import httpcore
-from tests.conftest import to_length_prefixed_msg
+from tests.conftest import from_length_prefixed_msg, to_length_prefixed_msg
+
+from google.protobuf.json_format import MessageToDict, MessageToJson
 
 
 async def test_get_playground(playground_id, request_metadata):
@@ -9,20 +14,18 @@ async def test_get_playground(playground_id, request_metadata):
     ).SerializeToString()
 
     async with httpcore.AsyncConnectionPool(http2=True, keepalive_expiry=30) as session:
+        msg = to_length_prefixed_msg(serialized_msg)
         response = await session.request(
             "POST",
             "https://santiago-prod-wgw-envoy.ops.dice.se/santiago.web.play.WebPlay/getPlayElement",
             headers=request_metadata,
-            content=to_length_prefixed_msg(serialized_msg),
+            content=msg,
         )
-        print(response.content)
-        return response.content
 
-    # playground = response.playground.validatedPlayground
-
-    # assert playground is not None
-    # assert playground.playgroundId == playground_id
-    # assert playground.name == "Portal Helper Discord Bot's Api test field"
+        serialized_message = from_length_prefixed_msg(response.content)
+        message = play_pb2.PlayElementResponse()
+        message.ParseFromString(serialized_message)
+        assert message.playElement.name == "Breakthrough Solo Bots"
 
 
 # async def test_share_playground(playground_id, request_metadata, stub):
