@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
 @pytest.fixture()
 def gateway_session_id() -> str:
     _ = os.getenv("GATEWAY_SESSION_ID", None)
@@ -18,7 +17,7 @@ def gateway_session_id() -> str:
 @pytest.fixture()
 def request_metadata(gateway_session_id):
     return (
-        ("x-dice-tenancy", "prod_default-prod_default-kingston-common"),
+        ("x-dice-tenancy", "prod_default-prod_default-santiago-common"),
         ("x-gateway-session-id", gateway_session_id),
         ("x-grpc-web", "1"),
         ("x-user-agent", "grpc-web-javascript/0.1"),
@@ -27,12 +26,22 @@ def request_metadata(gateway_session_id):
 
 @pytest.fixture()
 def playground_id() -> str:
-    return "a56cf4d0-c713-11ec-b056-e3dbf89f52ce"
+    return "8c7632c0-bd82-11f0-a9cc-6730f9b9f4da"
+
+
+async def web_headers(gateway_session_id: str) -> dict:
+    return {
+        "content-type": "application/grpc-web+proto",
+        "x-dice-tenancy": "prod_default-prod_default-santiago-common",
+        "x-gateway-session-id": gateway_session_id,
+        "x-grpc-web": "1",
+        "x-user-agent": "grpc-web-javascript/0.1",
+    }
 
 
 @pytest.fixture
 async def web_channel() -> "sonora.aio.WebChannel":
     async with sonora.aio.insecure_web_channel(
-        f"https://kingston-prod-wgw-envoy.ops.dice.se"
+        "https://santiago-prod-wgw-envoy.ops.dice.se"
     ) as channel:
         yield channel

@@ -25,6 +25,7 @@ grpcio = "^1.75.1"
 python = "^3.10"
 proto-compile = "^0.1.7"
 python-dotenv = "^1.1.1"
+httpcore = { extras = ["http2", "asyncio"], version = "^1.0.9" }
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/community-network/bfportal-grpc/issues"
@@ -37,7 +38,7 @@ compile-proto = "bfportal_grpc.helpers.compile:compile_proto"
 pytest = "8.4.2"
 black = "25.9.0"
 isort = "6.1.0"
-grpcio-tools = "^1.75.1"
+grpcio-tools = "^1.76.0"
 pytest-xdist = {extras = ["psutil"], version = "^3.8.0"}
 pytest-asyncio = "^1.2.0"
 

@@ -7,6 +7,18 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class ExperienceOrderBy(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    EXPERIENCE_ORDER_BY_UNSPECIFIED: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_UPDATED_ASC: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_UPDATED_DESC: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_CREATED_ASC: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_CREATED_DESC: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_POPULARITY_ASC: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_POPULARITY_DESC: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_LIKES_ASC: _ClassVar[ExperienceOrderBy]
+    EXPERIENCE_ORDER_BY_LIKES_DESC: _ClassVar[ExperienceOrderBy]
+
 class InternalCapacityType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     AI_BACKFILL: _ClassVar[InternalCapacityType]
@@ -86,6 +98,15 @@ class Platform(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     XBSX: _ClassVar[Platform]
     COMMON: _ClassVar[Platform]
     STEAM: _ClassVar[Platform]
+EXPERIENCE_ORDER_BY_UNSPECIFIED: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_UPDATED_ASC: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_UPDATED_DESC: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_CREATED_ASC: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_CREATED_DESC: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_POPULARITY_ASC: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_POPULARITY_DESC: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_LIKES_ASC: ExperienceOrderBy
+EXPERIENCE_ORDER_BY_LIKES_DESC: ExperienceOrderBy
 AI_BACKFILL: InternalCapacityType
 AI_STATIC: InternalCapacityType
 UNSPECIFIED: TeamBalancingMethod
@@ -133,6 +154,560 @@ PS5: Platform
 XBSX: Platform
 COMMON: Platform
 STEAM: Platform
+
+class DeleteAttachmentsRequest(_message.Message):
+    __slots__ = ("playElementDesignId", "attachmentIds")
+    PLAYELEMENTDESIGNID_FIELD_NUMBER: _ClassVar[int]
+    ATTACHMENTIDS_FIELD_NUMBER: _ClassVar[int]
+    playElementDesignId: str
+    attachmentIds: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, playElementDesignId: _Optional[str] = ..., attachmentIds: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class DeleteAttachmentsResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class GetLicenseRequirementsRequest(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class GetLicenseRequirementsResponse(_message.Message):
+    __slots__ = ("ownedLicenses", "mapEntryRequirements")
+    OWNEDLICENSES_FIELD_NUMBER: _ClassVar[int]
+    MAPENTRYREQUIREMENTS_FIELD_NUMBER: _ClassVar[int]
+    ownedLicenses: _containers.RepeatedScalarFieldContainer[str]
+    mapEntryRequirements: _containers.RepeatedCompositeFieldContainer[MapEntryRequirement]
+    def __init__(self, ownedLicenses: _Optional[_Iterable[str]] = ..., mapEntryRequirements: _Optional[_Iterable[_Union[MapEntryRequirement, _Mapping]]] = ...) -> None: ...
+
+class MapEntryRequirement(_message.Message):
+    __slots__ = ("levelName", "levelLocation", "licenseRequirements")
+    LEVELNAME_FIELD_NUMBER: _ClassVar[int]
+    LEVELLOCATION_FIELD_NUMBER: _ClassVar[int]
+    LICENSEREQUIREMENTS_FIELD_NUMBER: _ClassVar[int]
+    levelName: str
+    levelLocation: str
+    licenseRequirements: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, levelName: _Optional[str] = ..., levelLocation: _Optional[str] = ..., licenseRequirements: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class GetProgressionTypesRequest(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class GetProgressionTypesResponse(_message.Message):
+    __slots__ = ("entries",)
+    ENTRIES_FIELD_NUMBER: _ClassVar[int]
+    entries: _containers.RepeatedCompositeFieldContainer[ProgressionEntry]
+    def __init__(self, entries: _Optional[_Iterable[_Union[ProgressionEntry, _Mapping]]] = ...) -> None: ...
+
+class ProgressionEntry(_message.Message):
+    __slots__ = ("progressionMode", "progressibles")
+    PROGRESSIONMODE_FIELD_NUMBER: _ClassVar[int]
+    PROGRESSIBLES_FIELD_NUMBER: _ClassVar[int]
+    progressionMode: str
+    progressibles: _containers.RepeatedCompositeFieldContainer[Mutator]
+    def __init__(self, progressionMode: _Optional[str] = ..., progressibles: _Optional[_Iterable[_Union[Mutator, _Mapping]]] = ...) -> None: ...
+
+class UploadExperienceThumbnailRequest(_message.Message):
+    __slots__ = ("image", "mimeType")
+    IMAGE_FIELD_NUMBER: _ClassVar[int]
+    MIMETYPE_FIELD_NUMBER: _ClassVar[int]
+    image: bytes
+    mimeType: str
+    def __init__(self, image: _Optional[bytes] = ..., mimeType: _Optional[str] = ...) -> None: ...
+
+class UploadExperienceThumbnailResponse(_message.Message):
+    __slots__ = ("assetId", "url", "verificationUrl")
+    ASSETID_FIELD_NUMBER: _ClassVar[int]
+    URL_FIELD_NUMBER: _ClassVar[int]
+    VERIFICATIONURL_FIELD_NUMBER: _ClassVar[int]
+    assetId: str
+    url: str
+    verificationUrl: str
+    def __init__(self, assetId: _Optional[str] = ..., url: _Optional[str] = ..., verificationUrl: _Optional[str] = ...) -> None: ...
+
+class CreateModDataVersionResponse(_message.Message):
+    __slots__ = ("signedUrl", "validUntil", "modLevelDataId")
+    SIGNEDURL_FIELD_NUMBER: _ClassVar[int]
+    VALIDUNTIL_FIELD_NUMBER: _ClassVar[int]
+    MODLEVELDATAID_FIELD_NUMBER: _ClassVar[int]
+    signedUrl: str
+    validUntil: int
+    modLevelDataId: str
+    def __init__(self, signedUrl: _Optional[str] = ..., validUntil: _Optional[int] = ..., modLevelDataId: _Optional[str] = ...) -> None: ...
+
+class CreateModDataVersionRequest(_message.Message):
+    __slots__ = ("playElementId",)
+    PLAYELEMENTID_FIELD_NUMBER: _ClassVar[int]
+    playElementId: str
+    def __init__(self, playElementId: _Optional[str] = ...) -> None: ...
+
+class ListModDataVersionsRequest(_message.Message):
+    __slots__ = ("playElementId",)
+    PLAYELEMENTID_FIELD_NUMBER: _ClassVar[int]
+    playElementId: str
+    def __init__(self, playElementId: _Optional[str] = ...) -> None: ...
+
+class ListModDataVersionsResponse(_message.Message):
+    __slots__ = ("modDataVersions",)
+    MODDATAVERSIONS_FIELD_NUMBER: _ClassVar[int]
+    modDataVersions: _containers.RepeatedCompositeFieldContainer[ModDataVersion]
+    def __init__(self, modDataVersions: _Optional[_Iterable[_Union[ModDataVersion, _Mapping]]] = ...) -> None: ...
+
+class ModDataVersion(_message.Message):
+    __slots__ = ("id", "playElementId", "created", "buildInfo")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    PLAYELEMENTID_FIELD_NUMBER: _ClassVar[int]
+    CREATED_FIELD_NUMBER: _ClassVar[int]
+    BUILDINFO_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    playElementId: str
+    created: int
+    buildInfo: ModDataVersionBuildInfo
+    def __init__(self, id: _Optional[str] = ..., playElementId: _Optional[str] = ..., created: _Optional[int] = ..., buildInfo: _Optional[_Union[ModDataVersionBuildInfo, _Mapping]] = ...) -> None: ...
+
+class ModDataVersionBuildInfo(_message.Message):
+    __slots__ = ("pipelineVersion", "pending", "noBuildAvailable", "error", "success")
+    PIPELINEVERSION_FIELD_NUMBER: _ClassVar[int]
+    PENDING_FIELD_NUMBER: _ClassVar[int]
+    NOBUILDAVAILABLE_FIELD_NUMBER: _ClassVar[int]
+    ERROR_FIELD_NUMBER: _ClassVar[int]
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    pipelineVersion: str
+    pending: Empty
+    noBuildAvailable: Empty
+    error: BuildStatusError
+    success: BuildStatusSuccess
+    def __init__(self, pipelineVersion: _Optional[str] = ..., pending: _Optional[_Union[Empty, _Mapping]] = ..., noBuildAvailable: _Optional[_Union[Empty, _Mapping]] = ..., error: _Optional[_Union[BuildStatusError, _Mapping]] = ..., success: _Optional[_Union[BuildStatusSuccess, _Mapping]] = ...) -> None: ...
+
+class BuildStatusError(_message.Message):
+    __slots__ = ("errorMessage",)
+    ERRORMESSAGE_FIELD_NUMBER: _ClassVar[int]
+    errorMessage: str
+    def __init__(self, errorMessage: _Optional[str] = ...) -> None: ...
+
+class BuildStatusSuccess(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class Empty(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class GetAvailableTagsRequest(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class GetAvailableTagsResponse(_message.Message):
+    __slots__ = ("availableTags",)
+    AVAILABLETAGS_FIELD_NUMBER: _ClassVar[int]
+    availableTags: AvailableTags
+    def __init__(self, availableTags: _Optional[_Union[AvailableTags, _Mapping]] = ...) -> None: ...
+
+class PlayExperience(_message.Message):
+    __slots__ = ("id", "creator", "name", "description", "playElementDesign", "playerCount", "likes", "publishAt", "thumbnailUrl", "isUgc", "shortCode", "publishState")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    CREATOR_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
+    PLAYELEMENTDESIGN_FIELD_NUMBER: _ClassVar[int]
+    PLAYERCOUNT_FIELD_NUMBER: _ClassVar[int]
+    LIKES_FIELD_NUMBER: _ClassVar[int]
+    PUBLISHAT_FIELD_NUMBER: _ClassVar[int]
+    THUMBNAILURL_FIELD_NUMBER: _ClassVar[int]
+    ISUGC_FIELD_NUMBER: _ClassVar[int]
+    SHORTCODE_FIELD_NUMBER: _ClassVar[int]
+    PUBLISHSTATE_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    creator: Creator
+    name: str
+    description: str
+    playElementDesign: PlayElementDesign
+    playerCount: int
+    likes: int
+    publishAt: int
+    thumbnailUrl: str
+    isUgc: bool
+    shortCode: str
+    publishState: PublishStateType
+    def __init__(self, id: _Optional[str] = ..., creator: _Optional[_Union[Creator, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., playElementDesign: _Optional[_Union[PlayElementDesign, _Mapping]] = ..., playerCount: _Optional[int] = ..., likes: _Optional[int] = ..., publishAt: _Optional[int] = ..., thumbnailUrl: _Optional[str] = ..., isUgc: bool = ..., shortCode: _Optional[str] = ..., publishState: _Optional[_Union[PublishStateType, str]] = ...) -> None: ...
+
+class ListExperiencesResponse(_message.Message):
+    __slots__ = ("experiences", "nextPage")
+    EXPERIENCES_FIELD_NUMBER: _ClassVar[int]
+    NEXTPAGE_FIELD_NUMBER: _ClassVar[int]
+    experiences: _containers.RepeatedCompositeFieldContainer[PlayExperience]
+    nextPage: Pagination
+    def __init__(self, experiences: _Optional[_Iterable[_Union[PlayExperience, _Mapping]]] = ..., nextPage: _Optional[_Union[Pagination, _Mapping]] = ...) -> None: ...
+
+class PlayExperienceQuery(_message.Message):
+    __slots__ = ("mapsEq", "levelLocationsEq", "maxPlayerCountEq", "tagsEq", "playerCreatorEq", "ordering", "pageSize", "namePrefix", "shortCode")
+    MAPSEQ_FIELD_NUMBER: _ClassVar[int]
+    LEVELLOCATIONSEQ_FIELD_NUMBER: _ClassVar[int]
+    MAXPLAYERCOUNTEQ_FIELD_NUMBER: _ClassVar[int]
+    TAGSEQ_FIELD_NUMBER: _ClassVar[int]
+    PLAYERCREATOREQ_FIELD_NUMBER: _ClassVar[int]
+    ORDERING_FIELD_NUMBER: _ClassVar[int]
+    PAGESIZE_FIELD_NUMBER: _ClassVar[int]
+    NAMEPREFIX_FIELD_NUMBER: _ClassVar[int]
+    SHORTCODE_FIELD_NUMBER: _ClassVar[int]
+    mapsEq: _containers.RepeatedScalarFieldContainer[str]
+    levelLocationsEq: _containers.RepeatedScalarFieldContainer[str]
+    maxPlayerCountEq: _containers.RepeatedScalarFieldContainer[int]
+    tagsEq: _containers.RepeatedScalarFieldContainer[str]
+    playerCreatorEq: PlayerCreator
+    ordering: ExperienceOrderBy
+    pageSize: int
+    namePrefix: str
+    shortCode: str
+    def __init__(self, mapsEq: _Optional[_Iterable[str]] = ..., levelLocationsEq: _Optional[_Iterable[str]] = ..., maxPlayerCountEq: _Optional[_Iterable[int]] = ..., tagsEq: _Optional[_Iterable[str]] = ..., playerCreatorEq: _Optional[_Union[PlayerCreator, _Mapping]] = ..., ordering: _Optional[_Union[ExperienceOrderBy, str]] = ..., pageSize: _Optional[int] = ..., namePrefix: _Optional[str] = ..., shortCode: _Optional[str] = ...) -> None: ...
+
+class ListExperiencesRequest(_message.Message):
+    __slots__ = ("filter", "page")
+    FILTER_FIELD_NUMBER: _ClassVar[int]
+    PAGE_FIELD_NUMBER: _ClassVar[int]
+    filter: PlayExperienceQuery
+    page: Pagination
+    def __init__(self, filter: _Optional[_Union[PlayExperienceQuery, _Mapping]] = ..., page: _Optional[_Union[Pagination, _Mapping]] = ...) -> None: ...
+
+class Pagination(_message.Message):
+    __slots__ = ("pageNumber", "token")
+    PAGENUMBER_FIELD_NUMBER: _ClassVar[int]
+    TOKEN_FIELD_NUMBER: _ClassVar[int]
+    pageNumber: int
+    token: str
+    def __init__(self, pageNumber: _Optional[int] = ..., token: _Optional[str] = ...) -> None: ...
+
+class DeletePlayElementRequest(_message.Message):
+    __slots__ = ("playElementId",)
+    PLAYELEMENTID_FIELD_NUMBER: _ClassVar[int]
+    playElementId: str
+    def __init__(self, playElementId: _Optional[str] = ...) -> None: ...
+
+class GetScheduledBlueprintsResponse(_message.Message):
+    __slots__ = ("blueprintIds",)
+    BLUEPRINTIDS_FIELD_NUMBER: _ClassVar[int]
+    blueprintIds: _containers.RepeatedCompositeFieldContainer[BlueprintId]
+    def __init__(self, blueprintIds: _Optional[_Iterable[_Union[BlueprintId, _Mapping]]] = ...) -> None: ...
+
+class DeletePlayElementResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class GetBlueprintsByIdRequest(_message.Message):
+    __slots__ = ("blueprintIds",)
+    BLUEPRINTIDS_FIELD_NUMBER: _ClassVar[int]
+    blueprintIds: _containers.RepeatedCompositeFieldContainer[BlueprintId]
+    def __init__(self, blueprintIds: _Optional[_Iterable[_Union[BlueprintId, _Mapping]]] = ...) -> None: ...
+
+class BlueprintId(_message.Message):
+    __slots__ = ("id", "version")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    VERSION_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    version: str
+    def __init__(self, id: _Optional[str] = ..., version: _Optional[str] = ...) -> None: ...
+
+class GetBlueprintsByIdResponse(_message.Message):
+    __slots__ = ("blueprints",)
+    BLUEPRINTS_FIELD_NUMBER: _ClassVar[int]
+    blueprints: _containers.RepeatedCompositeFieldContainer[Blueprint]
+    def __init__(self, blueprints: _Optional[_Iterable[_Union[Blueprint, _Mapping]]] = ...) -> None: ...
+
+class GetScheduledBlueprintsRequest(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class Blueprint(_message.Message):
+    __slots__ = ("blueprintId", "name", "availableGameData", "availableTags", "availableThumbnailUrls", "availableProgressionModeTags")
+    BLUEPRINTID_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLEGAMEDATA_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLETAGS_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLETHUMBNAILURLS_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLEPROGRESSIONMODETAGS_FIELD_NUMBER: _ClassVar[int]
+    blueprintId: BlueprintId
+    name: str
+    availableGameData: AvailableGameData
+    availableTags: AvailableTags
+    availableThumbnailUrls: _containers.RepeatedScalarFieldContainer[str]
+    availableProgressionModeTags: AvailableTags
+    def __init__(self, blueprintId: _Optional[_Union[BlueprintId, _Mapping]] = ..., name: _Optional[str] = ..., availableGameData: _Optional[_Union[AvailableGameData, _Mapping]] = ..., availableTags: _Optional[_Union[AvailableTags, _Mapping]] = ..., availableThumbnailUrls: _Optional[_Iterable[str]] = ..., availableProgressionModeTags: _Optional[_Union[AvailableTags, _Mapping]] = ...) -> None: ...
+
+class AvailableGameData(_message.Message):
+    __slots__ = ("mutators", "maps", "modRules", "assetCategories", "spatialAssetInfo")
+    MUTATORS_FIELD_NUMBER: _ClassVar[int]
+    MAPS_FIELD_NUMBER: _ClassVar[int]
+    MODRULES_FIELD_NUMBER: _ClassVar[int]
+    ASSETCATEGORIES_FIELD_NUMBER: _ClassVar[int]
+    SPATIALASSETINFO_FIELD_NUMBER: _ClassVar[int]
+    mutators: _containers.RepeatedCompositeFieldContainer[AvailableMutator]
+    maps: _containers.RepeatedCompositeFieldContainer[AvailableMapEntry]
+    modRules: ModRulesDefinition
+    assetCategories: AvailableAssetCategories
+    spatialAssetInfo: AssetInfo
+    def __init__(self, mutators: _Optional[_Iterable[_Union[AvailableMutator, _Mapping]]] = ..., maps: _Optional[_Iterable[_Union[AvailableMapEntry, _Mapping]]] = ..., modRules: _Optional[_Union[ModRulesDefinition, _Mapping]] = ..., assetCategories: _Optional[_Union[AvailableAssetCategories, _Mapping]] = ..., spatialAssetInfo: _Optional[_Union[AssetInfo, _Mapping]] = ...) -> None: ...
+
+class AssetInfo(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class Prefab(_message.Message):
+    __slots__ = ("prefabInstance", "prefabPartition", "prefabType", "gemInstance", "gemPartition", "gemType")
+    PREFABINSTANCE_FIELD_NUMBER: _ClassVar[int]
+    PREFABPARTITION_FIELD_NUMBER: _ClassVar[int]
+    PREFABTYPE_FIELD_NUMBER: _ClassVar[int]
+    GEMINSTANCE_FIELD_NUMBER: _ClassVar[int]
+    GEMPARTITION_FIELD_NUMBER: _ClassVar[int]
+    GEMTYPE_FIELD_NUMBER: _ClassVar[int]
+    prefabInstance: str
+    prefabPartition: str
+    prefabType: str
+    gemInstance: str
+    gemPartition: str
+    gemType: str
+    def __init__(self, prefabInstance: _Optional[str] = ..., prefabPartition: _Optional[str] = ..., prefabType: _Optional[str] = ..., gemInstance: _Optional[str] = ..., gemPartition: _Optional[str] = ..., gemType: _Optional[str] = ...) -> None: ...
+
+class EntityList(_message.Message):
+    __slots__ = ("entity",)
+    ENTITY_FIELD_NUMBER: _ClassVar[int]
+    entity: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, entity: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class AvailableAssetCategories(_message.Message):
+    __slots__ = ("rootTags", "tags")
+    ROOTTAGS_FIELD_NUMBER: _ClassVar[int]
+    TAGS_FIELD_NUMBER: _ClassVar[int]
+    rootTags: _containers.RepeatedCompositeFieldContainer[AvailableAssetCategoryTag]
+    tags: _containers.RepeatedCompositeFieldContainer[AvailableAssetCategoryTag]
+    def __init__(self, rootTags: _Optional[_Iterable[_Union[AvailableAssetCategoryTag, _Mapping]]] = ..., tags: _Optional[_Iterable[_Union[AvailableAssetCategoryTag, _Mapping]]] = ...) -> None: ...
+
+class AvailableAssetCategoryTag(_message.Message):
+    __slots__ = ("tagId", "name", "childrenTags", "metadata")
+    TAGID_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    CHILDRENTAGS_FIELD_NUMBER: _ClassVar[int]
+    METADATA_FIELD_NUMBER: _ClassVar[int]
+    tagId: str
+    name: str
+    childrenTags: _containers.RepeatedScalarFieldContainer[str]
+    metadata: Metadata
+    def __init__(self, tagId: _Optional[str] = ..., name: _Optional[str] = ..., childrenTags: _Optional[_Iterable[str]] = ..., metadata: _Optional[_Union[Metadata, _Mapping]] = ...) -> None: ...
+
+class ModRulesDefinition(_message.Message):
+    __slots__ = ("rulesVersion", "modBuilder")
+    RULESVERSION_FIELD_NUMBER: _ClassVar[int]
+    MODBUILDER_FIELD_NUMBER: _ClassVar[int]
+    rulesVersion: int
+    modBuilder: bytes
+    def __init__(self, rulesVersion: _Optional[int] = ..., modBuilder: _Optional[bytes] = ...) -> None: ...
+
+class AvailableTag(_message.Message):
+    __slots__ = ("id", "metadata", "category")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    METADATA_FIELD_NUMBER: _ClassVar[int]
+    CATEGORY_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    metadata: Metadata
+    category: str
+    def __init__(self, id: _Optional[str] = ..., metadata: _Optional[_Union[Metadata, _Mapping]] = ..., category: _Optional[str] = ...) -> None: ...
+
+class AvailableMapEntry(_message.Message):
+    __slots__ = ("levelName", "levelLocation", "gameSize", "rounds", "allowedSpectators", "metadata", "allowedTeamsRange")
+    LEVELNAME_FIELD_NUMBER: _ClassVar[int]
+    LEVELLOCATION_FIELD_NUMBER: _ClassVar[int]
+    GAMESIZE_FIELD_NUMBER: _ClassVar[int]
+    ROUNDS_FIELD_NUMBER: _ClassVar[int]
+    ALLOWEDSPECTATORS_FIELD_NUMBER: _ClassVar[int]
+    METADATA_FIELD_NUMBER: _ClassVar[int]
+    ALLOWEDTEAMSRANGE_FIELD_NUMBER: _ClassVar[int]
+    levelName: str
+    levelLocation: str
+    gameSize: AvailableIntValue
+    rounds: AvailableIntValue
+    allowedSpectators: AvailableIntValue
+    metadata: Metadata
+    allowedTeamsRange: AvailableIntValue
+    def __init__(self, levelName: _Optional[str] = ..., levelLocation: _Optional[str] = ..., gameSize: _Optional[_Union[AvailableIntValue, _Mapping]] = ..., rounds: _Optional[_Union[AvailableIntValue, _Mapping]] = ..., allowedSpectators: _Optional[_Union[AvailableIntValue, _Mapping]] = ..., metadata: _Optional[_Union[Metadata, _Mapping]] = ..., allowedTeamsRange: _Optional[_Union[AvailableIntValue, _Mapping]] = ...) -> None: ...
+
+class AvailableIntValue(_message.Message):
+    __slots__ = ("defaultValue", "availableValues")
+    DEFAULTVALUE_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLEVALUES_FIELD_NUMBER: _ClassVar[int]
+    defaultValue: int
+    availableValues: AvailableIntValues
+    def __init__(self, defaultValue: _Optional[int] = ..., availableValues: _Optional[_Union[AvailableIntValues, _Mapping]] = ...) -> None: ...
+
+class AvailableIntValues(_message.Message):
+    __slots__ = ("range", "sparseValues")
+    RANGE_FIELD_NUMBER: _ClassVar[int]
+    SPARSEVALUES_FIELD_NUMBER: _ClassVar[int]
+    range: IntRange
+    sparseValues: SparseIntValues
+    def __init__(self, range: _Optional[_Union[IntRange, _Mapping]] = ..., sparseValues: _Optional[_Union[SparseIntValues, _Mapping]] = ...) -> None: ...
+
+class SparseIntValues(_message.Message):
+    __slots__ = ("values",)
+    VALUES_FIELD_NUMBER: _ClassVar[int]
+    values: _containers.RepeatedScalarFieldContainer[int]
+    def __init__(self, values: _Optional[_Iterable[int]] = ...) -> None: ...
+
+class IntRange(_message.Message):
+    __slots__ = ("minValue", "maxValue")
+    MINVALUE_FIELD_NUMBER: _ClassVar[int]
+    MAXVALUE_FIELD_NUMBER: _ClassVar[int]
+    minValue: int
+    maxValue: int
+    def __init__(self, minValue: _Optional[int] = ..., maxValue: _Optional[int] = ...) -> None: ...
+
+class AvailableTags(_message.Message):
+    __slots__ = ("tags",)
+    TAGS_FIELD_NUMBER: _ClassVar[int]
+    tags: _containers.RepeatedCompositeFieldContainer[AvailableTag]
+    def __init__(self, tags: _Optional[_Iterable[_Union[AvailableTag, _Mapping]]] = ...) -> None: ...
+
+class AvailableMutator(_message.Message):
+    __slots__ = ("name", "category", "kind", "metadata", "id")
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    CATEGORY_FIELD_NUMBER: _ClassVar[int]
+    KIND_FIELD_NUMBER: _ClassVar[int]
+    METADATA_FIELD_NUMBER: _ClassVar[int]
+    ID_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    category: str
+    kind: AvailableMutatorKind
+    metadata: Metadata
+    id: str
+    def __init__(self, name: _Optional[str] = ..., category: _Optional[str] = ..., kind: _Optional[_Union[AvailableMutatorKind, _Mapping]] = ..., metadata: _Optional[_Union[Metadata, _Mapping]] = ..., id: _Optional[str] = ...) -> None: ...
+
+class AvailableMutatorKind(_message.Message):
+    __slots__ = ("mutatorBoolean", "mutatorString", "mutatorFloatValues", "mutatorIntValues", "mutatorSparseBoolean", "mutatorSparseIntValues", "mutatorSparseFloatValues")
+    MUTATORBOOLEAN_FIELD_NUMBER: _ClassVar[int]
+    MUTATORSTRING_FIELD_NUMBER: _ClassVar[int]
+    MUTATORFLOATVALUES_FIELD_NUMBER: _ClassVar[int]
+    MUTATORINTVALUES_FIELD_NUMBER: _ClassVar[int]
+    MUTATORSPARSEBOOLEAN_FIELD_NUMBER: _ClassVar[int]
+    MUTATORSPARSEINTVALUES_FIELD_NUMBER: _ClassVar[int]
+    MUTATORSPARSEFLOATVALUES_FIELD_NUMBER: _ClassVar[int]
+    mutatorBoolean: MutatorBoolean
+    mutatorString: MutatorString
+    mutatorFloatValues: AvailableMutatorFloatValues
+    mutatorIntValues: AvailableMutatorIntValues
+    mutatorSparseBoolean: MutatorSparseBoolean
+    mutatorSparseIntValues: AvailableMutatorSparseIntValues
+    mutatorSparseFloatValues: AvailableMutatorSparseFloatValues
+    def __init__(self, mutatorBoolean: _Optional[_Union[MutatorBoolean, _Mapping]] = ..., mutatorString: _Optional[_Union[MutatorString, _Mapping]] = ..., mutatorFloatValues: _Optional[_Union[AvailableMutatorFloatValues, _Mapping]] = ..., mutatorIntValues: _Optional[_Union[AvailableMutatorIntValues, _Mapping]] = ..., mutatorSparseBoolean: _Optional[_Union[MutatorSparseBoolean, _Mapping]] = ..., mutatorSparseIntValues: _Optional[_Union[AvailableMutatorSparseIntValues, _Mapping]] = ..., mutatorSparseFloatValues: _Optional[_Union[AvailableMutatorSparseFloatValues, _Mapping]] = ...) -> None: ...
+
+class AvailableMutatorSparseIntValues(_message.Message):
+    __slots__ = ("mutator", "availableValues")
+    MUTATOR_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLEVALUES_FIELD_NUMBER: _ClassVar[int]
+    mutator: MutatorSparseInt
+    availableValues: AvailableIntValues
+    def __init__(self, mutator: _Optional[_Union[MutatorSparseInt, _Mapping]] = ..., availableValues: _Optional[_Union[AvailableIntValues, _Mapping]] = ...) -> None: ...
+
+class AvailableMutatorSparseFloatValues(_message.Message):
+    __slots__ = ("mutator", "availableValues")
+    MUTATOR_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLEVALUES_FIELD_NUMBER: _ClassVar[int]
+    mutator: MutatorSparseFloat
+    availableValues: AvailableFloatValues
+    def __init__(self, mutator: _Optional[_Union[MutatorSparseFloat, _Mapping]] = ..., availableValues: _Optional[_Union[AvailableFloatValues, _Mapping]] = ...) -> None: ...
+
+class CreatePlayElementRequest(_message.Message):
+    __slots__ = ("name", "description", "designMetadata", "mapRotation", "mutators", "assetCategories", "originalModRules", "playElementSettings", "publishState", "modLevelDataId", "thumbnailUrl", "attachments")
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
+    DESIGNMETADATA_FIELD_NUMBER: _ClassVar[int]
+    MAPROTATION_FIELD_NUMBER: _ClassVar[int]
+    MUTATORS_FIELD_NUMBER: _ClassVar[int]
+    ASSETCATEGORIES_FIELD_NUMBER: _ClassVar[int]
+    ORIGINALMODRULES_FIELD_NUMBER: _ClassVar[int]
+    PLAYELEMENTSETTINGS_FIELD_NUMBER: _ClassVar[int]
+    PUBLISHSTATE_FIELD_NUMBER: _ClassVar[int]
+    MODLEVELDATAID_FIELD_NUMBER: _ClassVar[int]
+    THUMBNAILURL_FIELD_NUMBER: _ClassVar[int]
+    ATTACHMENTS_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    description: str
+    designMetadata: DesignMetadata
+    mapRotation: MapRotation
+    mutators: _containers.RepeatedCompositeFieldContainer[Mutator]
+    assetCategories: _containers.RepeatedCompositeFieldContainer[AssetCategory]
+    originalModRules: bytes
+    playElementSettings: PlayElementSettings
+    publishState: PublishStateType
+    modLevelDataId: str
+    thumbnailUrl: str
+    attachments: _containers.RepeatedCompositeFieldContainer[Attachment]
+    def __init__(self, name: _Optional[str] = ..., description: _Optional[str] = ..., designMetadata: _Optional[_Union[DesignMetadata, _Mapping]] = ..., mapRotation: _Optional[_Union[MapRotation, _Mapping]] = ..., mutators: _Optional[_Iterable[_Union[Mutator, _Mapping]]] = ..., assetCategories: _Optional[_Iterable[_Union[AssetCategory, _Mapping]]] = ..., originalModRules: _Optional[bytes] = ..., playElementSettings: _Optional[_Union[PlayElementSettings, _Mapping]] = ..., publishState: _Optional[_Union[PublishStateType, str]] = ..., modLevelDataId: _Optional[str] = ..., thumbnailUrl: _Optional[str] = ..., attachments: _Optional[_Iterable[_Union[Attachment, _Mapping]]] = ...) -> None: ...
+
+class AvailableMutatorFloatValues(_message.Message):
+    __slots__ = ("mutator", "availableValues")
+    MUTATOR_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLEVALUES_FIELD_NUMBER: _ClassVar[int]
+    mutator: MutatorFloat
+    availableValues: AvailableFloatValues
+    def __init__(self, mutator: _Optional[_Union[MutatorFloat, _Mapping]] = ..., availableValues: _Optional[_Union[AvailableFloatValues, _Mapping]] = ...) -> None: ...
+
+class AvailableFloatValues(_message.Message):
+    __slots__ = ("range", "sparseValues")
+    RANGE_FIELD_NUMBER: _ClassVar[int]
+    SPARSEVALUES_FIELD_NUMBER: _ClassVar[int]
+    range: FloatRange
+    sparseValues: SparseFloatValues
+    def __init__(self, range: _Optional[_Union[FloatRange, _Mapping]] = ..., sparseValues: _Optional[_Union[SparseFloatValues, _Mapping]] = ...) -> None: ...
+
+class SparseFloatValues(_message.Message):
+    __slots__ = ("values",)
+    VALUES_FIELD_NUMBER: _ClassVar[int]
+    values: _containers.RepeatedScalarFieldContainer[float]
+    def __init__(self, values: _Optional[_Iterable[float]] = ...) -> None: ...
+
+class FloatRange(_message.Message):
+    __slots__ = ("minValue", "maxValue")
+    MINVALUE_FIELD_NUMBER: _ClassVar[int]
+    MAXVALUE_FIELD_NUMBER: _ClassVar[int]
+    minValue: float
+    maxValue: float
+    def __init__(self, minValue: _Optional[float] = ..., maxValue: _Optional[float] = ...) -> None: ...
+
+class AvailableMutatorIntValues(_message.Message):
+    __slots__ = ("mutator", "availableValues")
+    MUTATOR_FIELD_NUMBER: _ClassVar[int]
+    AVAILABLEVALUES_FIELD_NUMBER: _ClassVar[int]
+    mutator: MutatorInt
+    availableValues: AvailableIntValues
+    def __init__(self, mutator: _Optional[_Union[MutatorInt, _Mapping]] = ..., availableValues: _Optional[_Union[AvailableIntValues, _Mapping]] = ...) -> None: ...
+
+class UpdatePlayElementRequest(_message.Message):
+    __slots__ = ("id", "name", "description", "designMetadata", "mapRotation", "mutators", "assetCategories", "originalModRules", "playElementSettings", "publishState", "modLevelDataId", "thumbnailUrl", "attachments")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
+    DESIGNMETADATA_FIELD_NUMBER: _ClassVar[int]
+    MAPROTATION_FIELD_NUMBER: _ClassVar[int]
+    MUTATORS_FIELD_NUMBER: _ClassVar[int]
+    ASSETCATEGORIES_FIELD_NUMBER: _ClassVar[int]
+    ORIGINALMODRULES_FIELD_NUMBER: _ClassVar[int]
+    PLAYELEMENTSETTINGS_FIELD_NUMBER: _ClassVar[int]
+    PUBLISHSTATE_FIELD_NUMBER: _ClassVar[int]
+    MODLEVELDATAID_FIELD_NUMBER: _ClassVar[int]
+    THUMBNAILURL_FIELD_NUMBER: _ClassVar[int]
+    ATTACHMENTS_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    name: str
+    description: str
+    designMetadata: DesignMetadata
+    mapRotation: MapRotation
+    mutators: _containers.RepeatedCompositeFieldContainer[Mutator]
+    assetCategories: _containers.RepeatedCompositeFieldContainer[AssetCategory]
+    originalModRules: bytes
+    playElementSettings: PlayElementSettings
+    publishState: PublishStateType
+    modLevelDataId: str
+    thumbnailUrl: str
+    attachments: _containers.RepeatedCompositeFieldContainer[Attachment]
+    def __init__(self, id: _Optional[str] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., designMetadata: _Optional[_Union[DesignMetadata, _Mapping]] = ..., mapRotation: _Optional[_Union[MapRotation, _Mapping]] = ..., mutators: _Optional[_Iterable[_Union[Mutator, _Mapping]]] = ..., assetCategories: _Optional[_Iterable[_Union[AssetCategory, _Mapping]]] = ..., originalModRules: _Optional[bytes] = ..., playElementSettings: _Optional[_Union[PlayElementSettings, _Mapping]] = ..., publishState: _Optional[_Union[PublishStateType, str]] = ..., modLevelDataId: _Optional[str] = ..., thumbnailUrl: _Optional[str] = ..., attachments: _Optional[_Iterable[_Union[Attachment, _Mapping]]] = ...) -> None: ...
 
 class PlayElementResponse(_message.Message):
     __slots__ = ("playElement", "playElementDesign", "progressionMode")
