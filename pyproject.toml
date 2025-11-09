@@ -3,9 +3,9 @@ requires = ["poetry>=0.12", "grpcio-tools"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "bfportal_grpc"
-version = "0.1.4"
-description = " bf2042 portal web grpc as python package "
+name = "bfportal_grpc_bf6"
+version = "0.1.5"
+description = " bf6 portal web grpc as python package "
 readme = "Readme.md"
 authors = ["iiTzArcur <arcur@gametools.network>"]
 # license = { file = "LICENSE" }
@@ -15,7 +15,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 keywords = ["bfportal", "grpc", "Battlefield portal"]
-repository = "https://github.com/community-network/bfportal-grpc"
+repository = "https://github.com/community-network/bfportal-grpc-bf6"
 packages = [{ include = "bfportal_grpc" }]
 
 [tool.poetry.dependencies]
@@ -28,7 +28,7 @@ python-dotenv = "^1.1.1"
 httpcore = { extras = ["http2", "asyncio"], version = "^1.0.9" }
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/community-network/bfportal-grpc/issues"
+"Bug Tracker" = "https://github.com/community-network/bfportal-grpc-bf6/issues"
 
 [tool.poetry.scripts]
 compile-proto = "bfportal_grpc.helpers.compile:compile_proto"
