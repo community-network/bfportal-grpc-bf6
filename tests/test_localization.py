@@ -1,6 +1,7 @@
 import httpcore
 from bfportal_grpc_bf6 import localization_pb2, localization_pb2_grpc
-from tests.conftest import to_length_prefixed_msg
+
+from bfportal_grpc_bf6.converter import from_length_prefixed_msg, to_length_prefixed_msg
 
 
 async def test_localization(request_metadata):

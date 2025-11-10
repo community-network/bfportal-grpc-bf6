@@ -3,9 +3,10 @@ import json
 import struct
 from bfportal_grpc_bf6 import play_pb2
 import httpcore
-from tests.conftest import from_length_prefixed_msg, to_length_prefixed_msg
 
 from google.protobuf.json_format import MessageToDict, MessageToJson
+
+from bfportal_grpc_bf6.converter import from_length_prefixed_msg, to_length_prefixed_msg
 
 
 async def test_get_playground(playground_id, request_metadata):
