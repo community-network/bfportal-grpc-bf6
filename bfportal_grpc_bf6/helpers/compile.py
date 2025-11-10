@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
-OUT_DIR = PROJECT_ROOT / "bfportal_grpc" / "proto"
+OUT_DIR = PROJECT_ROOT / "bfportal_grpc_bf6" / "proto"
 INPUT_PROTO_FILES_DIR = PROJECT_ROOT / "proto"
 
 PROTO_FILES = [

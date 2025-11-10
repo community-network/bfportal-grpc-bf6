@@ -1,5 +1,5 @@
 import httpcore
-from bfportal_grpc import localization_pb2, localization_pb2_grpc
+from bfportal_grpc_bf6 import localization_pb2, localization_pb2_grpc
 from tests.conftest import to_length_prefixed_msg
 
 

@@ -1,7 +1,7 @@
 import base64
 import json
 import struct
-from bfportal_grpc import play_pb2
+from bfportal_grpc_bf6 import play_pb2
 import httpcore
 from tests.conftest import from_length_prefixed_msg, to_length_prefixed_msg
 

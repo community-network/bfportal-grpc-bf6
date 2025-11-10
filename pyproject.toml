@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "bfportal_grpc_bf6"
-version = "0.1.5"
+version = "0.1.6"
 description = "bf6 portal web grpc as python package "
 readme = "Readme.md"
 authors = ["iiTzArcur <arcur@gametools.network>"]
@@ -16,7 +16,7 @@ classifiers = [
 ]
 keywords = ["bfportal", "grpc", "Battlefield portal"]
 repository = "https://github.com/community-network/bfportal-grpc-bf6"
-packages = [{ include = "bfportal_grpc" }]
+packages = [{ include = "bfportal_grpc_bf6" }]
 
 [tool.poetry.dependencies]
 aiohttp = "^3.13.0"
@@ -31,7 +31,7 @@ httpcore = { extras = ["http2", "asyncio"], version = "^1.0.9" }
 "Bug Tracker" = "https://github.com/community-network/bfportal-grpc-bf6/issues"
 
 [tool.poetry.scripts]
-compile-proto = "bfportal_grpc.helpers.compile:compile_proto"
+compile-proto = "bfportal_grpc_bf6.helpers.compile:compile_proto"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -44,7 +44,7 @@ pytest-asyncio = "^1.2.0"
 
 [tool.poetry.build]
 generate-setup-file = false
-script = "bfportal_grpc/helpers/compile.py"
+script = "bfportal_grpc_bf6/helpers/compile.py"
 
 [tool.isort]
 profile = "black"
