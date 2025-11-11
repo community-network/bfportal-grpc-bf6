@@ -8,9 +8,11 @@ import { load } from "protobufjs";
 
 (async () => {
     const metadata = {
+        "content-type": "application/grpc-web+proto",
         'x-dice-tenancy': 'prod_default-prod_default-santiago-common',
-        'x-gateway-session-id': "web-e7415391-63e5-422f-b604-e0e2716066bb",
+        'x-gateway-session-id': "web-feb27f23-6250-4dad-a35a-e2023799a451",
         'x-grpc-web': '1',
+        "x-user-agent": "grpc-web-javascript/0.1",
     }
     const request = new play.GetPlayElementRequest();
     request.setId("c7dff320-a543-11f0-8e01-a29ee389d262")
@@ -23,13 +25,17 @@ import { load } from "protobufjs";
     prefix.writeUInt8(compressionFlag, 0);
     prefix.writeUInt32BE(length, 1);
 
-    // base64
-    // const lengthPrefixedMessage = Buffer.concat([prefix, messageBuffer]);
-    // var base64 = btoa(
+    const lengthPrefixedMessage = Buffer.concat([prefix, messageBuffer]);
+    // const base64 = btoa(
     //     new Uint8Array(lengthPrefixedMessage)
     //         .reduce((data, byte) => data + String.fromCharCode(byte), '')
     // );
-    // console.log(base64)
 
-
+    const res = await fetch("https://santiago-prod-wgw-envoy.ops.dice.se/santiago.web.play.WebPlay/getPlayElement", {
+        method: "post",
+        body: lengthPrefixedMessage,
+        headers: metadata
+    });
+    const body = await res.bytes();
+    console.log(body);
 })()
