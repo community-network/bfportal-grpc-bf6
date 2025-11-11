@@ -24,31 +24,33 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14\x61uthentication.proto\x12\x1bsantiago.web.authentication\"g\n\x06Player\x12\x11\n\tnucleusId\x18\x01 \x01(\x03\x12\x11\n\tpersonaId\x18\x02 \x01(\x03\x12\x37\n\x08platform\x18\x03 \x01(\x0e\x32%.santiago.web.authentication.Platform\"\xeb\x01\n\x16\x41uthCodeAuthentication\x12\x10\n\x08\x61uthCode\x18\x01 \x01(\t\x12\x37\n\x08platform\x18\x02 \x01(\x0e\x32%.santiago.web.authentication.Platform\x12\x18\n\x0bredirectUri\x18\x03 \x01(\tH\x00\x88\x01\x01\x12\x19\n\x0cpatchVersion\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x1c\n\x0fprotocolVersion\x18\x05 \x01(\tH\x02\x88\x01\x01\x42\x0e\n\x0c_redirectUriB\x0f\n\r_patchVersionB\x12\n\x10_protocolVersion\"*\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\x12\r\n\x05nanos\x18\x02 \x01(\x05\"C\n\nTimeTravel\x12\x35\n\x06offset\x18\x01 \x01(\x0b\x32%.santiago.web.authentication.Duration\"t\n\x17ProtocolVersionOverride\x12\x10\n\x08original\x18\x01 \x01(\t\x12\x12\n\noverridden\x18\x02 \x01(\t\x12\x33\n\x06reason\x18\x03 \x01(\x0e\x32#.santiago.web.authentication.Reason\"\x07\n\x05\x45mpty\"\xcf\x02\n\x16\x41uthenticationResponse\x12\x11\n\tsessionId\x18\x01 \x01(\t\x12\x38\n\x06player\x18\x02 \x01(\x0b\x32#.santiago.web.authentication.PlayerH\x00\x88\x01\x01\x12@\n\ntimeTravel\x18\x03 \x01(\x0b\x32\'.santiago.web.authentication.TimeTravelH\x01\x88\x01\x01\x12Z\n\x17protocolVersionOverride\x18\x04 \x01(\x0b\x32\x34.santiago.web.authentication.ProtocolVersionOverrideH\x02\x88\x01\x01\x12\x14\n\x0cpatchVersion\x18\x05 \x01(\tB\t\n\x07_playerB\r\n\x0b_timeTravelB\x1a\n\x18_protocolVersionOverride*_\n\x08Platform\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x06\n\x02PC\x10\x01\x12\x07\n\x03PS4\x10\x02\x12\x0b\n\x07XBOXONE\x10\x03\x12\x07\n\x03PS5\x10\x04\x12\x08\n\x04XBSX\x10\x05\x12\n\n\x06\x43OMMON\x10\x06\x12\t\n\x05STEAM\x10\x07*\x1c\n\x06Reason\x12\x08\n\x04NONE\x10\x00\x12\x08\n\x04SYNC\x10\x01\x32\xe2\x01\n\x11WebAuthentication\x12y\n\x0bviaAuthCode\x12\x33.santiago.web.authentication.AuthCodeAuthentication\x1a\x33.santiago.web.authentication.AuthenticationResponse\"\x00\x12R\n\x06logout\x12\".santiago.web.authentication.Empty\x1a\".santiago.web.authentication.Empty\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14\x61uthentication.proto\x12\x1bsantiago.web.authentication\"g\n\x06Player\x12\x11\n\tnucleusId\x18\x01 \x01(\x03\x12\x11\n\tpersonaId\x18\x02 \x01(\x03\x12\x37\n\x08platform\x18\x03 \x01(\x0e\x32%.santiago.web.authentication.Platform\"$\n\rMutatorString\x12\x13\n\x0bstringValue\x18\x01 \x01(\t\"\x97\x02\n\x16\x41uthCodeAuthentication\x12\x10\n\x08\x61uthCode\x18\x01 \x01(\t\x12\x37\n\x08platform\x18\x02 \x01(\x0e\x32%.santiago.web.authentication.Platform\x12\x44\n\x0bredirectUri\x18\x03 \x01(\x0b\x32*.santiago.web.authentication.MutatorStringH\x00\x88\x01\x01\x12\x19\n\x0cpatchVersion\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x1c\n\x0fprotocolVersion\x18\x05 \x01(\tH\x02\x88\x01\x01\x42\x0e\n\x0c_redirectUriB\x0f\n\r_patchVersionB\x12\n\x10_protocolVersion\"*\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\x12\r\n\x05nanos\x18\x02 \x01(\x05\"C\n\nTimeTravel\x12\x35\n\x06offset\x18\x01 \x01(\x0b\x32%.santiago.web.authentication.Duration\"t\n\x17ProtocolVersionOverride\x12\x10\n\x08original\x18\x01 \x01(\t\x12\x12\n\noverridden\x18\x02 \x01(\t\x12\x33\n\x06reason\x18\x03 \x01(\x0e\x32#.santiago.web.authentication.Reason\"\x07\n\x05\x45mpty\"\xcf\x02\n\x16\x41uthenticationResponse\x12\x11\n\tsessionId\x18\x01 \x01(\t\x12\x38\n\x06player\x18\x02 \x01(\x0b\x32#.santiago.web.authentication.PlayerH\x00\x88\x01\x01\x12@\n\ntimeTravel\x18\x03 \x01(\x0b\x32\'.santiago.web.authentication.TimeTravelH\x01\x88\x01\x01\x12Z\n\x17protocolVersionOverride\x18\x04 \x01(\x0b\x32\x34.santiago.web.authentication.ProtocolVersionOverrideH\x02\x88\x01\x01\x12\x14\n\x0cpatchVersion\x18\x05 \x01(\tB\t\n\x07_playerB\r\n\x0b_timeTravelB\x1a\n\x18_protocolVersionOverride*_\n\x08Platform\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x06\n\x02PC\x10\x01\x12\x07\n\x03PS4\x10\x02\x12\x0b\n\x07XBOXONE\x10\x03\x12\x07\n\x03PS5\x10\x04\x12\x08\n\x04XBSX\x10\x05\x12\n\n\x06\x43OMMON\x10\x06\x12\t\n\x05STEAM\x10\x07*\x1c\n\x06Reason\x12\x08\n\x04NONE\x10\x00\x12\x08\n\x04SYNC\x10\x01\x32\xe2\x01\n\x11WebAuthentication\x12y\n\x0bviaAuthCode\x12\x33.santiago.web.authentication.AuthCodeAuthentication\x1a\x33.santiago.web.authentication.AuthenticationResponse\"\x00\x12R\n\x06logout\x12\".santiago.web.authentication.Empty\x1a\".santiago.web.authentication.Empty\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'authentication_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_PLATFORM']._serialized_start=974
-  _globals['_PLATFORM']._serialized_end=1069
-  _globals['_REASON']._serialized_start=1071
-  _globals['_REASON']._serialized_end=1099
+  _globals['_PLATFORM']._serialized_start=1056
+  _globals['_PLATFORM']._serialized_end=1151
+  _globals['_REASON']._serialized_start=1153
+  _globals['_REASON']._serialized_end=1181
   _globals['_PLAYER']._serialized_start=53
   _globals['_PLAYER']._serialized_end=156
-  _globals['_AUTHCODEAUTHENTICATION']._serialized_start=159
-  _globals['_AUTHCODEAUTHENTICATION']._serialized_end=394
-  _globals['_DURATION']._serialized_start=396
-  _globals['_DURATION']._serialized_end=438
-  _globals['_TIMETRAVEL']._serialized_start=440
-  _globals['_TIMETRAVEL']._serialized_end=507
-  _globals['_PROTOCOLVERSIONOVERRIDE']._serialized_start=509
-  _globals['_PROTOCOLVERSIONOVERRIDE']._serialized_end=625
-  _globals['_EMPTY']._serialized_start=627
-  _globals['_EMPTY']._serialized_end=634
-  _globals['_AUTHENTICATIONRESPONSE']._serialized_start=637
-  _globals['_AUTHENTICATIONRESPONSE']._serialized_end=972
-  _globals['_WEBAUTHENTICATION']._serialized_start=1102
-  _globals['_WEBAUTHENTICATION']._serialized_end=1328
+  _globals['_MUTATORSTRING']._serialized_start=158
+  _globals['_MUTATORSTRING']._serialized_end=194
+  _globals['_AUTHCODEAUTHENTICATION']._serialized_start=197
+  _globals['_AUTHCODEAUTHENTICATION']._serialized_end=476
+  _globals['_DURATION']._serialized_start=478
+  _globals['_DURATION']._serialized_end=520
+  _globals['_TIMETRAVEL']._serialized_start=522
+  _globals['_TIMETRAVEL']._serialized_end=589
+  _globals['_PROTOCOLVERSIONOVERRIDE']._serialized_start=591
+  _globals['_PROTOCOLVERSIONOVERRIDE']._serialized_end=707
+  _globals['_EMPTY']._serialized_start=709
+  _globals['_EMPTY']._serialized_end=716
+  _globals['_AUTHENTICATIONRESPONSE']._serialized_start=719
+  _globals['_AUTHENTICATIONRESPONSE']._serialized_end=1054
+  _globals['_WEBAUTHENTICATION']._serialized_start=1184
+  _globals['_WEBAUTHENTICATION']._serialized_end=1410
 # @@protoc_insertion_point(module_scope)

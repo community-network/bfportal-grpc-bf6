@@ -42,6 +42,12 @@ class Player(_message.Message):
     platform: Platform
     def __init__(self, nucleusId: _Optional[int] = ..., personaId: _Optional[int] = ..., platform: _Optional[_Union[Platform, str]] = ...) -> None: ...
 
+class MutatorString(_message.Message):
+    __slots__ = ("stringValue",)
+    STRINGVALUE_FIELD_NUMBER: _ClassVar[int]
+    stringValue: str
+    def __init__(self, stringValue: _Optional[str] = ...) -> None: ...
+
 class AuthCodeAuthentication(_message.Message):
     __slots__ = ("authCode", "platform", "redirectUri", "patchVersion", "protocolVersion")
     AUTHCODE_FIELD_NUMBER: _ClassVar[int]
@@ -51,10 +57,10 @@ class AuthCodeAuthentication(_message.Message):
     PROTOCOLVERSION_FIELD_NUMBER: _ClassVar[int]
     authCode: str
     platform: Platform
-    redirectUri: str
+    redirectUri: MutatorString
     patchVersion: str
     protocolVersion: str
-    def __init__(self, authCode: _Optional[str] = ..., platform: _Optional[_Union[Platform, str]] = ..., redirectUri: _Optional[str] = ..., patchVersion: _Optional[str] = ..., protocolVersion: _Optional[str] = ...) -> None: ...
+    def __init__(self, authCode: _Optional[str] = ..., platform: _Optional[_Union[Platform, str]] = ..., redirectUri: _Optional[_Union[MutatorString, _Mapping]] = ..., patchVersion: _Optional[str] = ..., protocolVersion: _Optional[str] = ...) -> None: ...
 
 class Duration(_message.Message):
     __slots__ = ("seconds", "nanos")

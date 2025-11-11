@@ -1,6 +1,13 @@
 import asyncio
+import base64
 import aiohttp
 from urllib.parse import urlsplit, parse_qs
+
+import httpcore
+from google.protobuf.json_format import MessageToDict, MessageToJson
+
+from bfportal_grpc_bf6 import converter
+from bfportal_grpc_bf6.proto import authentication_pb2
 
 
 class Cookie:
@@ -24,5 +31,28 @@ async def getBf6GatewaySession(cookie: Cookie) -> str | None:
             return next(iter(access_code), None)
 
 
-# if __name__ == "__main__":
-#     asyncio.run(getBf6GatewaySession(Cookie()))
+async def get_web_access_token(access_token: str):
+    serialized_msg = authentication_pb2.AuthCodeAuthentication(
+        authCode=access_token,
+        platform=authentication_pb2.Platform.PC,
+        redirectUri=authentication_pb2.MutatorString(
+            stringValue="https://portal.battlefield.com/bf6"
+        ),
+    ).SerializeToString()
+    msg = converter.to_length_prefixed_msg(serialized_msg)
+    async with httpcore.AsyncConnectionPool(http2=True, keepalive_expiry=30) as session:
+        response = await session.request(
+            "POST",
+            "https://santiago-prod-wgw-envoy.ops.dice.se/santiago.web.authentication.WebAuthentication/viaAuthCode",
+            headers={
+                "content-type": "application/grpc-web+proto",
+                "x-dice-tenancy": "prod_default-prod_default-santiago-common",
+                "x-grpc-web": "1",
+                "x-user-agent": "grpc-web-javascript/0.1",
+            },
+            content=msg,
+        )
+        serialized_message = converter.from_length_prefixed_msg(response.content)
+        message = authentication_pb2.AuthenticationResponse()
+        message.ParseFromString(serialized_message)
+        return MessageToDict(message)
