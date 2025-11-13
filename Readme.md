@@ -5,10 +5,28 @@ we're making this public since you can read the javascript of the website and fi
 
 https://pypi.org/project/bfportal-grpc/
 
-> [!NOTE]
-> The javascript version of this library is still a work-in-progress and missing in the examples for that reason.
-
 ## example
+
+```js
+const accessToken = await getBf6GatewaySession({sid: "",remid: ""});
+const session = await getWebAccessToken(accessToken!);
+
+const channel = createChannel("https://santiago-prod-wgw-envoy.ops.dice.se");
+const client = createClientFactory().use((call, options) =>
+call.next(call.request, {
+    ...options,
+    metadata: Metadata(options.metadata)
+    .set('x-dice-tenancy', 'prod_default-prod_default-santiago-common')
+    .set('x-gateway-session-id', session.sessionId)
+    .set('x-grpc-web', '1')
+}),
+);
+
+const webPlayClient = client.create(WebPlayDefinition, channel);
+
+const response = await webPlayClient.getPlayElement({ id: "c7dff320-a543-11f0-8e01-a29ee389d262", includeDenied: true });
+console.log(response.playElement?.name);
+```
 
 ## python
 
