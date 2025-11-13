@@ -54,15 +54,15 @@ if __name__ == "__main__":
 
 ### current build method from proto to javascript via python
 
-needs proto-compile, which can be installed with:
+build with:
 ```shell
-pip3 install proto-compile
-```
-
-and build with:
-```shell
-proto-compile --clear-output-dirs --verbosity=1 ./proto ./src/proto grpc-web --grpc_web_out_options="import_style=typescript,mode=grpcweb"
-```
+./node_modules/.bin/grpc_tools_node_protoc \
+  --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto \
+  --ts_proto_out=./src/proto \
+  --ts_proto_opt=env=browser,outputServices=nice-grpc,outputServices=generic-definitions,outputJsonMethods=false,useExactTypes=false \
+  --proto_path=./proto \
+  ./proto/authentication.proto ./proto/localization.proto ./proto/play.proto ./proto/reporting.proto
+  ```
 
 building for python requires grpcio-tools, which can be installed with:
 ```shell
