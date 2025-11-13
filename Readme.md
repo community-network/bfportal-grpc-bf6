@@ -3,116 +3,12 @@
 This npm and python package can be used to directly call the https://portal.battlefield.com/ api.
 we're making this public since you can read the javascript of the website and figure this out yourself easily anyway, but we want to make sure only 1 github repo has to be kept in sync with the api and the rest that uses it just has to update a package and a few code changes to still have it work.
 
-https://www.npmjs.com/package/bfportal-grpc
-
 https://pypi.org/project/bfportal-grpc/
 
+> [!NOTE]
+> The javascript version of this library is still a work-in-progress and missing in the examples for that reason.
+
 ## example
-
-```js
-import { CommunityGamesClient, communitygames } from 'bfportal-grpc'
-
-const communityGames = new CommunityGamesClient(
-  'https://kingston-prod-wgw-envoy.ops.dice.se',
-  null
-)
-const metadata = {
-  'x-dice-tenancy': 'prod_default-prod_default-kingston-common',
-  'x-gateway-session-id': sessionId,
-  'x-grpc-web': '1',
-  'x-user-agent': 'grpc-web-javascript/0.1',
-}
-
-const request = new communitygames.GetPlaygroundRequest()
-request.setPlaygroundid(testPlayground)
-const response = await communityGames.getPlayground(request, metadata)
-const modRules = response
-  .getPlayground()
-  ?.getOriginalplayground()
-  ?.getModrules()
-  ?.getCompatiblerules()
-  ?.getRules()
-if (modRules instanceof Uint8Array) {
-  console.log(new TextDecoder().decode(modRules))
-}
-const playgroundName = response
-  .getPlayground()
-  ?.getOriginalplayground()
-  ?.getName()
-```
-
-the proto files are accessable directly via "node_modules/bfportal-grpc/proto/communitygames.proto" to for example decode to json:
-
-```js
-import { load } from 'protobufjs'
-
-// use reponse from previous example
-const root = await load('node_modules/bfportal-grpc/proto/communitygames.proto')
-const AwesomeMessage = root.lookupType(
-  'web.communitygames.PlaygroundInfoResponse'
-)
-const decoded = AwesomeMessage.decode(response.serializeBinary())
-const json_str = JSON.stringify(decoded, null, 4)
-```
-
-### non-async example
-
-```js
-import { CommunityGamesClient, communitygames } from 'bfportal-grpc'
-
-const communityGames = new CommunityGamesClient(
-  'https://kingston-prod-wgw-envoy.ops.dice.se',
-  null
-)
-const metadata = {
-  'x-dice-tenancy': 'prod_default-prod_default-kingston-common',
-  'x-gateway-session-id': sessionId,
-  'x-grpc-web': '1',
-  'x-user-agent': 'grpc-web-javascript/0.1',
-}
-
-const request = new communitygames.GetPlaygroundRequest()
-request.setPlaygroundid('bbe433c0-13fa-11ed-bc32-24a8c2c0764e')
-const call = communityGames.getPlayground(
-  request,
-  metadata,
-  (_err: grpcWeb.Error, response: communitygames.PlaygroundInfoResponse) => {
-    // console.log("err:", _err)
-    var modRules = response
-      .getPlayground()
-      ?.getOriginalplayground()
-      ?.getModrules()
-      ?.getCompatiblerules()
-      ?.getRules()
-    if (modRules instanceof Uint8Array) {
-      console.log(new TextDecoder().decode(modRules))
-    }
-
-    load(
-      'node_modules/bfportal-grpc/proto/communitygames.proto',
-      function (err, root) {
-        if (err) throw err
-        if (root == undefined) return
-
-        const AwesomeMessage = root.lookupType(
-          'web.communitygames.PlaygroundInfoResponse'
-        )
-
-        let decoded = AwesomeMessage.decode(response.serializeBinary())
-        fs.writeFile(
-          'test.json',
-          JSON.stringify(decoded, null, 4),
-          function (err: any) {
-            if (err) {
-              console.log(err)
-            }
-          }
-        )
-      }
-    )
-  }
-)
-```
 
 ## python
 
