@@ -137,7 +137,13 @@ async def main():
         response = await session.request(
             "POST",
             "https://santiago-prod-wgw-envoy.ops.dice.se/santiago.web.play.WebPlay/getPlayElement",
-            headers=request_metadata,
+            headers={
+                "content-type": "application/grpc-web+proto",
+                "x-dice-tenancy": "prod_default-prod_default-santiago-common",
+                "x-gateway-session-id": access_token,
+                "x-grpc-web": "1",
+                "x-user-agent": "grpc-web-javascript/0.1",
+            },
             content=msg,
         )
 
