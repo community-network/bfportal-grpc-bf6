@@ -116,36 +116,36 @@ const call = communityGames.getPlayground(
 
 ## python
 
-for python you can use the 'sonora' package to do grpc-web
+for python you can use the 'httpcore' package for http2
 
 ```py
-import asyncio
-import sonora.aio
-from bfportal_grpc import communitygames_pb2, communitygames_pb2_grpc, access_token, authentication_pb2, authentication_pb2_grpc
+from bfportal_grpc_bf6 import play_pb2
+from bfportal_grpc_bf6.converter import from_length_prefixed_msg, to_length_prefixed_msg
+import httpcore
 
 async def main():
     cookie = access_token.Cookie(sid="", remid="")
-    token = await access_token.getBf2042GatewaySession(cookie)
+    token = await access_token.getBf6GatewaySession(cookie)
+    res = await access_token.get_web_access_token(token)
+    access_token = res.get("sessionId", "")
 
-    async with sonora.aio.insecure_web_channel(
-        f"https://kingston-prod-wgw-envoy.ops.dice.se"
-    ) as channel:
-        stub = authentication_pb2_grpc.AuthenticationStub(channel)
-        auth_response: authentication_pb2.AuthResponse = await stub.viaAuthCode(authentication_pb2.AuthRequest(platform=1, authCode=token, redirectUri='https://portal.battlefield.com/'), metadata=(
-            ('x-dice-tenancy', 'prod_default-prod_default-kingston-common'),
-            ('x-grpc-web', '1'),
-            ('x-user-agent', 'grpc-web-javascript/0.1')
-        ))
+    serialized_msg = play_pb2.GetPlayElementRequest(
+        id=playground_id, includeDenied=True
+    ).SerializeToString()
 
-        stub = communitygames_pb2_grpc.CommunityGamesStub(channel)
-        response: communitygames_pb2.PlaygroundInfoResponse = await stub.getPlayground(communitygames_pb2.GetPlaygroundRequest(playgroundId="10992a10-461a-11ec-8de0-d9f491f92236"), metadata=(
-            ('x-dice-tenancy', 'prod_default-prod_default-kingston-common'),
-            ('x-gateway-session-id', auth_response.sessionId),
-            ('x-grpc-web', '1'),
-            ('x-user-agent', 'grpc-web-javascript/0.1')
-        ))
+    async with httpcore.AsyncConnectionPool(http2=True, keepalive_expiry=30) as session:
+        msg = to_length_prefixed_msg(serialized_msg)
+        response = await session.request(
+            "POST",
+            "https://santiago-prod-wgw-envoy.ops.dice.se/santiago.web.play.WebPlay/getPlayElement",
+            headers=request_metadata,
+            content=msg,
+        )
 
-        print(response.playground.originalPlayground.name)
+        serialized_message = from_length_prefixed_msg(response.content)
+        message = play_pb2.PlayElementResponse()
+        message.ParseFromString(serialized_message)
+        print(message.playElement.name)
 
 if __name__ == "__main__":
     asyncio.run(main())
