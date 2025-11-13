@@ -119,8 +119,7 @@ const call = communityGames.getPlayground(
 for python you can use the 'httpcore' package for http2
 
 ```py
-from bfportal_grpc_bf6 import play_pb2
-from bfportal_grpc_bf6.converter import from_length_prefixed_msg, to_length_prefixed_msg
+from bfportal_grpc_bf6 import play_pb2, converter, access_token
 import httpcore
 
 async def main():
@@ -134,7 +133,7 @@ async def main():
     ).SerializeToString()
 
     async with httpcore.AsyncConnectionPool(http2=True, keepalive_expiry=30) as session:
-        msg = to_length_prefixed_msg(serialized_msg)
+        msg = converter.to_length_prefixed_msg(serialized_msg)
         response = await session.request(
             "POST",
             "https://santiago-prod-wgw-envoy.ops.dice.se/santiago.web.play.WebPlay/getPlayElement",
@@ -142,7 +141,7 @@ async def main():
             content=msg,
         )
 
-        serialized_message = from_length_prefixed_msg(response.content)
+        serialized_message = converter.from_length_prefixed_msg(response.content)
         message = play_pb2.PlayElementResponse()
         message.ParseFromString(serialized_message)
         print(message.playElement.name)
