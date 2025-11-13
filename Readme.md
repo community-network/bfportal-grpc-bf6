@@ -9,24 +9,31 @@ https://pypi.org/project/bfportal-grpc/
 ## example
 
 ```js
-const accessToken = await getBf6GatewaySession({sid: "",remid: ""});
-const session = await getWebAccessToken(accessToken!);
+import { createChannel, Metadata, createClientFactory } from "nice-grpc-web";
+import { play, access_token } from "bfportal-grpc-bf6";
 
-const channel = createChannel("https://santiago-prod-wgw-envoy.ops.dice.se");
-const client = createClientFactory().use((call, options) =>
-call.next(call.request, {
-    ...options,
-    metadata: Metadata(options.metadata)
-    .set('x-dice-tenancy', 'prod_default-prod_default-santiago-common')
-    .set('x-gateway-session-id', session.sessionId)
-    .set('x-grpc-web', '1')
-}),
-);
+(async () => {
+  const accessToken = await getBf6GatewaySession({ sid: "", remid: "" });
+  const session = await access_token.getWebAccessToken(accessToken!);
 
-const webPlayClient = client.create(WebPlayDefinition, channel);
+  const channel = createChannel("https://santiago-prod-wgw-envoy.ops.dice.se");
+  const client = createClientFactory().use((call, options) =>
+    call.next(call.request, {
+      ...options,
+      metadata: Metadata(options.metadata)
+        .set('x-dice-tenancy', 'prod_default-prod_default-santiago-common')
+        .set('x-gateway-session-id', session.sessionId)
+        .set('x-grpc-web', '1')
+    }),
+  );
 
-const response = await webPlayClient.getPlayElement({ id: "c7dff320-a543-11f0-8e01-a29ee389d262", includeDenied: true });
-console.log(response.playElement?.name);
+  const webPlayClient = client.create(play.WebPlayDefinition, channel);
+
+  const response = await webPlayClient.getPlayElement({ id: "c7dff320-a543-11f0-8e01-a29ee389d262", includeDenied: true });
+  console.log(response.playElement?.name);
+})()
+
+
 ```
 
 ## python
@@ -41,7 +48,7 @@ async def main():
     cookie = access_token.Cookie(sid="", remid="")
     token = await access_token.getBf6GatewaySession(cookie)
     res = await access_token.get_web_access_token(token)
-    access_token = res.get("sessionId", "")
+    session_id = res.get("sessionId", "")
 
     serialized_msg = play_pb2.GetPlayElementRequest(
         id=playground_id, includeDenied=True
@@ -55,7 +62,7 @@ async def main():
             headers={
                 "content-type": "application/grpc-web+proto",
                 "x-dice-tenancy": "prod_default-prod_default-santiago-common",
-                "x-gateway-session-id": access_token,
+                "x-gateway-session-id": session_id,
                 "x-grpc-web": "1",
                 "x-user-agent": "grpc-web-javascript/0.1",
             },
