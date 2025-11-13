@@ -18,7 +18,7 @@ export const getBf6GatewaySession = async (cookie: Cookie): Promise<string | und
   }
   const url: URL = new URL(redirect);
   const query = new URLSearchParams(url.searchParams);
-  return query.get("fid") || undefined
+  return query.get("code") || undefined
 }
 
 export const getWebAccessToken = async (accessToken: string): Promise<AuthenticationResponse> => {
