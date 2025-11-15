@@ -3,10 +3,10 @@
 This npm and python package can be used to directly call the https://portal.battlefield.com/ api.
 we're making this public since you can read the javascript of the website and figure this out yourself easily anyway, but we want to make sure only 1 github repo has to be kept in sync with the api and the rest that uses it just has to update a package and a few code changes to still have it work.
 
-https://www.npmjs.com/package/bfportal-grpc-bf6
-https://pypi.org/project/bfportal-grpc/
+https://www.npmjs.com/package/bfportal-grpc-bf6\
+https://pypi.org/project/bfportal_grpc_bf6/
 
-## example
+## Typescript usage example
 
 ```js
 import { createChannel, Metadata, createClientFactory } from "nice-grpc-web";
@@ -36,9 +36,7 @@ import { play, access_token } from "bfportal-grpc-bf6";
 
 ```
 
-## python
-
-for python you can use the 'httpcore' package for http2
+## Python usage example
 
 ```py
 from bfportal_grpc_bf6 import play_pb2, converter, access_token
@@ -78,9 +76,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### current build method from proto to javascript via python
+### Building the proto translations
 
-build with:
+Build the typescript variant with with:
 ```shell
 ./node_modules/.bin/grpc_tools_node_protoc \
   --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto \
@@ -90,21 +88,21 @@ build with:
   ./proto/authentication.proto ./proto/localization.proto ./proto/play.proto ./proto/reporting.proto
   ```
 
-building for python requires grpcio-tools, which can be installed with:
+Building for python requires grpcio-tools, which can be installed with:
 ```shell
 pip3 install grpcio-tools
 ```
 
-and build with:
+And can be build with:
 ```shell
 poetry run compile-proto
 ```
 
-python package used: https://github.com/romnn/proto-compile
+Python package used: https://github.com/romnn/proto-compile
 
 ### Pushing your changes
 
-package versions can be made with `npm run build` and `npm version patch` `git push --tags origin main` to release.
+Package versions can be made with `npm run build` and `npm version patch` `git push --tags origin main` to release.
 for python `poetry build`.
 
-example library used: https://github.com/tomchen/example-typescript-package
+Example library used for this project: https://github.com/tomchen/example-typescript-package
