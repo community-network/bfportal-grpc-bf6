@@ -1,6 +1,3 @@
-import base64
-import json
-import struct
 from bfportal_grpc_bf6 import play_pb2
 import httpcore
 
@@ -27,11 +24,3 @@ async def test_get_playground(playground_id, request_metadata):
         message = play_pb2.PlayElementResponse()
         message.ParseFromString(serialized_message)
         assert message.playElement.name == "Breakthrough Solo Bots"
-
-
-# async def test_share_playground(playground_id, request_metadata, stub):
-#     response: communitygames_pb2.SharePlaygroundResponse = await stub.sharePlayground(
-#         communitygames_pb2.SharePlaygroundRequest(playgroundId=playground_id),
-#         metadata=request_metadata,
-#     )
-#     assert response.shortCode.code == "aau5d1"

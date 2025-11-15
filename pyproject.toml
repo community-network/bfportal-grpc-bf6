@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "bfportal_grpc_bf6"
-version = "0.1.8"
+version = "0.1.9"
 description = "bf6 portal web grpc as python package "
 readme = "Readme.md"
 authors = ["iiTzArcur <arcur@gametools.network>"]
