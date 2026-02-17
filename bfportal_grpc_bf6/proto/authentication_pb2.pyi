@@ -42,11 +42,11 @@ class Player(_message.Message):
     platform: Platform
     def __init__(self, nucleusId: _Optional[int] = ..., personaId: _Optional[int] = ..., platform: _Optional[_Union[Platform, str]] = ...) -> None: ...
 
-class MutatorString(_message.Message):
-    __slots__ = ("stringValue",)
-    STRINGVALUE_FIELD_NUMBER: _ClassVar[int]
-    stringValue: str
-    def __init__(self, stringValue: _Optional[str] = ...) -> None: ...
+class StringValue(_message.Message):
+    __slots__ = ("value",)
+    VALUE_FIELD_NUMBER: _ClassVar[int]
+    value: str
+    def __init__(self, value: _Optional[str] = ...) -> None: ...
 
 class AuthCodeAuthentication(_message.Message):
     __slots__ = ("authCode", "platform", "redirectUri", "patchVersion", "protocolVersion")
@@ -57,10 +57,10 @@ class AuthCodeAuthentication(_message.Message):
     PROTOCOLVERSION_FIELD_NUMBER: _ClassVar[int]
     authCode: str
     platform: Platform
-    redirectUri: MutatorString
-    patchVersion: str
-    protocolVersion: str
-    def __init__(self, authCode: _Optional[str] = ..., platform: _Optional[_Union[Platform, str]] = ..., redirectUri: _Optional[_Union[MutatorString, _Mapping]] = ..., patchVersion: _Optional[str] = ..., protocolVersion: _Optional[str] = ...) -> None: ...
+    redirectUri: StringValue
+    patchVersion: StringValue
+    protocolVersion: StringValue
+    def __init__(self, authCode: _Optional[str] = ..., platform: _Optional[_Union[Platform, str]] = ..., redirectUri: _Optional[_Union[StringValue, _Mapping]] = ..., patchVersion: _Optional[_Union[StringValue, _Mapping]] = ..., protocolVersion: _Optional[_Union[StringValue, _Mapping]] = ...) -> None: ...
 
 class Duration(_message.Message):
     __slots__ = ("seconds", "nanos")

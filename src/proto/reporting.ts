@@ -32,6 +32,10 @@ export enum ReportingErrorType {
   UNRECOGNIZED = -1,
 }
 
+export interface StringValue {
+  value: string;
+}
+
 export interface Player {
   nucleusId: number;
   personaId: number;
@@ -40,12 +44,12 @@ export interface Player {
 
 export interface ReportPlayerRequest {
   offendingPlayer?: Player | undefined;
-  subject?: string | undefined;
+  subject?: StringValue | undefined;
 }
 
 export interface ReportExperienceRequest {
   experienceId: string;
-  subject?: string | undefined;
+  subject?: StringValue | undefined;
 }
 
 export interface ReportingResponse {
@@ -61,6 +65,52 @@ export interface CreatePetitionError {
   errorType: ReportingErrorType;
   errorMessage: string;
 }
+
+function createBaseStringValue(): StringValue {
+  return { value: "" };
+}
+
+export const StringValue: MessageFns<StringValue> = {
+  encode(message: StringValue, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.value !== "") {
+      writer.uint32(10).string(message.value);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): StringValue {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseStringValue();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.value = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  create(base?: DeepPartial<StringValue>): StringValue {
+    return StringValue.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<StringValue>): StringValue {
+    const message = createBaseStringValue();
+    message.value = object.value ?? "";
+    return message;
+  },
+};
 
 function createBasePlayer(): Player {
   return { nucleusId: 0, personaId: 0, platform: 0 };
@@ -142,7 +192,7 @@ export const ReportPlayerRequest: MessageFns<ReportPlayerRequest> = {
       Player.encode(message.offendingPlayer, writer.uint32(10).fork()).join();
     }
     if (message.subject !== undefined) {
-      writer.uint32(18).string(message.subject);
+      StringValue.encode(message.subject, writer.uint32(18).fork()).join();
     }
     return writer;
   },
@@ -167,7 +217,7 @@ export const ReportPlayerRequest: MessageFns<ReportPlayerRequest> = {
             break;
           }
 
-          message.subject = reader.string();
+          message.subject = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -187,7 +237,9 @@ export const ReportPlayerRequest: MessageFns<ReportPlayerRequest> = {
     message.offendingPlayer = (object.offendingPlayer !== undefined && object.offendingPlayer !== null)
       ? Player.fromPartial(object.offendingPlayer)
       : undefined;
-    message.subject = object.subject ?? undefined;
+    message.subject = (object.subject !== undefined && object.subject !== null)
+      ? StringValue.fromPartial(object.subject)
+      : undefined;
     return message;
   },
 };
@@ -202,7 +254,7 @@ export const ReportExperienceRequest: MessageFns<ReportExperienceRequest> = {
       writer.uint32(10).string(message.experienceId);
     }
     if (message.subject !== undefined) {
-      writer.uint32(18).string(message.subject);
+      StringValue.encode(message.subject, writer.uint32(18).fork()).join();
     }
     return writer;
   },
@@ -227,7 +279,7 @@ export const ReportExperienceRequest: MessageFns<ReportExperienceRequest> = {
             break;
           }
 
-          message.subject = reader.string();
+          message.subject = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -245,7 +297,9 @@ export const ReportExperienceRequest: MessageFns<ReportExperienceRequest> = {
   fromPartial(object: DeepPartial<ReportExperienceRequest>): ReportExperienceRequest {
     const message = createBaseReportExperienceRequest();
     message.experienceId = object.experienceId ?? "";
-    message.subject = object.subject ?? undefined;
+    message.subject = (object.subject !== undefined && object.subject !== null)
+      ? StringValue.fromPartial(object.subject)
+      : undefined;
     return message;
   },
 };

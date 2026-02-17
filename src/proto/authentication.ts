@@ -36,16 +36,16 @@ export interface Player {
   platform: Platform;
 }
 
-export interface MutatorString {
-  stringValue: string;
+export interface StringValue {
+  value: string;
 }
 
 export interface AuthCodeAuthentication {
   authCode: string;
   platform: Platform;
-  redirectUri?: MutatorString | undefined;
-  patchVersion?: string | undefined;
-  protocolVersion?: string | undefined;
+  redirectUri?: StringValue | undefined;
+  patchVersion?: StringValue | undefined;
+  protocolVersion?: StringValue | undefined;
 }
 
 export interface Duration {
@@ -144,22 +144,22 @@ export const Player: MessageFns<Player> = {
   },
 };
 
-function createBaseMutatorString(): MutatorString {
-  return { stringValue: "" };
+function createBaseStringValue(): StringValue {
+  return { value: "" };
 }
 
-export const MutatorString: MessageFns<MutatorString> = {
-  encode(message: MutatorString, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.stringValue !== "") {
-      writer.uint32(10).string(message.stringValue);
+export const StringValue: MessageFns<StringValue> = {
+  encode(message: StringValue, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.value !== "") {
+      writer.uint32(10).string(message.value);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): MutatorString {
+  decode(input: BinaryReader | Uint8Array, length?: number): StringValue {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMutatorString();
+    const message = createBaseStringValue();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -168,7 +168,7 @@ export const MutatorString: MessageFns<MutatorString> = {
             break;
           }
 
-          message.stringValue = reader.string();
+          message.value = reader.string();
           continue;
         }
       }
@@ -180,12 +180,12 @@ export const MutatorString: MessageFns<MutatorString> = {
     return message;
   },
 
-  create(base?: DeepPartial<MutatorString>): MutatorString {
-    return MutatorString.fromPartial(base ?? {});
+  create(base?: DeepPartial<StringValue>): StringValue {
+    return StringValue.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<MutatorString>): MutatorString {
-    const message = createBaseMutatorString();
-    message.stringValue = object.stringValue ?? "";
+  fromPartial(object: DeepPartial<StringValue>): StringValue {
+    const message = createBaseStringValue();
+    message.value = object.value ?? "";
     return message;
   },
 };
@@ -203,13 +203,13 @@ export const AuthCodeAuthentication: MessageFns<AuthCodeAuthentication> = {
       writer.uint32(16).int32(message.platform);
     }
     if (message.redirectUri !== undefined) {
-      MutatorString.encode(message.redirectUri, writer.uint32(26).fork()).join();
+      StringValue.encode(message.redirectUri, writer.uint32(26).fork()).join();
     }
     if (message.patchVersion !== undefined) {
-      writer.uint32(34).string(message.patchVersion);
+      StringValue.encode(message.patchVersion, writer.uint32(34).fork()).join();
     }
     if (message.protocolVersion !== undefined) {
-      writer.uint32(42).string(message.protocolVersion);
+      StringValue.encode(message.protocolVersion, writer.uint32(42).fork()).join();
     }
     return writer;
   },
@@ -242,7 +242,7 @@ export const AuthCodeAuthentication: MessageFns<AuthCodeAuthentication> = {
             break;
           }
 
-          message.redirectUri = MutatorString.decode(reader, reader.uint32());
+          message.redirectUri = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 4: {
@@ -250,7 +250,7 @@ export const AuthCodeAuthentication: MessageFns<AuthCodeAuthentication> = {
             break;
           }
 
-          message.patchVersion = reader.string();
+          message.patchVersion = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 5: {
@@ -258,7 +258,7 @@ export const AuthCodeAuthentication: MessageFns<AuthCodeAuthentication> = {
             break;
           }
 
-          message.protocolVersion = reader.string();
+          message.protocolVersion = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -278,10 +278,14 @@ export const AuthCodeAuthentication: MessageFns<AuthCodeAuthentication> = {
     message.authCode = object.authCode ?? "";
     message.platform = object.platform ?? 0;
     message.redirectUri = (object.redirectUri !== undefined && object.redirectUri !== null)
-      ? MutatorString.fromPartial(object.redirectUri)
+      ? StringValue.fromPartial(object.redirectUri)
       : undefined;
-    message.patchVersion = object.patchVersion ?? undefined;
-    message.protocolVersion = object.protocolVersion ?? undefined;
+    message.patchVersion = (object.patchVersion !== undefined && object.patchVersion !== null)
+      ? StringValue.fromPartial(object.patchVersion)
+      : undefined;
+    message.protocolVersion = (object.protocolVersion !== undefined && object.protocolVersion !== null)
+      ? StringValue.fromPartial(object.protocolVersion)
+      : undefined;
     return message;
   },
 };

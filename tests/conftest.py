@@ -26,4 +26,4 @@ def request_metadata(gateway_session_id):
 
 @pytest.fixture()
 def playground_id() -> str:
-    return "4e8b2f70-a742-11f0-a8ef-d7e10093ca02"
+    return "8692d5f0-b069-11f0-85fe-fb179c1fb8e6"

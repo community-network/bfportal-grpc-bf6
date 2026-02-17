@@ -1,0 +1,308 @@
+{
+    "playElement": {
+        "id": "8692d5f0-b069-11f0-85fe-fb179c1fb8e6",
+        "designId": "481b9f50-d07b-11f0-b16c-a636d82158b6",
+        "creator": {
+            "playerCreator": {
+                "player": {
+                    "nucleusId": "2388094483",
+                    "personaId": "790388244",
+                    "platform": "PC"
+                }
+            }
+        },
+        "name": "Snipers vs Runners v1",
+        "description": {
+            "value": "Runners navigate obstacles while snipers hunt them. Features: 30-second pre-game lobby, balanced team assignment, 5 minute rounds, spectator system, and sudden death finale. Polished gameplay loop from start to finish."
+        },
+        "playElementSettings": {},
+        "publishStateType": "PUBLISH_STATE_TYPE_PUBLISHED",
+        "thumbnailUrl": {
+            "value": "https://cdn.mcr.ea.com/172/images-users/3cec0794fc2e3e9a2a56b6c00699e930c5f1a1561d199c41f3ab6af79c3b7916/f0075b25-6cdf-4d48-8b68-e1a21d10889f/1764788750-352x248-352-248-3baff11b-4223-4909-9902-20c84d07be20.png"
+        },
+        "moderationState": "MODERATION_STATE_TYPE_IN_REVIEW",
+        "shortCode": {
+            "value": "yt6xx"
+        }
+    },
+    "playElementDesign": {
+        "designId": "481b9f50-d07b-11f0-b16c-a636d82158b6",
+        "designName": "Remix for Coupe(Snipers vs Runners v1)",
+        "designMetadata": {
+            "progressionMode": {
+                "value": "portal-unranked"
+            }
+        },
+        "mapRotation": {
+            "maps": [
+                {
+                    "levelName": "MP_FireStorm",
+                    "levelLocation": "ModBuilderCustom0",
+                    "rounds": 1,
+                    "allowedSpectators": 4,
+                    "teamComposition": {
+                        "teams": [
+                            {
+                                "teamId": 1,
+                                "capacity": 8
+                            },
+                            {
+                                "teamId": 2,
+                                "capacity": 24
+                            }
+                        ]
+                    }
+                }
+            ],
+            "attributes": {}
+        },
+        "mutators": [
+            {
+                "name": "MaxPlayerCount_PerTeam",
+                "category": "WA_ST_Teams",
+                "kind": {
+                    "mutatorSparseInt": {
+                        "defaultValue": 8,
+                        "size": 3,
+                        "sparseValues": {
+                            "index": 2,
+                            "value": 24
+                        }
+                    }
+                },
+                "id": "2976738751"
+            },
+            {
+                "name": "FallDamageHeightMultiplier_PerTeam",
+                "category": "WA_ST_Soldier",
+                "kind": {
+                    "mutatorSparseFloat": {
+                        "size": 3
+                    }
+                },
+                "id": "2759418217"
+            },
+            {
+                "name": "SquadReviveAllowed_PerTeam",
+                "category": "WA_ST_Teams",
+                "kind": {
+                    "mutatorSparseBoolean": {
+                        "size": 3
+                    }
+                },
+                "id": "2270279538"
+            },
+            {
+                "name": "CompassAllowed_PerTeam",
+                "category": "WA_ST_UI",
+                "kind": {
+                    "mutatorSparseBoolean": {
+                        "size": 3
+                    }
+                },
+                "id": "2005480485"
+            },
+            {
+                "name": "MinimapAllowed_PerTeam",
+                "category": "WA_ST_UI",
+                "kind": {
+                    "mutatorSparseBoolean": {
+                        "size": 3
+                    }
+                },
+                "id": "588019110"
+            },
+            {
+                "name": "SoldierRespawnDelayMultiplier_PerTeam",
+                "category": "WA_ST_Soldier,WA_GM_Custom",
+                "kind": {
+                    "mutatorSparseFloat": {
+                        "size": 3
+                    }
+                },
+                "id": "2390282071"
+            },
+            {
+                "name": "SoldierRegenRateMultiplier_PerTeam",
+                "category": "WA_ST_Soldier",
+                "kind": {
+                    "mutatorSparseFloat": {
+                        "defaultValue": 2.0,
+                        "size": 3
+                    }
+                },
+                "id": "2317849662"
+            },
+            {
+                "name": "ScoreboardType",
+                "category": "WA_ST_Gameplay,WA_GM_Custom",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 3
+                    }
+                },
+                "id": "2749696498"
+            },
+            {
+                "name": "AI_ManDownExperienceType_PerTeam",
+                "category": "WA_ST_AI,WA_GM_Custom",
+                "kind": {
+                    "mutatorSparseInt": {
+                        "defaultValue": 1,
+                        "size": 3
+                    }
+                },
+                "id": "4119966672"
+            },
+            {
+                "name": "AimAssistSlowdownEnabled",
+                "category": "WA_ST_Gameplay",
+                "kind": {
+                    "mutatorBoolean": {}
+                },
+                "id": "2699039760"
+            },
+            {
+                "name": "ModBuilder_GameMode",
+                "category": "WA_ST_Settings,WA_ST_ExtraSettings,WA_GM_Custom",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 2
+                    }
+                },
+                "id": "2047132398"
+            },
+            {
+                "name": "AimAssistSnapCapsuleRadiusMultiplier",
+                "kind": {
+                    "mutatorFloat": {
+                        "value": 1.0
+                    }
+                },
+                "id": "3985279000"
+            },
+            {
+                "name": "FriendlyFireDamageReflectionMaxTeamKills",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 2
+                    }
+                },
+                "id": "482929310"
+            },
+            {
+                "name": "fPortalExperienceGameTime",
+                "category": "WA_GM_Custom,WA_ST_Settings",
+                "kind": {
+                    "mutatorFloat": {
+                        "value": 60.0
+                    }
+                },
+                "id": "1796950356"
+            },
+            {
+                "name": "SpawnBalancing_GamemodeStartTimer",
+                "category": "WA_ST_ExtraSettings",
+                "kind": {
+                    "mutatorFloat": {
+                        "value": -1.0
+                    }
+                },
+                "id": "722396075"
+            },
+            {
+                "name": "Portal_UsePortalRingOfFireMutators",
+                "kind": {
+                    "mutatorBoolean": {
+                        "boolValue": true
+                    }
+                },
+                "id": "3464890382"
+            },
+            {
+                "name": "BR_LobbyPlayerCountToSpeedUpTimer",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 100
+                    }
+                },
+                "id": "1896590494"
+            },
+            {
+                "name": "SpawnBalancing_GamemodePlayerCountRatio",
+                "kind": {
+                    "mutatorFloat": {
+                        "value": 1.0
+                    }
+                },
+                "id": "4132993187"
+            },
+            {
+                "name": "CQ_iLobbyPlayerCountStartTimer",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 20
+                    }
+                },
+                "id": "2978413856"
+            },
+            {
+                "name": "BT_iLobbyPlayerCountStartTimer",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 20
+                    }
+                },
+                "id": "1962565"
+            },
+            {
+                "name": "Rush_iLobbyPlayerCountStartTimer",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 20
+                    }
+                },
+                "id": "1463281593"
+            },
+            {
+                "name": "SpawnBalancing_Mica_MaxBackfillAICount",
+                "kind": {
+                    "mutatorInt": {
+                        "value": 12
+                    }
+                },
+                "id": "4222134728"
+            },
+            {
+                "name": "NewServerFetchQuestDefinitionsAtEor",
+                "category": "WA_ST_Settings",
+                "kind": {
+                    "mutatorBoolean": {
+                        "boolValue": true
+                    }
+                },
+                "id": "3742609123"
+            },
+            {
+                "name": "SquadSpawnMode_PerTeam",
+                "category": "WA_ST_Teams,WA_GM_Custom,WA_GM_Conquest,WA_GM_Rush,WA_GM_Breakthrough",
+                "kind": {
+                    "mutatorSparseInt": {
+                        "defaultValue": 3,
+                        "size": 3
+                    }
+                },
+                "id": "1476270551"
+            }
+        ],
+        "licenseRequirements": [
+            "premium_san",
+            "multiplayer",
+            "premium_subscription"
+        ],
+        "blazeSettings": {}
+    },
+    "progressionMode": {
+        "value": "portal-unranked"
+    }
+}

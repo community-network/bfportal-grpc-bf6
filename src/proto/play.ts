@@ -234,7 +234,7 @@ export interface PlayExperience {
   /** e.g. Some Crazy nomad Conquest */
   name: string;
   /** e.g. Join the Battlefield but make sure you're always on the move because anyone standing still for more than 10 seconds gets their computer fork bombed. */
-  description?: string | undefined;
+  description?: StringValue | undefined;
   playElementDesign?:
     | PlayElementDesign
     | undefined;
@@ -249,13 +249,13 @@ export interface PlayExperience {
     | undefined;
   /** creator-selected image */
   thumbnailUrl?:
-    | string
+    | StringValue
     | undefined;
   /** the creator is a regular player account */
   isUgc: boolean;
   /** short code for ugc experience */
   shortCode?:
-    | string
+    | StringValue
     | undefined;
   /** DRAFT, PUBLISHED, ... */
   publishState: PublishStateType;
@@ -274,8 +274,8 @@ export interface PlayExperienceQuery {
   playerCreatorEq?: PlayerCreator | undefined;
   ordering: ExperienceOrderBy;
   pageSize: number;
-  namePrefix?: string | undefined;
-  shortCode?: string | undefined;
+  namePrefix?: StringValue | undefined;
+  shortCode?: StringValue | undefined;
 }
 
 export interface ListExperiencesRequest {
@@ -372,7 +372,7 @@ export interface ModRulesDefinition {
 export interface AvailableTag {
   id: string;
   metadata?: Metadata | undefined;
-  category?: string | undefined;
+  category?: StringValue | undefined;
 }
 
 export interface AvailableMapEntry {
@@ -444,7 +444,7 @@ export interface AvailableMutatorSparseFloatValues {
 
 export interface CreatePlayElementRequest {
   name: string;
-  description?: string | undefined;
+  description?: StringValue | undefined;
   designMetadata?: DesignMetadata | undefined;
   mapRotation?: MapRotation | undefined;
   mutators: Mutator[];
@@ -452,8 +452,8 @@ export interface CreatePlayElementRequest {
   originalModRules: Uint8Array;
   playElementSettings?: PlayElementSettings | undefined;
   publishState: PublishStateType;
-  modLevelDataId?: string | undefined;
-  thumbnailUrl?: string | undefined;
+  modLevelDataId?: StringValue | undefined;
+  thumbnailUrl?: StringValue | undefined;
   attachments: Attachment[];
 }
 
@@ -484,7 +484,7 @@ export interface AvailableMutatorIntValues {
 export interface UpdatePlayElementRequest {
   id: string;
   name: string;
-  description?: string | undefined;
+  description?: StringValue | undefined;
   designMetadata?: DesignMetadata | undefined;
   mapRotation?: MapRotation | undefined;
   mutators: Mutator[];
@@ -492,15 +492,19 @@ export interface UpdatePlayElementRequest {
   originalModRules: Uint8Array;
   playElementSettings?: PlayElementSettings | undefined;
   publishState: PublishStateType;
-  modLevelDataId?: string | undefined;
-  thumbnailUrl?: string | undefined;
+  modLevelDataId?: StringValue | undefined;
+  thumbnailUrl?: StringValue | undefined;
   attachments: Attachment[];
 }
 
 export interface PlayElementResponse {
   playElement?: PlayElement | undefined;
   playElementDesign?: PlayElementDesign | undefined;
-  progressionMode?: string | undefined;
+  progressionMode?: StringValue | undefined;
+}
+
+export interface StringValue {
+  value: string;
 }
 
 export interface PlayElement {
@@ -508,7 +512,7 @@ export interface PlayElement {
   designId: string;
   creator?: Creator | undefined;
   name: string;
-  description?: string | undefined;
+  description?: StringValue | undefined;
   created?: number | undefined;
   updated?: number | undefined;
   playElementSettings?: PlayElementSettings | undefined;
@@ -519,11 +523,11 @@ export interface PlayElement {
   /** if not public yet */
   publishAt?: number | undefined;
   thumbnailUrl?:
-    | string
+    | StringValue
     | undefined;
-  /** Fan Care status */
+  /** /** Fan Care status * / */
   moderationState: ModerationStateType;
-  shortCode?: string | undefined;
+  shortCode?: StringValue | undefined;
 }
 
 export interface PlayElementDesign {
@@ -539,7 +543,7 @@ export interface PlayElementDesign {
   modRules?: ModRules | undefined;
   tags: Tag[];
   blazeSettings?: BlazePlayElementDesignSettings | undefined;
-  modLevelDataId?: string | undefined;
+  modLevelDataId?: StringValue | undefined;
   attachments: Attachment[];
   groupLicenses: string[];
   attachmentCompileStatus: AttachmentCompileStatus;
@@ -602,7 +606,7 @@ export interface Attachment {
   /** n.b. version string may have a different meaning or format depending on type of attachment. */
   version: string;
   filename?:
-    | string
+    | StringValue
     | undefined;
   /** Means "this must go through some compilation/transformation to be usable". If false, the "original" variant can be used directly */
   isProcessable: boolean;
@@ -610,12 +614,12 @@ export interface Attachment {
   attachmentData?: AttachmentData | undefined;
   attachmentType: AttachmentType;
   /** place to put stuff like map rotation index -- misc future-proofing.  Format TBD, maybe CSV or queryParam format like MapEntry metadata */
-  metadata?: string | undefined;
+  metadata?: StringValue | undefined;
   errors: string[];
 }
 
 export interface PlayElementSettings {
-  secret?: string | undefined;
+  secret?: StringValue | undefined;
   messages: GameServerMessage[];
   /** creator has allowed copying experience underlying data */
   allowCopies: boolean;
@@ -627,7 +631,7 @@ export interface GameServerMessage {
 }
 
 export interface DesignMetadata {
-  progressionMode?: string | undefined;
+  progressionMode?: StringValue | undefined;
   firstPartyMetadata: FirstPartyMetadata[];
 }
 
@@ -740,7 +744,7 @@ export interface IncompatibleModRules {
 
 export interface ErrorModRules {
   original: Uint8Array;
-  errorMessage?: string | undefined;
+  errorMessage?: StringValue | undefined;
 }
 
 export interface AssetCategory {
@@ -2003,7 +2007,7 @@ export const PlayExperience: MessageFns<PlayExperience> = {
       writer.uint32(26).string(message.name);
     }
     if (message.description !== undefined) {
-      writer.uint32(34).string(message.description);
+      StringValue.encode(message.description, writer.uint32(34).fork()).join();
     }
     if (message.playElementDesign !== undefined) {
       PlayElementDesign.encode(message.playElementDesign, writer.uint32(42).fork()).join();
@@ -2018,13 +2022,13 @@ export const PlayExperience: MessageFns<PlayExperience> = {
       writer.uint32(64).uint32(message.publishAt);
     }
     if (message.thumbnailUrl !== undefined) {
-      writer.uint32(74).string(message.thumbnailUrl);
+      StringValue.encode(message.thumbnailUrl, writer.uint32(74).fork()).join();
     }
     if (message.isUgc !== false) {
       writer.uint32(80).bool(message.isUgc);
     }
     if (message.shortCode !== undefined) {
-      writer.uint32(90).string(message.shortCode);
+      StringValue.encode(message.shortCode, writer.uint32(90).fork()).join();
     }
     if (message.publishState !== 0) {
       writer.uint32(96).int32(message.publishState);
@@ -2068,7 +2072,7 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.description = reader.string();
+          message.description = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 5: {
@@ -2108,7 +2112,7 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.thumbnailUrl = reader.string();
+          message.thumbnailUrl = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 10: {
@@ -2124,7 +2128,7 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.shortCode = reader.string();
+          message.shortCode = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 12: {
@@ -2154,16 +2158,22 @@ export const PlayExperience: MessageFns<PlayExperience> = {
       ? Creator.fromPartial(object.creator)
       : undefined;
     message.name = object.name ?? "";
-    message.description = object.description ?? undefined;
+    message.description = (object.description !== undefined && object.description !== null)
+      ? StringValue.fromPartial(object.description)
+      : undefined;
     message.playElementDesign = (object.playElementDesign !== undefined && object.playElementDesign !== null)
       ? PlayElementDesign.fromPartial(object.playElementDesign)
       : undefined;
     message.playerCount = object.playerCount ?? undefined;
     message.likes = object.likes ?? undefined;
     message.publishAt = object.publishAt ?? undefined;
-    message.thumbnailUrl = object.thumbnailUrl ?? undefined;
+    message.thumbnailUrl = (object.thumbnailUrl !== undefined && object.thumbnailUrl !== null)
+      ? StringValue.fromPartial(object.thumbnailUrl)
+      : undefined;
     message.isUgc = object.isUgc ?? false;
-    message.shortCode = object.shortCode ?? undefined;
+    message.shortCode = (object.shortCode !== undefined && object.shortCode !== null)
+      ? StringValue.fromPartial(object.shortCode)
+      : undefined;
     message.publishState = object.publishState ?? 0;
     return message;
   },
@@ -2269,10 +2279,10 @@ export const PlayExperienceQuery: MessageFns<PlayExperienceQuery> = {
       writer.uint32(56).int32(message.pageSize);
     }
     if (message.namePrefix !== undefined) {
-      writer.uint32(66).string(message.namePrefix);
+      StringValue.encode(message.namePrefix, writer.uint32(66).fork()).join();
     }
     if (message.shortCode !== undefined) {
-      writer.uint32(74).string(message.shortCode);
+      StringValue.encode(message.shortCode, writer.uint32(74).fork()).join();
     }
     return writer;
   },
@@ -2355,7 +2365,7 @@ export const PlayExperienceQuery: MessageFns<PlayExperienceQuery> = {
             break;
           }
 
-          message.namePrefix = reader.string();
+          message.namePrefix = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 9: {
@@ -2363,7 +2373,7 @@ export const PlayExperienceQuery: MessageFns<PlayExperienceQuery> = {
             break;
           }
 
-          message.shortCode = reader.string();
+          message.shortCode = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -2389,8 +2399,12 @@ export const PlayExperienceQuery: MessageFns<PlayExperienceQuery> = {
       : undefined;
     message.ordering = object.ordering ?? 0;
     message.pageSize = object.pageSize ?? 0;
-    message.namePrefix = object.namePrefix ?? undefined;
-    message.shortCode = object.shortCode ?? undefined;
+    message.namePrefix = (object.namePrefix !== undefined && object.namePrefix !== null)
+      ? StringValue.fromPartial(object.namePrefix)
+      : undefined;
+    message.shortCode = (object.shortCode !== undefined && object.shortCode !== null)
+      ? StringValue.fromPartial(object.shortCode)
+      : undefined;
     return message;
   },
 };
@@ -3446,7 +3460,7 @@ export const AvailableTag: MessageFns<AvailableTag> = {
       Metadata.encode(message.metadata, writer.uint32(18).fork()).join();
     }
     if (message.category !== undefined) {
-      writer.uint32(26).string(message.category);
+      StringValue.encode(message.category, writer.uint32(26).fork()).join();
     }
     return writer;
   },
@@ -3479,7 +3493,7 @@ export const AvailableTag: MessageFns<AvailableTag> = {
             break;
           }
 
-          message.category = reader.string();
+          message.category = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -3500,7 +3514,9 @@ export const AvailableTag: MessageFns<AvailableTag> = {
     message.metadata = (object.metadata !== undefined && object.metadata !== null)
       ? Metadata.fromPartial(object.metadata)
       : undefined;
-    message.category = object.category ?? undefined;
+    message.category = (object.category !== undefined && object.category !== null)
+      ? StringValue.fromPartial(object.category)
+      : undefined;
     return message;
   },
 };
@@ -4312,7 +4328,7 @@ export const CreatePlayElementRequest: MessageFns<CreatePlayElementRequest> = {
       writer.uint32(10).string(message.name);
     }
     if (message.description !== undefined) {
-      writer.uint32(18).string(message.description);
+      StringValue.encode(message.description, writer.uint32(18).fork()).join();
     }
     if (message.designMetadata !== undefined) {
       DesignMetadata.encode(message.designMetadata, writer.uint32(26).fork()).join();
@@ -4336,10 +4352,10 @@ export const CreatePlayElementRequest: MessageFns<CreatePlayElementRequest> = {
       writer.uint32(72).int32(message.publishState);
     }
     if (message.modLevelDataId !== undefined) {
-      writer.uint32(82).string(message.modLevelDataId);
+      StringValue.encode(message.modLevelDataId, writer.uint32(82).fork()).join();
     }
     if (message.thumbnailUrl !== undefined) {
-      writer.uint32(90).string(message.thumbnailUrl);
+      StringValue.encode(message.thumbnailUrl, writer.uint32(90).fork()).join();
     }
     for (const v of message.attachments) {
       Attachment.encode(v!, writer.uint32(98).fork()).join();
@@ -4367,7 +4383,7 @@ export const CreatePlayElementRequest: MessageFns<CreatePlayElementRequest> = {
             break;
           }
 
-          message.description = reader.string();
+          message.description = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 3: {
@@ -4431,7 +4447,7 @@ export const CreatePlayElementRequest: MessageFns<CreatePlayElementRequest> = {
             break;
           }
 
-          message.modLevelDataId = reader.string();
+          message.modLevelDataId = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 11: {
@@ -4439,7 +4455,7 @@ export const CreatePlayElementRequest: MessageFns<CreatePlayElementRequest> = {
             break;
           }
 
-          message.thumbnailUrl = reader.string();
+          message.thumbnailUrl = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 12: {
@@ -4465,7 +4481,9 @@ export const CreatePlayElementRequest: MessageFns<CreatePlayElementRequest> = {
   fromPartial(object: DeepPartial<CreatePlayElementRequest>): CreatePlayElementRequest {
     const message = createBaseCreatePlayElementRequest();
     message.name = object.name ?? "";
-    message.description = object.description ?? undefined;
+    message.description = (object.description !== undefined && object.description !== null)
+      ? StringValue.fromPartial(object.description)
+      : undefined;
     message.designMetadata = (object.designMetadata !== undefined && object.designMetadata !== null)
       ? DesignMetadata.fromPartial(object.designMetadata)
       : undefined;
@@ -4479,8 +4497,12 @@ export const CreatePlayElementRequest: MessageFns<CreatePlayElementRequest> = {
       ? PlayElementSettings.fromPartial(object.playElementSettings)
       : undefined;
     message.publishState = object.publishState ?? 0;
-    message.modLevelDataId = object.modLevelDataId ?? undefined;
-    message.thumbnailUrl = object.thumbnailUrl ?? undefined;
+    message.modLevelDataId = (object.modLevelDataId !== undefined && object.modLevelDataId !== null)
+      ? StringValue.fromPartial(object.modLevelDataId)
+      : undefined;
+    message.thumbnailUrl = (object.thumbnailUrl !== undefined && object.thumbnailUrl !== null)
+      ? StringValue.fromPartial(object.thumbnailUrl)
+      : undefined;
     message.attachments = object.attachments?.map((e) => Attachment.fromPartial(e)) || [];
     return message;
   },
@@ -4815,7 +4837,7 @@ export const UpdatePlayElementRequest: MessageFns<UpdatePlayElementRequest> = {
       writer.uint32(18).string(message.name);
     }
     if (message.description !== undefined) {
-      writer.uint32(26).string(message.description);
+      StringValue.encode(message.description, writer.uint32(26).fork()).join();
     }
     if (message.designMetadata !== undefined) {
       DesignMetadata.encode(message.designMetadata, writer.uint32(34).fork()).join();
@@ -4839,10 +4861,10 @@ export const UpdatePlayElementRequest: MessageFns<UpdatePlayElementRequest> = {
       writer.uint32(80).int32(message.publishState);
     }
     if (message.modLevelDataId !== undefined) {
-      writer.uint32(90).string(message.modLevelDataId);
+      StringValue.encode(message.modLevelDataId, writer.uint32(90).fork()).join();
     }
     if (message.thumbnailUrl !== undefined) {
-      writer.uint32(98).string(message.thumbnailUrl);
+      StringValue.encode(message.thumbnailUrl, writer.uint32(98).fork()).join();
     }
     for (const v of message.attachments) {
       Attachment.encode(v!, writer.uint32(106).fork()).join();
@@ -4878,7 +4900,7 @@ export const UpdatePlayElementRequest: MessageFns<UpdatePlayElementRequest> = {
             break;
           }
 
-          message.description = reader.string();
+          message.description = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 4: {
@@ -4942,7 +4964,7 @@ export const UpdatePlayElementRequest: MessageFns<UpdatePlayElementRequest> = {
             break;
           }
 
-          message.modLevelDataId = reader.string();
+          message.modLevelDataId = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 12: {
@@ -4950,7 +4972,7 @@ export const UpdatePlayElementRequest: MessageFns<UpdatePlayElementRequest> = {
             break;
           }
 
-          message.thumbnailUrl = reader.string();
+          message.thumbnailUrl = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 13: {
@@ -4977,7 +4999,9 @@ export const UpdatePlayElementRequest: MessageFns<UpdatePlayElementRequest> = {
     const message = createBaseUpdatePlayElementRequest();
     message.id = object.id ?? "";
     message.name = object.name ?? "";
-    message.description = object.description ?? undefined;
+    message.description = (object.description !== undefined && object.description !== null)
+      ? StringValue.fromPartial(object.description)
+      : undefined;
     message.designMetadata = (object.designMetadata !== undefined && object.designMetadata !== null)
       ? DesignMetadata.fromPartial(object.designMetadata)
       : undefined;
@@ -4991,8 +5015,12 @@ export const UpdatePlayElementRequest: MessageFns<UpdatePlayElementRequest> = {
       ? PlayElementSettings.fromPartial(object.playElementSettings)
       : undefined;
     message.publishState = object.publishState ?? 0;
-    message.modLevelDataId = object.modLevelDataId ?? undefined;
-    message.thumbnailUrl = object.thumbnailUrl ?? undefined;
+    message.modLevelDataId = (object.modLevelDataId !== undefined && object.modLevelDataId !== null)
+      ? StringValue.fromPartial(object.modLevelDataId)
+      : undefined;
+    message.thumbnailUrl = (object.thumbnailUrl !== undefined && object.thumbnailUrl !== null)
+      ? StringValue.fromPartial(object.thumbnailUrl)
+      : undefined;
     message.attachments = object.attachments?.map((e) => Attachment.fromPartial(e)) || [];
     return message;
   },
@@ -5011,7 +5039,7 @@ export const PlayElementResponse: MessageFns<PlayElementResponse> = {
       PlayElementDesign.encode(message.playElementDesign, writer.uint32(18).fork()).join();
     }
     if (message.progressionMode !== undefined) {
-      writer.uint32(26).string(message.progressionMode);
+      StringValue.encode(message.progressionMode, writer.uint32(26).fork()).join();
     }
     return writer;
   },
@@ -5044,7 +5072,7 @@ export const PlayElementResponse: MessageFns<PlayElementResponse> = {
             break;
           }
 
-          message.progressionMode = reader.string();
+          message.progressionMode = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -5067,7 +5095,55 @@ export const PlayElementResponse: MessageFns<PlayElementResponse> = {
     message.playElementDesign = (object.playElementDesign !== undefined && object.playElementDesign !== null)
       ? PlayElementDesign.fromPartial(object.playElementDesign)
       : undefined;
-    message.progressionMode = object.progressionMode ?? undefined;
+    message.progressionMode = (object.progressionMode !== undefined && object.progressionMode !== null)
+      ? StringValue.fromPartial(object.progressionMode)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseStringValue(): StringValue {
+  return { value: "" };
+}
+
+export const StringValue: MessageFns<StringValue> = {
+  encode(message: StringValue, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.value !== "") {
+      writer.uint32(10).string(message.value);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): StringValue {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseStringValue();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.value = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  create(base?: DeepPartial<StringValue>): StringValue {
+    return StringValue.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<StringValue>): StringValue {
+    const message = createBaseStringValue();
+    message.value = object.value ?? "";
     return message;
   },
 };
@@ -5106,7 +5182,7 @@ export const PlayElement: MessageFns<PlayElement> = {
       writer.uint32(34).string(message.name);
     }
     if (message.description !== undefined) {
-      writer.uint32(42).string(message.description);
+      StringValue.encode(message.description, writer.uint32(42).fork()).join();
     }
     if (message.created !== undefined) {
       writer.uint32(48).uint32(message.created);
@@ -5127,13 +5203,13 @@ export const PlayElement: MessageFns<PlayElement> = {
       writer.uint32(88).uint32(message.publishAt);
     }
     if (message.thumbnailUrl !== undefined) {
-      writer.uint32(98).string(message.thumbnailUrl);
+      StringValue.encode(message.thumbnailUrl, writer.uint32(98).fork()).join();
     }
     if (message.moderationState !== 0) {
       writer.uint32(104).int32(message.moderationState);
     }
     if (message.shortCode !== undefined) {
-      writer.uint32(114).string(message.shortCode);
+      StringValue.encode(message.shortCode, writer.uint32(114).fork()).join();
     }
     return writer;
   },
@@ -5182,7 +5258,7 @@ export const PlayElement: MessageFns<PlayElement> = {
             break;
           }
 
-          message.description = reader.string();
+          message.description = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 6: {
@@ -5238,7 +5314,7 @@ export const PlayElement: MessageFns<PlayElement> = {
             break;
           }
 
-          message.thumbnailUrl = reader.string();
+          message.thumbnailUrl = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 13: {
@@ -5254,7 +5330,7 @@ export const PlayElement: MessageFns<PlayElement> = {
             break;
           }
 
-          message.shortCode = reader.string();
+          message.shortCode = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -5277,7 +5353,9 @@ export const PlayElement: MessageFns<PlayElement> = {
       ? Creator.fromPartial(object.creator)
       : undefined;
     message.name = object.name ?? "";
-    message.description = object.description ?? undefined;
+    message.description = (object.description !== undefined && object.description !== null)
+      ? StringValue.fromPartial(object.description)
+      : undefined;
     message.created = object.created ?? undefined;
     message.updated = object.updated ?? undefined;
     message.playElementSettings = (object.playElementSettings !== undefined && object.playElementSettings !== null)
@@ -5286,9 +5364,13 @@ export const PlayElement: MessageFns<PlayElement> = {
     message.publishStateType = object.publishStateType ?? 0;
     message.likes = object.likes ?? undefined;
     message.publishAt = object.publishAt ?? undefined;
-    message.thumbnailUrl = object.thumbnailUrl ?? undefined;
+    message.thumbnailUrl = (object.thumbnailUrl !== undefined && object.thumbnailUrl !== null)
+      ? StringValue.fromPartial(object.thumbnailUrl)
+      : undefined;
     message.moderationState = object.moderationState ?? 0;
-    message.shortCode = object.shortCode ?? undefined;
+    message.shortCode = (object.shortCode !== undefined && object.shortCode !== null)
+      ? StringValue.fromPartial(object.shortCode)
+      : undefined;
     return message;
   },
 };
@@ -5350,7 +5432,7 @@ export const PlayElementDesign: MessageFns<PlayElementDesign> = {
       BlazePlayElementDesignSettings.encode(message.blazeSettings, writer.uint32(98).fork()).join();
     }
     if (message.modLevelDataId !== undefined) {
-      writer.uint32(106).string(message.modLevelDataId);
+      StringValue.encode(message.modLevelDataId, writer.uint32(106).fork()).join();
     }
     for (const v of message.attachments) {
       Attachment.encode(v!, writer.uint32(114).fork()).join();
@@ -5467,7 +5549,7 @@ export const PlayElementDesign: MessageFns<PlayElementDesign> = {
             break;
           }
 
-          message.modLevelDataId = reader.string();
+          message.modLevelDataId = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 14: {
@@ -5535,7 +5617,9 @@ export const PlayElementDesign: MessageFns<PlayElementDesign> = {
     message.blazeSettings = (object.blazeSettings !== undefined && object.blazeSettings !== null)
       ? BlazePlayElementDesignSettings.fromPartial(object.blazeSettings)
       : undefined;
-    message.modLevelDataId = object.modLevelDataId ?? undefined;
+    message.modLevelDataId = (object.modLevelDataId !== undefined && object.modLevelDataId !== null)
+      ? StringValue.fromPartial(object.modLevelDataId)
+      : undefined;
     message.attachments = object.attachments?.map((e) => Attachment.fromPartial(e)) || [];
     message.groupLicenses = object.groupLicenses?.map((e) => e) || [];
     message.attachmentCompileStatus = object.attachmentCompileStatus ?? 0;
@@ -6154,7 +6238,7 @@ export const Attachment: MessageFns<Attachment> = {
       writer.uint32(18).string(message.version);
     }
     if (message.filename !== undefined) {
-      writer.uint32(26).string(message.filename);
+      StringValue.encode(message.filename, writer.uint32(26).fork()).join();
     }
     if (message.isProcessable !== false) {
       writer.uint32(32).bool(message.isProcessable);
@@ -6169,7 +6253,7 @@ export const Attachment: MessageFns<Attachment> = {
       writer.uint32(56).int32(message.attachmentType);
     }
     if (message.metadata !== undefined) {
-      writer.uint32(66).string(message.metadata);
+      StringValue.encode(message.metadata, writer.uint32(66).fork()).join();
     }
     for (const v of message.errors) {
       writer.uint32(74).string(v!);
@@ -6205,7 +6289,7 @@ export const Attachment: MessageFns<Attachment> = {
             break;
           }
 
-          message.filename = reader.string();
+          message.filename = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 4: {
@@ -6245,7 +6329,7 @@ export const Attachment: MessageFns<Attachment> = {
             break;
           }
 
-          message.metadata = reader.string();
+          message.metadata = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 9: {
@@ -6272,14 +6356,18 @@ export const Attachment: MessageFns<Attachment> = {
     const message = createBaseAttachment();
     message.id = object.id ?? "";
     message.version = object.version ?? "";
-    message.filename = object.filename ?? undefined;
+    message.filename = (object.filename !== undefined && object.filename !== null)
+      ? StringValue.fromPartial(object.filename)
+      : undefined;
     message.isProcessable = object.isProcessable ?? false;
     message.processingStatus = object.processingStatus ?? 0;
     message.attachmentData = (object.attachmentData !== undefined && object.attachmentData !== null)
       ? AttachmentData.fromPartial(object.attachmentData)
       : undefined;
     message.attachmentType = object.attachmentType ?? 0;
-    message.metadata = object.metadata ?? undefined;
+    message.metadata = (object.metadata !== undefined && object.metadata !== null)
+      ? StringValue.fromPartial(object.metadata)
+      : undefined;
     message.errors = object.errors?.map((e) => e) || [];
     return message;
   },
@@ -6292,7 +6380,7 @@ function createBasePlayElementSettings(): PlayElementSettings {
 export const PlayElementSettings: MessageFns<PlayElementSettings> = {
   encode(message: PlayElementSettings, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.secret !== undefined) {
-      writer.uint32(10).string(message.secret);
+      StringValue.encode(message.secret, writer.uint32(10).fork()).join();
     }
     for (const v of message.messages) {
       GameServerMessage.encode(v!, writer.uint32(18).fork()).join();
@@ -6315,7 +6403,7 @@ export const PlayElementSettings: MessageFns<PlayElementSettings> = {
             break;
           }
 
-          message.secret = reader.string();
+          message.secret = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 2: {
@@ -6348,7 +6436,9 @@ export const PlayElementSettings: MessageFns<PlayElementSettings> = {
   },
   fromPartial(object: DeepPartial<PlayElementSettings>): PlayElementSettings {
     const message = createBasePlayElementSettings();
-    message.secret = object.secret ?? undefined;
+    message.secret = (object.secret !== undefined && object.secret !== null)
+      ? StringValue.fromPartial(object.secret)
+      : undefined;
     message.messages = object.messages?.map((e) => GameServerMessage.fromPartial(e)) || [];
     message.allowCopies = object.allowCopies ?? false;
     return message;
@@ -6420,7 +6510,7 @@ function createBaseDesignMetadata(): DesignMetadata {
 export const DesignMetadata: MessageFns<DesignMetadata> = {
   encode(message: DesignMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.progressionMode !== undefined) {
-      writer.uint32(10).string(message.progressionMode);
+      StringValue.encode(message.progressionMode, writer.uint32(10).fork()).join();
     }
     for (const v of message.firstPartyMetadata) {
       FirstPartyMetadata.encode(v!, writer.uint32(18).fork()).join();
@@ -6440,7 +6530,7 @@ export const DesignMetadata: MessageFns<DesignMetadata> = {
             break;
           }
 
-          message.progressionMode = reader.string();
+          message.progressionMode = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 2: {
@@ -6465,7 +6555,9 @@ export const DesignMetadata: MessageFns<DesignMetadata> = {
   },
   fromPartial(object: DeepPartial<DesignMetadata>): DesignMetadata {
     const message = createBaseDesignMetadata();
-    message.progressionMode = object.progressionMode ?? undefined;
+    message.progressionMode = (object.progressionMode !== undefined && object.progressionMode !== null)
+      ? StringValue.fromPartial(object.progressionMode)
+      : undefined;
     message.firstPartyMetadata = object.firstPartyMetadata?.map((e) => FirstPartyMetadata.fromPartial(e)) || [];
     return message;
   },
@@ -7653,7 +7745,7 @@ export const ErrorModRules: MessageFns<ErrorModRules> = {
       writer.uint32(10).bytes(message.original);
     }
     if (message.errorMessage !== undefined) {
-      writer.uint32(18).string(message.errorMessage);
+      StringValue.encode(message.errorMessage, writer.uint32(18).fork()).join();
     }
     return writer;
   },
@@ -7678,7 +7770,7 @@ export const ErrorModRules: MessageFns<ErrorModRules> = {
             break;
           }
 
-          message.errorMessage = reader.string();
+          message.errorMessage = StringValue.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -7696,7 +7788,9 @@ export const ErrorModRules: MessageFns<ErrorModRules> = {
   fromPartial(object: DeepPartial<ErrorModRules>): ErrorModRules {
     const message = createBaseErrorModRules();
     message.original = object.original ?? new Uint8Array(0);
-    message.errorMessage = object.errorMessage ?? undefined;
+    message.errorMessage = (object.errorMessage !== undefined && object.errorMessage !== null)
+      ? StringValue.fromPartial(object.errorMessage)
+      : undefined;
     return message;
   },
 };

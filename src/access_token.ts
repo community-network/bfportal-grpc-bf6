@@ -32,5 +32,5 @@ export const getWebAccessToken = async (accessToken: string): Promise<Authentica
     }),
   ).create(WebAuthenticationDefinition, channel);
 
-  return await client.viaAuthCode({ authCode: accessToken, platform: Platform.PC, redirectUri: { stringValue: "https://portal.battlefield.com/bf6" } });
+  return await client.viaAuthCode({ authCode: accessToken, platform: Platform.PC, redirectUri: { value: "https://portal.battlefield.com/bf6" } });
 }

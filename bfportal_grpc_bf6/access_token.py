@@ -35,8 +35,8 @@ async def get_web_access_token(access_token: str):
     serialized_msg = authentication_pb2.AuthCodeAuthentication(
         authCode=access_token,
         platform=authentication_pb2.Platform.PC,
-        redirectUri=authentication_pb2.MutatorString(
-            stringValue="https://portal.battlefield.com/bf6"
+        redirectUri=authentication_pb2.StringValue(
+            value="https://portal.battlefield.com/bf6"
         ),
     ).SerializeToString()
     msg = converter.to_length_prefixed_msg(serialized_msg)

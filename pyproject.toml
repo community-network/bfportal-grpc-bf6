@@ -21,7 +21,7 @@ packages = [{ include = "bfportal_grpc_bf6" }]
 [tool.poetry.dependencies]
 aiohttp = "^3.13.0"
 protobuf = "^6.32.1"
-grpcio = "^1.75.1"
+grpcio = "^1.78.0"
 python = "^3.10"
 proto-compile = "^0.1.7"
 python-dotenv = "^1.1.1"

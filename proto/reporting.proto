@@ -7,6 +7,10 @@ service WebReporting {
     rpc ReportExperience (ReportExperienceRequest) returns (ReportingResponse) {}
 }
 
+message StringValue {
+  string value = 1;
+}
+
 message Player {
   int64 nucleusId = 1;
   int64 personaId = 2;
@@ -28,12 +32,12 @@ enum Platform {
 
 message ReportPlayerRequest {
     optional Player offendingPlayer = 1;
-    optional string subject = 2;
+    optional StringValue subject = 2;
 }
 
 message ReportExperienceRequest {
     string experienceId = 1;
-    optional string subject = 2;
+    optional StringValue subject = 2;
 }
 
 message ReportingResponse {

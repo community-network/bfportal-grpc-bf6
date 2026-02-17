@@ -31,16 +31,16 @@ enum Reason {
     SYNC = 1;
 }
 
-message MutatorString {
-    string stringValue = 1;
+message StringValue {
+    string value = 1;
 }
 
 message AuthCodeAuthentication {
     string authCode = 1;
     Platform platform = 2;
-    optional MutatorString redirectUri = 3;
-    optional string patchVersion  = 4; 
-    optional string protocolVersion = 5;
+    optional StringValue redirectUri = 3;
+    optional StringValue patchVersion  = 4; 
+    optional StringValue protocolVersion = 5;
 }
 
 message Duration {

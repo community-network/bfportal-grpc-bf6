@@ -138,7 +138,7 @@ message  PlayExperience {
   /** e.g. Some Crazy nomad Conquest */
   string name = 3;
   /** e.g. Join the Battlefield but make sure you're always on the move because anyone standing still for more than 10 seconds gets their computer fork bombed. */
-  optional string description = 4;
+  optional StringValue description = 4;
   optional PlayElementDesign playElementDesign = 5;
   /** Will only be populated when searching experiences (i,e rpc listExperiences) */
   optional int32 playerCount = 6;
@@ -146,11 +146,11 @@ message  PlayExperience {
   /** if not public yet */
   optional uint32 publishAt = 8;
   /** creator-selected image */
-  optional string thumbnailUrl = 9;
+  optional StringValue thumbnailUrl = 9;
   /** the creator is a regular player account */
   bool isUgc = 10;
   /** short code for ugc experience */
-  optional string shortCode = 11;
+  optional StringValue shortCode = 11;
   /** DRAFT, PUBLISHED, ... */
   PublishStateType publishState = 12;
 }
@@ -168,8 +168,8 @@ message PlayExperienceQuery {
   optional PlayerCreator playerCreatorEq = 5;
   ExperienceOrderBy ordering = 6;
   int32 pageSize = 7;
-  optional string namePrefix = 8;
-  optional string shortCode = 9;
+  optional StringValue namePrefix = 8;
+  optional StringValue shortCode = 9;
 }
 
 message ListExperiencesRequest {
@@ -344,7 +344,7 @@ message ModRulesDefinition {
 message AvailableTag {
   string id = 1;
   optional Metadata metadata = 2;
-  optional string category = 3;
+  optional StringValue category = 3;
 }
 
 message AvailableMapEntry {
@@ -414,7 +414,7 @@ message AvailableMutatorSparseFloatValues {
 
 message CreatePlayElementRequest {
   string name = 1;
-  optional string description = 2;
+  optional StringValue description = 2;
   optional DesignMetadata designMetadata = 3;
   optional MapRotation mapRotation = 4;
   repeated Mutator mutators = 5;
@@ -422,8 +422,8 @@ message CreatePlayElementRequest {
   bytes originalModRules = 7;
   optional PlayElementSettings playElementSettings = 8;
   PublishStateType publishState = 9;
-  optional string modLevelDataId = 10;
-  optional string thumbnailUrl = 11;
+  optional StringValue modLevelDataId = 10;
+  optional StringValue thumbnailUrl = 11;
   repeated Attachment attachments = 12;
 }
 
@@ -454,7 +454,7 @@ message AvailableMutatorIntValues {
 message UpdatePlayElementRequest {
   string id = 1;
   string name = 2;
-  optional string description = 3;
+  optional StringValue description = 3;
   optional DesignMetadata designMetadata = 4;
   optional MapRotation mapRotation = 5;
   repeated Mutator mutators = 6;
@@ -462,15 +462,19 @@ message UpdatePlayElementRequest {
   bytes originalModRules = 8;
   optional PlayElementSettings playElementSettings = 9;
   PublishStateType publishState = 10;
-  optional string modLevelDataId = 11;
-  optional string thumbnailUrl = 12;
+  optional StringValue modLevelDataId = 11;
+  optional StringValue thumbnailUrl = 12;
   repeated Attachment attachments = 13;
 }
 
 message PlayElementResponse {
   optional PlayElement playElement = 1;
   optional PlayElementDesign playElementDesign = 2;
-  optional string progressionMode = 3;
+  optional StringValue progressionMode = 3;
+}
+
+message StringValue {
+  string value = 1;
 }
 
 message PlayElement {
@@ -478,7 +482,7 @@ message PlayElement {
   string designId = 2;
   optional Creator creator = 3;
   string name = 4;
-  optional string description = 5;
+  optional StringValue description = 5;
   optional uint32 created = 6;
   optional uint32 updated = 7;
   optional PlayElementSettings playElementSettings = 8;
@@ -486,10 +490,10 @@ message PlayElement {
   optional int32 likes = 10;
   /** if not public yet */
   optional uint32 publishAt = 11;
-  optional string thumbnailUrl = 12;
-  /** Fan Care status */
+  optional StringValue thumbnailUrl = 12;
+  // /** Fan Care status */
   ModerationStateType moderationState = 13;
-  optional string shortCode = 14;
+  optional StringValue shortCode = 14;
 }
 
 message PlayElementDesign {
@@ -505,7 +509,7 @@ message PlayElementDesign {
   optional ModRules modRules = 10;
   repeated Tag tags = 11;
   optional BlazePlayElementDesignSettings blazeSettings = 12;
-  optional string modLevelDataId = 13;
+  optional StringValue modLevelDataId = 13;
   repeated Attachment attachments = 14;
   repeated string groupLicenses = 15;
   AttachmentCompileStatus attachmentCompileStatus = 16;
@@ -575,24 +579,24 @@ message ResourceLocation {
   optional string url = 2;
 }
 
-message  Attachment {
+message Attachment {
   /** guid */
   string id = 1;
   /** n.b. version string may have a different meaning or format depending on type of attachment. */
   string version = 2;
-  optional string filename = 3;
+  optional StringValue filename = 3;
   /** Means "this must go through some compilation/transformation to be usable". If false, the "original" variant can be used directly */
   bool isProcessable = 4;
   ProcessingStatus processingStatus = 5;
   optional AttachmentData attachmentData = 6;
   AttachmentType attachmentType = 7;
   /** place to put stuff like map rotation index -- misc future-proofing.  Format TBD, maybe CSV or queryParam format like MapEntry metadata */
-  optional string metadata = 8;
+  optional StringValue metadata = 8;
   repeated string errors = 9;
 }
 
 message PlayElementSettings {
-  optional string secret = 1;
+  optional StringValue secret = 1;
   repeated GameServerMessage messages = 2;
   /** creator has allowed copying experience underlying data */
   bool allowCopies = 3;
@@ -604,7 +608,7 @@ message GameServerMessage {
 }
 
 message DesignMetadata {
-  optional string progressionMode = 1;
+  optional StringValue progressionMode = 1;
   repeated FirstPartyMetadata firstPartyMetadata = 2;
 }
 
@@ -717,7 +721,7 @@ message IncompatibleModRules {
 
 message ErrorModRules {
   bytes original = 1;
-  optional string errorMessage = 2;
+  optional StringValue errorMessage = 2;
 }
 
 message  AssetCategory {

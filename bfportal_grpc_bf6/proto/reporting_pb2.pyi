@@ -36,6 +36,12 @@ ERROR_TYPES_GENERIC_BUSINESS_FAILURE: ReportingErrorType
 ERROR_TYPES_INVALID_ARGUMENT: ReportingErrorType
 ERROR_TYPES_RATE_LIMITED: ReportingErrorType
 
+class StringValue(_message.Message):
+    __slots__ = ("value",)
+    VALUE_FIELD_NUMBER: _ClassVar[int]
+    value: str
+    def __init__(self, value: _Optional[str] = ...) -> None: ...
+
 class Player(_message.Message):
     __slots__ = ("nucleusId", "personaId", "platform")
     NUCLEUSID_FIELD_NUMBER: _ClassVar[int]
@@ -51,16 +57,16 @@ class ReportPlayerRequest(_message.Message):
     OFFENDINGPLAYER_FIELD_NUMBER: _ClassVar[int]
     SUBJECT_FIELD_NUMBER: _ClassVar[int]
     offendingPlayer: Player
-    subject: str
-    def __init__(self, offendingPlayer: _Optional[_Union[Player, _Mapping]] = ..., subject: _Optional[str] = ...) -> None: ...
+    subject: StringValue
+    def __init__(self, offendingPlayer: _Optional[_Union[Player, _Mapping]] = ..., subject: _Optional[_Union[StringValue, _Mapping]] = ...) -> None: ...
 
 class ReportExperienceRequest(_message.Message):
     __slots__ = ("experienceId", "subject")
     EXPERIENCEID_FIELD_NUMBER: _ClassVar[int]
     SUBJECT_FIELD_NUMBER: _ClassVar[int]
     experienceId: str
-    subject: str
-    def __init__(self, experienceId: _Optional[str] = ..., subject: _Optional[str] = ...) -> None: ...
+    subject: StringValue
+    def __init__(self, experienceId: _Optional[str] = ..., subject: _Optional[_Union[StringValue, _Mapping]] = ...) -> None: ...
 
 class ReportingResponse(_message.Message):
     __slots__ = ("success", "error")

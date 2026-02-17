@@ -24,29 +24,31 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0freporting.proto\x12\x16santiago.web.reporting\"b\n\x06Player\x12\x11\n\tnucleusId\x18\x01 \x01(\x03\x12\x11\n\tpersonaId\x18\x02 \x01(\x03\x12\x32\n\x08platform\x18\x03 \x01(\x0e\x32 .santiago.web.reporting.Platform\"\x89\x01\n\x13ReportPlayerRequest\x12<\n\x0foffendingPlayer\x18\x01 \x01(\x0b\x32\x1e.santiago.web.reporting.PlayerH\x00\x88\x01\x01\x12\x14\n\x07subject\x18\x02 \x01(\tH\x01\x88\x01\x01\x42\x12\n\x10_offendingPlayerB\n\n\x08_subject\"Q\n\x17ReportExperienceRequest\x12\x14\n\x0c\x65xperienceId\x18\x01 \x01(\t\x12\x14\n\x07subject\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\n\n\x08_subject\"\xaf\x01\n\x11ReportingResponse\x12\x43\n\x07success\x18\x01 \x01(\x0b\x32-.santiago.web.reporting.CreatePetitionSuccessH\x00\x88\x01\x01\x12?\n\x05\x65rror\x18\x02 \x01(\x0b\x32+.santiago.web.reporting.CreatePetitionErrorH\x01\x88\x01\x01\x42\n\n\x08_successB\x08\n\x06_error\"+\n\x15\x43reatePetitionSuccess\x12\x12\n\npetitionId\x18\x01 \x01(\t\"j\n\x13\x43reatePetitionError\x12=\n\terrorType\x18\x01 \x01(\x0e\x32*.santiago.web.reporting.ReportingErrorType\x12\x14\n\x0c\x65rrorMessage\x18\x02 \x01(\t*_\n\x08Platform\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x06\n\x02PC\x10\x01\x12\x07\n\x03PS4\x10\x02\x12\x0b\n\x07XBOXONE\x10\x03\x12\x07\n\x03PS5\x10\x04\x12\x08\n\x04XBSX\x10\x05\x12\n\n\x06\x43OMMON\x10\x06\x12\t\n\x05STEAM\x10\x07*\xa7\x01\n\x12ReportingErrorType\x12\'\n#ERROR_TYPES_GENERIC_SERVICE_FAILURE\x10\x00\x12(\n$ERROR_TYPES_GENERIC_BUSINESS_FAILURE\x10\x01\x12 \n\x1c\x45RROR_TYPES_INVALID_ARGUMENT\x10\x02\x12\x1c\n\x18\x45RROR_TYPES_RATE_LIMITED\x10\x03\x32\xea\x01\n\x0cWebReporting\x12h\n\x0cReportPlayer\x12+.santiago.web.reporting.ReportPlayerRequest\x1a).santiago.web.reporting.ReportingResponse\"\x00\x12p\n\x10ReportExperience\x12/.santiago.web.reporting.ReportExperienceRequest\x1a).santiago.web.reporting.ReportingResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0freporting.proto\x12\x16santiago.web.reporting\"\x1c\n\x0bStringValue\x12\r\n\x05value\x18\x01 \x01(\t\"b\n\x06Player\x12\x11\n\tnucleusId\x18\x01 \x01(\x03\x12\x11\n\tpersonaId\x18\x02 \x01(\x03\x12\x32\n\x08platform\x18\x03 \x01(\x0e\x32 .santiago.web.reporting.Platform\"\xae\x01\n\x13ReportPlayerRequest\x12<\n\x0foffendingPlayer\x18\x01 \x01(\x0b\x32\x1e.santiago.web.reporting.PlayerH\x00\x88\x01\x01\x12\x39\n\x07subject\x18\x02 \x01(\x0b\x32#.santiago.web.reporting.StringValueH\x01\x88\x01\x01\x42\x12\n\x10_offendingPlayerB\n\n\x08_subject\"v\n\x17ReportExperienceRequest\x12\x14\n\x0c\x65xperienceId\x18\x01 \x01(\t\x12\x39\n\x07subject\x18\x02 \x01(\x0b\x32#.santiago.web.reporting.StringValueH\x00\x88\x01\x01\x42\n\n\x08_subject\"\xaf\x01\n\x11ReportingResponse\x12\x43\n\x07success\x18\x01 \x01(\x0b\x32-.santiago.web.reporting.CreatePetitionSuccessH\x00\x88\x01\x01\x12?\n\x05\x65rror\x18\x02 \x01(\x0b\x32+.santiago.web.reporting.CreatePetitionErrorH\x01\x88\x01\x01\x42\n\n\x08_successB\x08\n\x06_error\"+\n\x15\x43reatePetitionSuccess\x12\x12\n\npetitionId\x18\x01 \x01(\t\"j\n\x13\x43reatePetitionError\x12=\n\terrorType\x18\x01 \x01(\x0e\x32*.santiago.web.reporting.ReportingErrorType\x12\x14\n\x0c\x65rrorMessage\x18\x02 \x01(\t*_\n\x08Platform\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x06\n\x02PC\x10\x01\x12\x07\n\x03PS4\x10\x02\x12\x0b\n\x07XBOXONE\x10\x03\x12\x07\n\x03PS5\x10\x04\x12\x08\n\x04XBSX\x10\x05\x12\n\n\x06\x43OMMON\x10\x06\x12\t\n\x05STEAM\x10\x07*\xa7\x01\n\x12ReportingErrorType\x12\'\n#ERROR_TYPES_GENERIC_SERVICE_FAILURE\x10\x00\x12(\n$ERROR_TYPES_GENERIC_BUSINESS_FAILURE\x10\x01\x12 \n\x1c\x45RROR_TYPES_INVALID_ARGUMENT\x10\x02\x12\x1c\n\x18\x45RROR_TYPES_RATE_LIMITED\x10\x03\x32\xea\x01\n\x0cWebReporting\x12h\n\x0cReportPlayer\x12+.santiago.web.reporting.ReportPlayerRequest\x1a).santiago.web.reporting.ReportingResponse\"\x00\x12p\n\x10ReportExperience\x12/.santiago.web.reporting.ReportExperienceRequest\x1a).santiago.web.reporting.ReportingResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'reporting_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_PLATFORM']._serialized_start=697
-  _globals['_PLATFORM']._serialized_end=792
-  _globals['_REPORTINGERRORTYPE']._serialized_start=795
-  _globals['_REPORTINGERRORTYPE']._serialized_end=962
-  _globals['_PLAYER']._serialized_start=43
-  _globals['_PLAYER']._serialized_end=141
-  _globals['_REPORTPLAYERREQUEST']._serialized_start=144
-  _globals['_REPORTPLAYERREQUEST']._serialized_end=281
-  _globals['_REPORTEXPERIENCEREQUEST']._serialized_start=283
-  _globals['_REPORTEXPERIENCEREQUEST']._serialized_end=364
-  _globals['_REPORTINGRESPONSE']._serialized_start=367
-  _globals['_REPORTINGRESPONSE']._serialized_end=542
-  _globals['_CREATEPETITIONSUCCESS']._serialized_start=544
-  _globals['_CREATEPETITIONSUCCESS']._serialized_end=587
-  _globals['_CREATEPETITIONERROR']._serialized_start=589
-  _globals['_CREATEPETITIONERROR']._serialized_end=695
-  _globals['_WEBREPORTING']._serialized_start=965
-  _globals['_WEBREPORTING']._serialized_end=1199
+  _globals['_PLATFORM']._serialized_start=801
+  _globals['_PLATFORM']._serialized_end=896
+  _globals['_REPORTINGERRORTYPE']._serialized_start=899
+  _globals['_REPORTINGERRORTYPE']._serialized_end=1066
+  _globals['_STRINGVALUE']._serialized_start=43
+  _globals['_STRINGVALUE']._serialized_end=71
+  _globals['_PLAYER']._serialized_start=73
+  _globals['_PLAYER']._serialized_end=171
+  _globals['_REPORTPLAYERREQUEST']._serialized_start=174
+  _globals['_REPORTPLAYERREQUEST']._serialized_end=348
+  _globals['_REPORTEXPERIENCEREQUEST']._serialized_start=350
+  _globals['_REPORTEXPERIENCEREQUEST']._serialized_end=468
+  _globals['_REPORTINGRESPONSE']._serialized_start=471
+  _globals['_REPORTINGRESPONSE']._serialized_end=646
+  _globals['_CREATEPETITIONSUCCESS']._serialized_start=648
+  _globals['_CREATEPETITIONSUCCESS']._serialized_end=691
+  _globals['_CREATEPETITIONERROR']._serialized_start=693
+  _globals['_CREATEPETITIONERROR']._serialized_end=799
+  _globals['_WEBREPORTING']._serialized_start=1069
+  _globals['_WEBREPORTING']._serialized_end=1303
 # @@protoc_insertion_point(module_scope)
