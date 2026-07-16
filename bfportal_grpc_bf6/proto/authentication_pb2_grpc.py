@@ -5,7 +5,7 @@ import warnings
 
 import authentication_pb2 as authentication__pb2
 
-GRPC_GENERATED_VERSION = '1.78.0'
+GRPC_GENERATED_VERSION = '1.82.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class WebAuthenticationStub(object):
+class WebAuthenticationStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -46,7 +46,7 @@ class WebAuthenticationStub(object):
                 _registered_method=True)
 
 
-class WebAuthenticationServicer(object):
+class WebAuthenticationServicer:
     """Missing associated documentation comment in .proto file."""
 
     def viaAuthCode(self, request, context):
@@ -82,7 +82,7 @@ def add_WebAuthenticationServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class WebAuthentication(object):
+class WebAuthentication:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod

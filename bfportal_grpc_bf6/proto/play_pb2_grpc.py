@@ -5,7 +5,7 @@ import warnings
 
 import play_pb2 as play__pb2
 
-GRPC_GENERATED_VERSION = '1.78.0'
+GRPC_GENERATED_VERSION = '1.82.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class WebPlayStub(object):
+class WebPlayStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -116,7 +116,7 @@ class WebPlayStub(object):
                 _registered_method=True)
 
 
-class WebPlayServicer(object):
+class WebPlayServicer:
     """Missing associated documentation comment in .proto file."""
 
     def createPlayElement(self, request, context):
@@ -306,7 +306,7 @@ def add_WebPlayServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class WebPlay(object):
+class WebPlay:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod

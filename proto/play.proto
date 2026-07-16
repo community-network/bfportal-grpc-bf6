@@ -507,14 +507,14 @@ message PlayElementDesign {
   repeated AssetCategory assetCategories = 8;
   repeated string licenseRequirements = 9;
   optional ModRules modRules = 10;
-  repeated Tag tags = 11;
-  optional BlazePlayElementDesignSettings blazeSettings = 12;
-  optional StringValue modLevelDataId = 13;
-  repeated Attachment attachments = 14;
-  repeated string groupLicenses = 15;
-  AttachmentCompileStatus attachmentCompileStatus = 16;
-  /** required licenses to host experience, in addition to `license_requirements` */
-  repeated string serverHostLicenseRequirements = 17;
+   /** missing 11 */
+  repeated Tag tags = 12;
+  optional BlazePlayElementDesignSettings blazeSettings = 13;
+  optional StringValue modLevelDataId = 14;
+  repeated Attachment attachments = 15;
+  repeated string groupLicenses = 16;
+  AttachmentCompileStatus attachmentCompileStatus = 17;
+  repeated string serverHostLicenseRequirements = 18;
 }
 
 message Creator {

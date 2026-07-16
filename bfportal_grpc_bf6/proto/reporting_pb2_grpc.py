@@ -5,7 +5,7 @@ import warnings
 
 import reporting_pb2 as reporting__pb2
 
-GRPC_GENERATED_VERSION = '1.78.0'
+GRPC_GENERATED_VERSION = '1.82.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class WebReportingStub(object):
+class WebReportingStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -46,7 +46,7 @@ class WebReportingStub(object):
                 _registered_method=True)
 
 
-class WebReportingServicer(object):
+class WebReportingServicer:
     """Missing associated documentation comment in .proto file."""
 
     def ReportPlayer(self, request, context):
@@ -82,7 +82,7 @@ def add_WebReportingServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class WebReporting(object):
+class WebReporting:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod

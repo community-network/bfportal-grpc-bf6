@@ -329,7 +329,7 @@ class PlayExperience(_message.Message):
     isUgc: bool
     shortCode: StringValue
     publishState: PublishStateType
-    def __init__(self, id: _Optional[str] = ..., creator: _Optional[_Union[Creator, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[_Union[StringValue, _Mapping]] = ..., playElementDesign: _Optional[_Union[PlayElementDesign, _Mapping]] = ..., playerCount: _Optional[int] = ..., likes: _Optional[int] = ..., publishAt: _Optional[int] = ..., thumbnailUrl: _Optional[_Union[StringValue, _Mapping]] = ..., isUgc: bool = ..., shortCode: _Optional[_Union[StringValue, _Mapping]] = ..., publishState: _Optional[_Union[PublishStateType, str]] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., creator: _Optional[_Union[Creator, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[_Union[StringValue, _Mapping]] = ..., playElementDesign: _Optional[_Union[PlayElementDesign, _Mapping]] = ..., playerCount: _Optional[int] = ..., likes: _Optional[int] = ..., publishAt: _Optional[int] = ..., thumbnailUrl: _Optional[_Union[StringValue, _Mapping]] = ..., isUgc: _Optional[bool] = ..., shortCode: _Optional[_Union[StringValue, _Mapping]] = ..., publishState: _Optional[_Union[PublishStateType, str]] = ...) -> None: ...
 
 class ListExperiencesResponse(_message.Message):
     __slots__ = ("experiences", "nextPage")
@@ -891,7 +891,7 @@ class Attachment(_message.Message):
     attachmentType: AttachmentType
     metadata: StringValue
     errors: _containers.RepeatedScalarFieldContainer[str]
-    def __init__(self, id: _Optional[str] = ..., version: _Optional[str] = ..., filename: _Optional[_Union[StringValue, _Mapping]] = ..., isProcessable: bool = ..., processingStatus: _Optional[_Union[ProcessingStatus, str]] = ..., attachmentData: _Optional[_Union[AttachmentData, _Mapping]] = ..., attachmentType: _Optional[_Union[AttachmentType, str]] = ..., metadata: _Optional[_Union[StringValue, _Mapping]] = ..., errors: _Optional[_Iterable[str]] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., version: _Optional[str] = ..., filename: _Optional[_Union[StringValue, _Mapping]] = ..., isProcessable: _Optional[bool] = ..., processingStatus: _Optional[_Union[ProcessingStatus, str]] = ..., attachmentData: _Optional[_Union[AttachmentData, _Mapping]] = ..., attachmentType: _Optional[_Union[AttachmentType, str]] = ..., metadata: _Optional[_Union[StringValue, _Mapping]] = ..., errors: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class PlayElementSettings(_message.Message):
     __slots__ = ("secret", "messages", "allowCopies")
@@ -901,7 +901,7 @@ class PlayElementSettings(_message.Message):
     secret: StringValue
     messages: _containers.RepeatedCompositeFieldContainer[GameServerMessage]
     allowCopies: bool
-    def __init__(self, secret: _Optional[_Union[StringValue, _Mapping]] = ..., messages: _Optional[_Iterable[_Union[GameServerMessage, _Mapping]]] = ..., allowCopies: bool = ...) -> None: ...
+    def __init__(self, secret: _Optional[_Union[StringValue, _Mapping]] = ..., messages: _Optional[_Iterable[_Union[GameServerMessage, _Mapping]]] = ..., allowCopies: _Optional[bool] = ...) -> None: ...
 
 class GameServerMessage(_message.Message):
     __slots__ = ("kind", "text")
@@ -1103,7 +1103,7 @@ class AssetCategoryBoolean(_message.Message):
     defaultValue: bool
     overrides: AssetCategoryTagBooleanOverride
     teamOverrides: _containers.RepeatedCompositeFieldContainer[AssetCategoryTagBooleanTeamOverride]
-    def __init__(self, defaultValue: bool = ..., overrides: _Optional[_Union[AssetCategoryTagBooleanOverride, _Mapping]] = ..., teamOverrides: _Optional[_Iterable[_Union[AssetCategoryTagBooleanTeamOverride, _Mapping]]] = ...) -> None: ...
+    def __init__(self, defaultValue: _Optional[bool] = ..., overrides: _Optional[_Union[AssetCategoryTagBooleanOverride, _Mapping]] = ..., teamOverrides: _Optional[_Iterable[_Union[AssetCategoryTagBooleanTeamOverride, _Mapping]]] = ...) -> None: ...
 
 class AssetCategoryTagBooleanOverride(_message.Message):
     __slots__ = ("assetCategoryTags", "value")
@@ -1111,7 +1111,7 @@ class AssetCategoryTagBooleanOverride(_message.Message):
     VALUE_FIELD_NUMBER: _ClassVar[int]
     assetCategoryTags: _containers.RepeatedScalarFieldContainer[str]
     value: bool
-    def __init__(self, assetCategoryTags: _Optional[_Iterable[str]] = ..., value: bool = ...) -> None: ...
+    def __init__(self, assetCategoryTags: _Optional[_Iterable[str]] = ..., value: _Optional[bool] = ...) -> None: ...
 
 class AssetCategoryTagBooleanTeamOverride(_message.Message):
     __slots__ = ("assetCategoryTags", "value", "teamId")
@@ -1121,7 +1121,7 @@ class AssetCategoryTagBooleanTeamOverride(_message.Message):
     assetCategoryTags: _containers.RepeatedScalarFieldContainer[str]
     value: bool
     teamId: int
-    def __init__(self, assetCategoryTags: _Optional[_Iterable[str]] = ..., value: bool = ..., teamId: _Optional[int] = ...) -> None: ...
+    def __init__(self, assetCategoryTags: _Optional[_Iterable[str]] = ..., value: _Optional[bool] = ..., teamId: _Optional[int] = ...) -> None: ...
 
 class Mutator(_message.Message):
     __slots__ = ("name", "category", "kind", "id")
@@ -1157,7 +1157,7 @@ class MutatorBoolean(_message.Message):
     __slots__ = ("boolValue",)
     BOOLVALUE_FIELD_NUMBER: _ClassVar[int]
     boolValue: bool
-    def __init__(self, boolValue: bool = ...) -> None: ...
+    def __init__(self, boolValue: _Optional[bool] = ...) -> None: ...
 
 class MutatorString(_message.Message):
     __slots__ = ("stringValue",)
@@ -1183,7 +1183,7 @@ class MutatorSparseBooleanEntry(_message.Message):
     VALUE_FIELD_NUMBER: _ClassVar[int]
     index: int
     value: bool
-    def __init__(self, index: _Optional[int] = ..., value: bool = ...) -> None: ...
+    def __init__(self, index: _Optional[int] = ..., value: _Optional[bool] = ...) -> None: ...
 
 class MutatorSparseBoolean(_message.Message):
     __slots__ = ("defaultValue", "size", "sparseValues")
@@ -1193,7 +1193,7 @@ class MutatorSparseBoolean(_message.Message):
     defaultValue: bool
     size: int
     sparseValues: _containers.RepeatedCompositeFieldContainer[MutatorSparseBooleanEntry]
-    def __init__(self, defaultValue: bool = ..., size: _Optional[int] = ..., sparseValues: _Optional[_Iterable[_Union[MutatorSparseBooleanEntry, _Mapping]]] = ...) -> None: ...
+    def __init__(self, defaultValue: _Optional[bool] = ..., size: _Optional[int] = ..., sparseValues: _Optional[_Iterable[_Union[MutatorSparseBooleanEntry, _Mapping]]] = ...) -> None: ...
 
 class SparseIntEntity(_message.Message):
     __slots__ = ("values",)
@@ -1243,7 +1243,7 @@ class GetPlayElementRequest(_message.Message):
     INCLUDEDENIED_FIELD_NUMBER: _ClassVar[int]
     id: str
     includeDenied: bool
-    def __init__(self, id: _Optional[str] = ..., includeDenied: bool = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., includeDenied: _Optional[bool] = ...) -> None: ...
 
 class GetOwnedPlayElementsResponse(_message.Message):
     __slots__ = ("playElements",)
@@ -1271,4 +1271,4 @@ class GetOwnedPlayElementsRequest(_message.Message):
     INCLUDEDENIED_FIELD_NUMBER: _ClassVar[int]
     publishStates: _containers.RepeatedScalarFieldContainer[PublishStateType]
     includeDenied: bool
-    def __init__(self, publishStates: _Optional[_Iterable[_Union[PublishStateType, str]]] = ..., includeDenied: bool = ...) -> None: ...
+    def __init__(self, publishStates: _Optional[_Iterable[_Union[PublishStateType, str]]] = ..., includeDenied: _Optional[bool] = ...) -> None: ...
