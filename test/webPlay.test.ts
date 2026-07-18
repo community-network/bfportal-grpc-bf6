@@ -27,9 +27,39 @@ test('getOwnedPlayElements', async () => {
     expect(response.playElements.length).not.toEqual(0);
 });
 
+test('getScheduledBlueprints', async () => {
+    const webClient = client.create(WebPlayDefinition, channel);
+
+    const response = await webClient.getScheduledBlueprints({});
+    const res = await webClient.getBlueprintsById({ ...response })
+    expect(res.blueprints.length).not.toEqual(0);
+});
+
 test('GetProgressionTypes', async () => {
     const webClient = client.create(WebPlayDefinition, channel);
 
     const response = await webClient.getProgressionTypes({});
     expect(response.entries.length).not.toEqual(0);
+});
+
+test('GetLicenseRequirements', async () => {
+    const webClient = client.create(WebPlayDefinition, channel);
+
+    const response = await webClient.getLicenseRequirements({});
+    expect(response.ownedLicenses.length).not.toEqual(0);
+});
+
+test('GetAvailableTags', async () => {
+    const webClient = client.create(WebPlayDefinition, channel);
+
+    const response = await webClient.getAvailableTags({});
+    expect(response.availableTags?.tags.length).not.toEqual(0);
+});
+
+
+test('ListExperiences', async () => {
+    const webClient = client.create(WebPlayDefinition, channel);
+
+    const response = await webClient.listExperiences({});
+    expect(response.experiences.length).not.toEqual(0);
 });
