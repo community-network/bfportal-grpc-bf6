@@ -134,25 +134,24 @@ message  GetAvailableTagsResponse {
 message  PlayExperience {
   /** Coupe id */
   string id = 1;
-  optional Creator creator = 2;
   /** e.g. Some Crazy nomad Conquest */
-  string name = 3;
+  string name = 2;
+  optional Creator creator = 3;
   /** e.g. Join the Battlefield but make sure you're always on the move because anyone standing still for more than 10 seconds gets their computer fork bombed. */
   optional StringValue description = 4;
-  optional PlayElementDesign playElementDesign = 5;
-  /** Will only be populated when searching experiences (i,e rpc listExperiences) */
-  optional int32 playerCount = 6;
-  optional int32 likes = 7;
-  /** if not public yet */
-  optional uint32 publishAt = 8;
-  /** creator-selected image */
-  optional StringValue thumbnailUrl = 9;
-  /** the creator is a regular player account */
-  bool isUgc = 10;
   /** short code for ugc experience */
-  optional StringValue shortCode = 11;
-  /** DRAFT, PUBLISHED, ... */
-  PublishStateType publishState = 12;
+  optional StringValue shortCode = 5;
+  /** creator-selected image */
+  optional StringValue thumbnailUrl = 6;
+  optional int32 likes = 7;
+  // optional PlayElementDesign playElementDesign = 5;
+  /** Will only be populated when searching experiences (i,e rpc listExperiences) */
+  optional int32 playerCount = 8;
+  optional uint32 created = 9;
+  optional uint32 updated = 10;
+  optional MapRotation mapRotation = 11;
+  repeated Tag tags = 12;
+  bool isPremium = 13;
 }
 
 message ListExperiencesResponse {

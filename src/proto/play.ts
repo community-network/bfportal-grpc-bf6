@@ -228,37 +228,34 @@ export interface GetAvailableTagsResponse {
 export interface PlayExperience {
   /** Coupe id */
   id: string;
+  /** e.g. Some Crazy nomad Conquest */
+  name: string;
   creator?:
     | Creator
     | undefined;
-  /** e.g. Some Crazy nomad Conquest */
-  name: string;
   /** e.g. Join the Battlefield but make sure you're always on the move because anyone standing still for more than 10 seconds gets their computer fork bombed. */
-  description?: StringValue | undefined;
-  playElementDesign?:
-    | PlayElementDesign
+  description?:
+    | StringValue
     | undefined;
-  /** Will only be populated when searching experiences (i,e rpc listExperiences) */
-  playerCount?: number | undefined;
-  likes?:
-    | number
-    | undefined;
-  /** if not public yet */
-  publishAt?:
-    | number
+  /** short code for ugc experience */
+  shortCode?:
+    | StringValue
     | undefined;
   /** creator-selected image */
   thumbnailUrl?:
     | StringValue
     | undefined;
-  /** the creator is a regular player account */
-  isUgc: boolean;
-  /** short code for ugc experience */
-  shortCode?:
-    | StringValue
+  /** optional PlayElementDesign playElementDesign = 5; */
+  likes?:
+    | number
     | undefined;
-  /** DRAFT, PUBLISHED, ... */
-  publishState: PublishStateType;
+  /** Will only be populated when searching experiences (i,e rpc listExperiences) */
+  playerCount?: number | undefined;
+  created?: number | undefined;
+  updated?: number | undefined;
+  mapRotation?: MapRotation | undefined;
+  tags: Tag[];
+  isPremium: boolean;
 }
 
 export interface ListExperiencesResponse {
@@ -1983,17 +1980,18 @@ export const GetAvailableTagsResponse: MessageFns<GetAvailableTagsResponse> = {
 function createBasePlayExperience(): PlayExperience {
   return {
     id: "",
-    creator: undefined,
     name: "",
+    creator: undefined,
     description: undefined,
-    playElementDesign: undefined,
-    playerCount: undefined,
-    likes: undefined,
-    publishAt: undefined,
-    thumbnailUrl: undefined,
-    isUgc: false,
     shortCode: undefined,
-    publishState: 0,
+    thumbnailUrl: undefined,
+    likes: undefined,
+    playerCount: undefined,
+    created: undefined,
+    updated: undefined,
+    mapRotation: undefined,
+    tags: [],
+    isPremium: false,
   };
 }
 
@@ -2002,38 +2000,41 @@ export const PlayExperience: MessageFns<PlayExperience> = {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
-    if (message.creator !== undefined) {
-      Creator.encode(message.creator, writer.uint32(18).fork()).join();
-    }
     if (message.name !== "") {
-      writer.uint32(26).string(message.name);
+      writer.uint32(18).string(message.name);
+    }
+    if (message.creator !== undefined) {
+      Creator.encode(message.creator, writer.uint32(26).fork()).join();
     }
     if (message.description !== undefined) {
       StringValue.encode(message.description, writer.uint32(34).fork()).join();
     }
-    if (message.playElementDesign !== undefined) {
-      PlayElementDesign.encode(message.playElementDesign, writer.uint32(42).fork()).join();
+    if (message.shortCode !== undefined) {
+      StringValue.encode(message.shortCode, writer.uint32(42).fork()).join();
     }
-    if (message.playerCount !== undefined) {
-      writer.uint32(48).int32(message.playerCount);
+    if (message.thumbnailUrl !== undefined) {
+      StringValue.encode(message.thumbnailUrl, writer.uint32(50).fork()).join();
     }
     if (message.likes !== undefined) {
       writer.uint32(56).int32(message.likes);
     }
-    if (message.publishAt !== undefined) {
-      writer.uint32(64).uint32(message.publishAt);
+    if (message.playerCount !== undefined) {
+      writer.uint32(64).int32(message.playerCount);
     }
-    if (message.thumbnailUrl !== undefined) {
-      StringValue.encode(message.thumbnailUrl, writer.uint32(74).fork()).join();
+    if (message.created !== undefined) {
+      writer.uint32(72).uint32(message.created);
     }
-    if (message.isUgc !== false) {
-      writer.uint32(80).bool(message.isUgc);
+    if (message.updated !== undefined) {
+      writer.uint32(80).uint32(message.updated);
     }
-    if (message.shortCode !== undefined) {
-      StringValue.encode(message.shortCode, writer.uint32(90).fork()).join();
+    if (message.mapRotation !== undefined) {
+      MapRotation.encode(message.mapRotation, writer.uint32(90).fork()).join();
     }
-    if (message.publishState !== 0) {
-      writer.uint32(96).int32(message.publishState);
+    for (const v of message.tags) {
+      Tag.encode(v!, writer.uint32(98).fork()).join();
+    }
+    if (message.isPremium !== false) {
+      writer.uint32(104).bool(message.isPremium);
     }
     return writer;
   },
@@ -2058,7 +2059,7 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.creator = Creator.decode(reader, reader.uint32());
+          message.name = reader.string();
           continue;
         }
         case 3: {
@@ -2066,7 +2067,7 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.name = reader.string();
+          message.creator = Creator.decode(reader, reader.uint32());
           continue;
         }
         case 4: {
@@ -2082,15 +2083,15 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.playElementDesign = PlayElementDesign.decode(reader, reader.uint32());
+          message.shortCode = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 6: {
-          if (tag !== 48) {
+          if (tag !== 50) {
             break;
           }
 
-          message.playerCount = reader.int32();
+          message.thumbnailUrl = StringValue.decode(reader, reader.uint32());
           continue;
         }
         case 7: {
@@ -2106,15 +2107,15 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.publishAt = reader.uint32();
+          message.playerCount = reader.int32();
           continue;
         }
         case 9: {
-          if (tag !== 74) {
+          if (tag !== 72) {
             break;
           }
 
-          message.thumbnailUrl = StringValue.decode(reader, reader.uint32());
+          message.created = reader.uint32();
           continue;
         }
         case 10: {
@@ -2122,7 +2123,7 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.isUgc = reader.bool();
+          message.updated = reader.uint32();
           continue;
         }
         case 11: {
@@ -2130,15 +2131,23 @@ export const PlayExperience: MessageFns<PlayExperience> = {
             break;
           }
 
-          message.shortCode = StringValue.decode(reader, reader.uint32());
+          message.mapRotation = MapRotation.decode(reader, reader.uint32());
           continue;
         }
         case 12: {
-          if (tag !== 96) {
+          if (tag !== 98) {
             break;
           }
 
-          message.publishState = reader.int32() as any;
+          message.tags.push(Tag.decode(reader, reader.uint32()));
+          continue;
+        }
+        case 13: {
+          if (tag !== 104) {
+            break;
+          }
+
+          message.isPremium = reader.bool();
           continue;
         }
       }
@@ -2156,27 +2165,28 @@ export const PlayExperience: MessageFns<PlayExperience> = {
   fromPartial(object: DeepPartial<PlayExperience>): PlayExperience {
     const message = createBasePlayExperience();
     message.id = object.id ?? "";
+    message.name = object.name ?? "";
     message.creator = (object.creator !== undefined && object.creator !== null)
       ? Creator.fromPartial(object.creator)
       : undefined;
-    message.name = object.name ?? "";
     message.description = (object.description !== undefined && object.description !== null)
       ? StringValue.fromPartial(object.description)
       : undefined;
-    message.playElementDesign = (object.playElementDesign !== undefined && object.playElementDesign !== null)
-      ? PlayElementDesign.fromPartial(object.playElementDesign)
-      : undefined;
-    message.playerCount = object.playerCount ?? undefined;
-    message.likes = object.likes ?? undefined;
-    message.publishAt = object.publishAt ?? undefined;
-    message.thumbnailUrl = (object.thumbnailUrl !== undefined && object.thumbnailUrl !== null)
-      ? StringValue.fromPartial(object.thumbnailUrl)
-      : undefined;
-    message.isUgc = object.isUgc ?? false;
     message.shortCode = (object.shortCode !== undefined && object.shortCode !== null)
       ? StringValue.fromPartial(object.shortCode)
       : undefined;
-    message.publishState = object.publishState ?? 0;
+    message.thumbnailUrl = (object.thumbnailUrl !== undefined && object.thumbnailUrl !== null)
+      ? StringValue.fromPartial(object.thumbnailUrl)
+      : undefined;
+    message.likes = object.likes ?? undefined;
+    message.playerCount = object.playerCount ?? undefined;
+    message.created = object.created ?? undefined;
+    message.updated = object.updated ?? undefined;
+    message.mapRotation = (object.mapRotation !== undefined && object.mapRotation !== null)
+      ? MapRotation.fromPartial(object.mapRotation)
+      : undefined;
+    message.tags = object.tags?.map((e) => Tag.fromPartial(e)) || [];
+    message.isPremium = object.isPremium ?? false;
     return message;
   },
 };

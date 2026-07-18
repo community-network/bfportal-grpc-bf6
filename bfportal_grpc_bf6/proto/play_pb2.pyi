@@ -304,32 +304,34 @@ class GetAvailableTagsResponse(_message.Message):
     def __init__(self, availableTags: _Optional[_Union[AvailableTags, _Mapping]] = ...) -> None: ...
 
 class PlayExperience(_message.Message):
-    __slots__ = ("id", "creator", "name", "description", "playElementDesign", "playerCount", "likes", "publishAt", "thumbnailUrl", "isUgc", "shortCode", "publishState")
+    __slots__ = ("id", "name", "creator", "description", "shortCode", "thumbnailUrl", "likes", "playerCount", "created", "updated", "mapRotation", "tags", "isPremium")
     ID_FIELD_NUMBER: _ClassVar[int]
-    CREATOR_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
+    CREATOR_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
-    PLAYELEMENTDESIGN_FIELD_NUMBER: _ClassVar[int]
-    PLAYERCOUNT_FIELD_NUMBER: _ClassVar[int]
-    LIKES_FIELD_NUMBER: _ClassVar[int]
-    PUBLISHAT_FIELD_NUMBER: _ClassVar[int]
-    THUMBNAILURL_FIELD_NUMBER: _ClassVar[int]
-    ISUGC_FIELD_NUMBER: _ClassVar[int]
     SHORTCODE_FIELD_NUMBER: _ClassVar[int]
-    PUBLISHSTATE_FIELD_NUMBER: _ClassVar[int]
+    THUMBNAILURL_FIELD_NUMBER: _ClassVar[int]
+    LIKES_FIELD_NUMBER: _ClassVar[int]
+    PLAYERCOUNT_FIELD_NUMBER: _ClassVar[int]
+    CREATED_FIELD_NUMBER: _ClassVar[int]
+    UPDATED_FIELD_NUMBER: _ClassVar[int]
+    MAPROTATION_FIELD_NUMBER: _ClassVar[int]
+    TAGS_FIELD_NUMBER: _ClassVar[int]
+    ISPREMIUM_FIELD_NUMBER: _ClassVar[int]
     id: str
-    creator: Creator
     name: str
+    creator: Creator
     description: StringValue
-    playElementDesign: PlayElementDesign
-    playerCount: int
-    likes: int
-    publishAt: int
-    thumbnailUrl: StringValue
-    isUgc: bool
     shortCode: StringValue
-    publishState: PublishStateType
-    def __init__(self, id: _Optional[str] = ..., creator: _Optional[_Union[Creator, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[_Union[StringValue, _Mapping]] = ..., playElementDesign: _Optional[_Union[PlayElementDesign, _Mapping]] = ..., playerCount: _Optional[int] = ..., likes: _Optional[int] = ..., publishAt: _Optional[int] = ..., thumbnailUrl: _Optional[_Union[StringValue, _Mapping]] = ..., isUgc: _Optional[bool] = ..., shortCode: _Optional[_Union[StringValue, _Mapping]] = ..., publishState: _Optional[_Union[PublishStateType, str]] = ...) -> None: ...
+    thumbnailUrl: StringValue
+    likes: int
+    playerCount: int
+    created: int
+    updated: int
+    mapRotation: MapRotation
+    tags: _containers.RepeatedCompositeFieldContainer[Tag]
+    isPremium: bool
+    def __init__(self, id: _Optional[str] = ..., name: _Optional[str] = ..., creator: _Optional[_Union[Creator, _Mapping]] = ..., description: _Optional[_Union[StringValue, _Mapping]] = ..., shortCode: _Optional[_Union[StringValue, _Mapping]] = ..., thumbnailUrl: _Optional[_Union[StringValue, _Mapping]] = ..., likes: _Optional[int] = ..., playerCount: _Optional[int] = ..., created: _Optional[int] = ..., updated: _Optional[int] = ..., mapRotation: _Optional[_Union[MapRotation, _Mapping]] = ..., tags: _Optional[_Iterable[_Union[Tag, _Mapping]]] = ..., isPremium: _Optional[bool] = ...) -> None: ...
 
 class ListExperiencesResponse(_message.Message):
     __slots__ = ("experiences", "nextPage")
